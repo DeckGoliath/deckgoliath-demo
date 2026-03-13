@@ -129,42 +129,48 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding: 130px 52px 90px;
+    padding: 130px 6vw 90px;
   }
 
   .hero-bg {
     position: absolute;
     inset: 0;
+    background: #0A0806;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     background:
-      radial-gradient(ellipse 70% 90% at 72% 50%, rgba(70,45,8,0.5) 0%, transparent 65%),
-      radial-gradient(ellipse 40% 50% at 68% 38%, rgba(120,78,12,0.2) 0%, transparent 55%),
-      linear-gradient(160deg, #0A0806 0%, #16100A 45%, #080604 100%);
+      radial-gradient(ellipse 55% 80% at 78% 50%, rgba(70,45,8,0.55) 0%, transparent 70%),
+      radial-gradient(ellipse 35% 50% at 72% 38%, rgba(110,68,10,0.2) 0%, transparent 60%);
   }
 
   /* Eagle hero image - right side */
   .hero-eagle {
     position: absolute;
-    right: -3%;
+    right: 0;
     top: 50%;
     transform: translateY(-50%);
-    width: 62%;
-    max-width: 800px;
-    opacity: 0.85;
+    width: 55%;
+    max-width: 900px;
+    min-width: 400px;
+    opacity: 0.82;
     mix-blend-mode: screen;
     pointer-events: none;
-    filter: drop-shadow(-40px 0 80px rgba(8,6,4,0.9));
   }
 
-  /* Fade the eagle into background on left side */
+  /* Fade eagle smoothly into background — no hard line */
   .hero-eagle-mask {
     position: absolute;
-    right: -3%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 62%;
-    max-width: 800px;
-    height: 100%;
-    background: linear-gradient(to right, rgba(10,8,6,1) 0%, rgba(10,8,6,0.6) 20%, rgba(10,8,6,0) 45%);
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 55%;
+    max-width: 900px;
+    min-width: 400px;
+    background: linear-gradient(to right, #0A0806 0%, rgba(10,8,6,0.8) 18%, rgba(10,8,6,0.3) 45%, rgba(10,8,6,0) 65%);
     pointer-events: none;
     z-index: 1;
   }
@@ -172,12 +178,13 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 580px;
+    max-width: 50%;
+    min-width: 320px;
   }
 
   .hero-title {
     font-family: 'Cinzel', serif;
-    font-size: clamp(46px, 6.5vw, 80px);
+    font-size: clamp(36px, 4.8vw, 72px);
     font-weight: 700;
     line-height: 1.02;
     margin-bottom: 28px;
@@ -195,7 +202,7 @@
     color: rgba(240,234,214,0.72);
     line-height: 1.75;
     margin-bottom: 48px;
-    max-width: 430px;
+    max-width: 500px;
   }
 
   .hero-badges {
@@ -754,9 +761,9 @@
       Inébranlable.
     </h1>
     <p class="hero-subtitle">
-      Conception + installation avec des matériaux<br>
-      haut de gamme (sans entretien).<br>
-      Un seul responsable du début à la fin — aucune confusion.
+      Chez Deck Goliath, nous privilégions une approche claire : un accompagnement direct du début à la fin, une exécution maîtrisée et des matériaux de qualité supérieure tels que la gamme minérale de Deckorators, le PVC de TimberTech / AZEK, ainsi que les rampes en aluminium Regal Ideas. Par souci de qualité et de durabilité, nous ne réalisons plus de patios avec finition en bois traité.
+      <br><br>
+      Pour nous, il n'y a ni petit projet ni gros projet : il y a <em>votre</em> projet. Il mérite le même sérieux, la même écoute et le même niveau d'attention. Le service à la clientèle est une priorité, au même titre que la qualité de ce que nous construisons. Dès la première rencontre, nous prenons le temps de bien évaluer vos besoins, de vous orienter selon vos priorités et de vous présenter une estimation cohérente avec vos choix.
     </p>
     <div class="hero-badges">
       <div class="badge badge-primary">🏆 Choix du consommateur</div>
@@ -897,7 +904,7 @@
   </a>
   <div class="footer-info">
     <p>RBQ 5756-0096-01</p>
-    <p>Montréal &amp; environs · info@deckgoliath.ca</p>
+    <p>Montréal &amp; environs · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d9b0b7bfb699bdbcbab2beb6b5b0b8adb1f7bab8">[email&#160;protected]</a></p>
   </div>
   <ul class="footer-links">
     <li><a href="#pourquoi">Pourquoi nous</a></li>
@@ -908,13 +915,4 @@
   <p style="font-size:11px; color:var(--text-dim); letter-spacing:0.5px;">© 2025 Deck Goliath. Tous droits réservés.</p>
 </footer>
 
-<script>
-  // Sticky nav
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
-</script>
-
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-d
