@@ -3,666 +3,645 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Deck Goliath — Patios haut de gamme, sans compromis</title>
-  <meta name="description" content="Deck Goliath — Conception et construction de patios haut de gamme, matériaux sans entretien, un seul responsable du début à la fin." />
+  <title>Deck Goliath — Minimaliste. Luxueux. Inébranlable.</title>
+  <meta name="description" content="Deck Goliath conçoit et installe des patios haut de gamme sans entretien dans l’Outaouais. Transparence, conformité et solidité." />
 
   <style>
     :root{
-      --bg:#0b0d10;
-      --panel:#0f1318;
-      --panel2:#0c0f13;
-      --line:rgba(255,255,255,.08);
-      --text:#e8edf2;
-      --muted:rgba(232,237,242,.72);
-      --gold:#f7b955;
-      --ember:#ff5a2a;
-      --shadow: 0 20px 60px rgba(0,0,0,.55);
-      --radius: 18px;
-      --radius2: 28px;
-      --max: 1160px;
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --bg:#0a0908;
+      --bg2:#15110d;
+      --panel:rgba(20,15,11,.74);
+      --panel2:rgba(30,22,15,.56);
+      --line:rgba(214,169,104,.18);
+      --gold:#d7a968;
+      --gold2:#b98543;
+      --text:#f3e7d6;
+      --muted:rgba(243,231,214,.78);
+      --shadow:0 20px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius-lg:28px;
+      --max:1200px;
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:var(--font);
+      font-family: Georgia, "Times New Roman", serif;
       color:var(--text);
       background:
-        radial-gradient(1200px 700px at 20% 10%, rgba(255,90,42,.14), transparent 60%),
-        radial-gradient(900px 600px at 80% 30%, rgba(247,185,85,.10), transparent 55%),
-        linear-gradient(180deg, #050607, #0b0d10 40%, #07090b);
+        radial-gradient(circle at 20% 0%, rgba(215,169,104,.10), transparent 40%),
+        radial-gradient(circle at 100% 10%, rgba(185,133,67,.10), transparent 35%),
+        linear-gradient(180deg, #0a0908 0%, #110d0a 40%, #090807 100%);
       overflow-x:hidden;
     }
 
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: rgba(11,13,16,.62);
-      border-bottom: 1px solid var(--line);
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+      mix-blend-mode:screen;
+      opacity:.25;
     }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:blur(12px);
+      background:rgba(10,9,8,.72);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
     .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:16px;
+      min-height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
     }
 
     .brand{
-      display:flex; align-items:center; gap:12px; min-width:240px;
+      display:flex;
+      align-items:center;
+      gap:14px;
     }
-    .brandLogo{
-      width:44px; height:44px;
+
+    .brand-logo{
+      width:52px;
+      height:52px;
       border-radius:14px;
-      border:1px solid rgba(247,185,85,.22);
       overflow:hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      background: rgba(255,255,255,.03);
-      display:grid; place-items:center;
+      border:1px solid rgba(215,169,104,.25);
+      box-shadow:0 10px 30px rgba(0,0,0,.35);
+      background:rgba(255,255,255,.03);
+      flex:0 0 auto;
     }
-    .brandLogo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
+
+    .brand-copy strong{
       display:block;
-    }
-
-    .brand h1{
-      font-size:14px; letter-spacing:.12em; text-transform:uppercase; margin:0;
-      display:flex; flex-direction:column; line-height:1.1;
-    }
-    .brand h1 span{font-size:11px; letter-spacing:.18em; color:var(--muted); font-weight:600}
-
-    .links{display:flex; gap:18px; align-items:center; flex-wrap:wrap; justify-content:center}
-    .links a{
-      font-size:13px; color:var(--muted);
-      padding:8px 10px; border-radius:10px;
-      border:1px solid transparent;
-    }
-    .links a:hover{
-      color:var(--text);
-      border-color: rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-    }
-
-    .cta{
-      display:flex; gap:10px; align-items:center; justify-content:flex-end; min-width:240px;
-    }
-    .btn{
-      padding:10px 14px; border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color:var(--text);
-      font-weight:800; font-size:13px;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      display:inline-flex; align-items:center; gap:10px;
-      cursor:pointer;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18)}
-    .btn.primary{
-      border-color: rgba(247,185,85,.35);
-      background: linear-gradient(135deg, rgba(247,185,85,.18), rgba(255,90,42,.10));
-      box-shadow: 0 18px 40px rgba(0,0,0,.35);
-    }
-    .pill{
-      font-size:12px; padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(247,185,85,.28);
-      color: rgba(247,185,85,.95);
-      background: rgba(247,185,85,.06);
-      font-weight:900;
-      letter-spacing:.06em;
+      font-size:15px;
+      letter-spacing:.14em;
       text-transform:uppercase;
     }
 
-    /* HERO */
-    .hero{padding:54px 0 26px; position:relative;}
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:22px;
-      align-items:stretch;
-    }
-    @media (max-width: 980px){
-      .heroGrid{grid-template-columns: 1fr;}
-      .cta{min-width:auto}
-      .brand{min-width:auto}
-    }
-
-    .card{
-      border:1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
-        radial-gradient(600px 240px at 20% 0%, rgba(247,185,85,.10), transparent 60%),
-        radial-gradient(700px 340px at 100% 40%, rgba(255,90,42,.08), transparent 55%),
-        rgba(12,15,19,.72);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-
-    /* Aigle watermark (subtil mais insane) */
-    .eagleMark{
-      position:absolute;
-      top:-30px;
-      right:-40px;
-      width:260px;
-      height:260px;
-      opacity:.08;
-      filter: blur(.0px);
-      pointer-events:none;
-      transform: rotate(8deg);
-    }
-    .eagleMark img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
+    .brand-copy span{
       display:block;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--muted);
     }
 
-    .heroMain{padding:34px 34px 28px; position:relative}
-    .headline{
-      font-size:46px; line-height:1.02; margin:14px 0 12px;
-      letter-spacing:-.02em;
-    }
-    .sub{
-      font-size:16px; line-height:1.55; color:var(--muted);
-      max-width: 62ch;
-      margin:0 0 18px;
+    .links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:center;
     }
 
-    .badges{display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 22px}
-    .badge{
-      padding:10px 12px; border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: rgba(232,237,242,.86);
-      font-weight:900;
-      font-size:12px;
-      letter-spacing:.04em;
-    }
-    .badge b{color: var(--gold)}
-    .heroBtns{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-
-    .heroSide{
-      padding:18px;
-      display:flex; flex-direction:column; gap:14px;
-    }
-    .sideBox{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.20);
-      border-radius: var(--radius);
-      padding:16px;
-    }
-    .sideBox h3{margin:0 0 8px; font-size:13px; letter-spacing:.12em; text-transform:uppercase}
-    .sideBox p{margin:0; color:var(--muted); line-height:1.55; font-size:14px}
-    .statRow{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
-    .stat{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      border-radius: 16px;
-      padding:14px;
-    }
-    .stat .n{font-size:22px; font-weight:1000; letter-spacing:-.02em}
-    .stat .l{font-size:12px; color:var(--muted); margin-top:6px; line-height:1.35}
-
-    /* SECTION */
-    section{padding:34px 0}
-    .sectionTitle{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
-      margin-bottom:14px;
-    }
-    .sectionTitle h2{margin:0; font-size:22px; letter-spacing:-.01em;}
-    .sectionTitle p{margin:0; color:var(--muted); font-size:14px; line-height:1.45; max-width:60ch}
-
-    .grid3{display:grid; grid-template-columns: repeat(3,1fr); gap:14px}
-    .grid2{display:grid; grid-template-columns: repeat(2,1fr); gap:14px}
-    @media (max-width: 980px){
-      .grid3{grid-template-columns: 1fr}
-      .grid2{grid-template-columns: 1fr}
-      .headline{font-size:38px}
-      .heroMain{padding:26px}
-    }
-
-    .tile{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding:18px;
-      position:relative;
-      overflow:hidden;
-    }
-    .tile:before{
-      content:"";
-      position:absolute; inset:-40px;
-      background:
-        radial-gradient(300px 130px at 15% 10%, rgba(247,185,85,.10), transparent 60%),
-        radial-gradient(340px 140px at 85% 30%, rgba(255,90,42,.08), transparent 55%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .tile > *{position:relative}
-    .tile h3{margin:0 0 8px; font-size:15px}
-    .tile p{margin:0; color:var(--muted); line-height:1.6; font-size:14px}
-
-    /* Callout (pro + impact) */
-    .callout{
-      border-radius: var(--radius2);
-      border:1px solid rgba(247,185,85,.24);
-      background:
-        linear-gradient(135deg, rgba(247,185,85,.11), rgba(255,90,42,.06)),
-        rgba(255,255,255,.02);
-      padding:22px;
-      box-shadow: 0 16px 40px rgba(0,0,0,.35);
-    }
-    .callout p{
-      margin:0;
-      line-height:1.65;
-      font-size:15px;
-      color: rgba(232,237,242,.92);
-      font-weight:800;
-    }
-    .callout p strong{color: var(--gold)}
-    .callout .small{
-      margin-top:10px;
-      color: var(--muted);
-      font-size:12px;
+    .links a{
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:13px;
+      color:var(--muted);
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid transparent;
       font-weight:700;
     }
 
-    /* Gallery mock */
-    .gallery{display:grid; grid-template-columns: 1.2fr .8fr; gap:14px;}
-    .mock{
-      border-radius: var(--radius2);
-      border:1px solid var(--line);
-      background:
-        radial-gradient(800px 300px at 20% 0%, rgba(247,185,85,.12), transparent 55%),
-        radial-gradient(700px 300px at 90% 40%, rgba(255,90,42,.08), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.0)),
-        rgba(10,12,15,.6);
-      min-height: 320px;
-      position:relative;
-      overflow:hidden;
-      box-shadow: var(--shadow);
+    .links a:hover{
+      border-color:rgba(215,169,104,.18);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
     }
-    .mock .cap{
-      position:absolute; left:18px; bottom:18px; right:18px;
-      padding:14px;
-      border-radius: 18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
-    }
-    .mock .cap b{color:var(--gold)}
-    .miniGrid{display:grid; grid-template-columns: 1fr; gap:14px}
-    .mini{
-      border-radius: var(--radius2);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      min-height: 153px;
-      overflow:hidden;
-      position:relative;
-    }
-    .mini:before{
-      content:"";
-      position:absolute; inset:-30px;
-      background: radial-gradient(260px 120px at 20% 20%, rgba(255,90,42,.14), transparent 60%),
-                  radial-gradient(280px 140px at 80% 40%, rgba(247,185,85,.12), transparent 60%);
-      opacity:.9;
-    }
-    .mini .cap{
-      position:absolute; left:14px; bottom:14px; right:14px;
-      padding:12px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
+
+    .btn{
+      min-height:46px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 18px;
+      border-radius:14px;
+      border:1px solid rgba(215,169,104,.28);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-family: Arial, Helvetica, sans-serif;
       font-size:13px;
+      font-weight:800;
+      letter-spacing:.02em;
+      transition:.18s ease;
+      box-shadow:var(--shadow);
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.05);
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(215,169,104,.18), rgba(185,133,67,.16));
+    }
+
+    .hero{
+      padding:34px 0 18px;
+    }
+
+    .hero-card{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(215,169,104,.14);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)),
+        radial-gradient(circle at 0% 0%, rgba(215,169,104,.14), transparent 38%),
+        radial-gradient(circle at 100% 20%, rgba(185,133,67,.10), transparent 34%),
+        rgba(18,13,10,.84);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:20px;
+      min-height:620px;
+    }
+
+    .hero-main{
+      position:relative;
+      padding:34px;
+      z-index:2;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(215,169,104,.24);
+      background:rgba(215,169,104,.06);
+      color:var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight:900;
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .hero-title{
+      margin:18px 0 14px;
+      font-size:74px;
+      line-height:.94;
+      letter-spacing:-.04em;
+    }
+
+    .hero-title .gold{color:#e2b36f}
+    .hero-copy{
+      margin:0;
+      max-width:620px;
+      color:var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:18px;
+      line-height:1.72;
+    }
+
+    .hero-copy strong{color:var(--text)}
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin:24px 0 0;
+    }
+
+    .badges{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:12px;
+      margin:26px 0 0;
+    }
+
+    .badge{
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid rgba(215,169,104,.18);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:14px;
+      font-weight:800;
+      color:#f2dec0;
+      text-align:center;
+    }
+
+    .badge.featured{
+      background:linear-gradient(135deg, rgba(215,169,104,.18), rgba(185,133,67,.12));
+    }
+
+    .hero-right{
+      position:relative;
+      min-height:100%;
+    }
+
+    .eagle-line{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px 10px 0 0;
+      opacity:.34;
+    }
+
+    .eagle-line img{
+      width:100%;
+      max-width:760px;
+      object-fit:contain;
+      filter:sepia(1) hue-rotate(-8deg) saturate(.75) brightness(1.02);
+      mix-blend-mode:screen;
+    }
+
+    .hero-glow{
+      position:absolute;
+      right:11%;
+      top:18%;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(222,170,94,.30), transparent 65%);
+      filter:blur(24px);
+      opacity:.85;
+    }
+
+    .logo-corner{
+      position:absolute;
+      left:34px;
+      top:32px;
+      width:160px;
+      opacity:.98;
+      filter:drop-shadow(0 14px 24px rgba(0,0,0,.35));
+    }
+
+    .partners{
+      margin-top:16px;
+      padding:26px 0;
+      border-top:1px solid rgba(255,255,255,.04);
+      border-bottom:1px solid rgba(255,255,255,.04);
+      background:rgba(255,255,255,.025);
+    }
+
+    .partners-grid{
+      display:grid;
+      grid-template-columns:repeat(6, 1fr);
+      gap:20px;
+      align-items:center;
+    }
+
+    .partner{
+      min-height:84px;
+      border:1px solid rgba(215,169,104,.10);
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px;
+      background:rgba(255,255,255,.02);
+      font-family: Arial, Helvetica, sans-serif;
+      color:rgba(243,231,214,.88);
+      text-align:center;
+      font-weight:800;
+    }
+
+    .partner small{
+      display:block;
+      margin-top:6px;
+      font-size:12px;
+      font-weight:700;
       color:var(--muted);
     }
 
-    /* Form */
-    form{display:grid; gap:10px}
-    input, textarea, select{
+    section{
+      padding:54px 0;
+    }
+
+    .section-head{
+      text-align:center;
+      margin-bottom:22px;
+    }
+
+    .section-head h2{
+      margin:0 0 10px;
+      font-size:56px;
+      line-height:1;
+      letter-spacing:-.03em;
+    }
+
+    .section-head p{
+      margin:0 auto;
+      max-width:760px;
+      color:var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:18px;
+      line-height:1.7;
+    }
+
+    .verify-card{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:22px;
+      padding:22px;
+      border-radius:30px;
+      border:1px solid rgba(215,169,104,.16);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+        rgba(18,13,10,.74);
+      box-shadow:var(--shadow);
+    }
+
+    .stamp-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100%;
+      padding:10px;
+    }
+
+    .stamp{
       width:100%;
-      padding:12px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.28);
-      color: var(--text);
-      outline:none;
+      max-width:360px;
+      aspect-ratio:1/1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      filter:drop-shadow(0 24px 32px rgba(0,0,0,.45));
+    }
+
+    .stamp img{
+      width:100%;
+      object-fit:contain;
+    }
+
+    .verify-copy{
+      padding:8px 6px 8px 0;
+    }
+
+    .verify-copy h3{
+      margin:0 0 12px;
+      font-size:52px;
+      line-height:1.02;
+      letter-spacing:-.03em;
+    }
+
+    .verify-copy h3 .gold{color:var(--gold)}
+    .verify-copy p{
+      margin:0 0 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:19px;
+      line-height:1.75;
+      color:var(--muted);
+    }
+
+    .verify-copy p strong{color:var(--text)}
+
+    .check-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .check{
+      border:1px solid rgba(215,169,104,.14);
+      border-radius:18px;
+      padding:18px;
+      background:rgba(255,255,255,.025);
+    }
+
+    .check h4{
+      margin:0 0 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size:18px;
+      color:#f1d8b2;
+    }
+
+    .check p{
+      margin:0;
+      font-size:15px;
+      line-height:1.7;
+      color:var(--muted);
+    }
+
+    .footer{
+      padding:30px 0 44px;
+      border-top:1px solid rgba(255,255,255,.05);
+      background:rgba(255,255,255,.02);
+    }
+
+    .footer-row{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      font-family: Arial, Helvetica, sans-serif;
+      color:var(--muted);
       font-size:14px;
     }
-    textarea{min-height:110px; resize:vertical}
-    input:focus, textarea:focus, select:focus{
-      border-color: rgba(247,185,85,.28);
-      box-shadow: 0 0 0 4px rgba(247,185,85,.08);
-    }
-    .small{font-size:12px; color:var(--muted); line-height:1.5}
 
-    footer{
-      padding:26px 0 40px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      font-size:13px;
-    }
-    .footRow{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;}
-    .tagline{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:10px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      color: rgba(232,237,242,.80);
-      font-weight:900;
+    .footer-brand{
+      font-weight:800;
+      color:var(--text);
     }
 
-    /* subtle divider */
-    .chain{
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
-      margin: 14px 0 0;
-      position:relative;
+    @media (max-width: 1100px){
+      .hero-grid,
+      .verify-card{
+        grid-template-columns:1fr;
+      }
+      .hero-title{font-size:62px}
+      .partners-grid{grid-template-columns:repeat(3,1fr)}
+      .badges{grid-template-columns:repeat(2,1fr)}
+      .check-grid{grid-template-columns:1fr}
+      .hero-right{min-height:420px}
     }
-    .chain:before, .chain:after{
-      content:"";
-      position:absolute; top:-8px;
-      width:16px; height:16px; border-radius:999px;
-      border:1px solid rgba(247,185,85,.20);
-      background: rgba(0,0,0,.35);
-      box-shadow: 0 10px 30px rgba(0,0,0,.45);
+
+    @media (max-width: 760px){
+      .nav{
+        flex-direction:column;
+        align-items:flex-start;
+        padding:14px 0;
+      }
+      .links{justify-content:flex-start}
+      .hero-main{padding:24px}
+      .hero-title{font-size:48px}
+      .section-head h2{font-size:40px}
+      .verify-copy h3{font-size:38px}
+      .partners-grid{grid-template-columns:1fr 1fr}
+      .badges{grid-template-columns:1fr}
+      .partner{min-height:74px}
     }
-    .chain:before{left: calc(50% - 32px)}
-    .chain:after{left: calc(50% + 16px)}
   </style>
 </head>
-
 <body>
-  <!-- TOPBAR -->
-  <div class="topbar">
+
+  <header class="topbar">
     <div class="wrap">
       <div class="nav">
         <div class="brand">
-          <div class="brandLogo" aria-hidden="true">
-            <!-- Logo feu -->
+          <div class="brand-logo">
             <img src="assets/logo-fire.png" alt="Deck Goliath" />
           </div>
-          <h1>DECK GOLIATH <span>Patios haut de gamme · Outaouais</span></h1>
+          <div class="brand-copy">
+            <strong>Deck Goliath</strong>
+            <span>Outaouais · haut de gamme</span>
+          </div>
         </div>
 
-        <div class="links">
+        <nav class="links">
           <a href="#pourquoi">Pourquoi</a>
           <a href="#materiaux">Matériaux</a>
           <a href="#realisations">Réalisations</a>
-          <a href="#verification">Vérifier</a>
-          <a href="#contact">Soumission</a>
-        </div>
+          <a href="#verifier">Vérifier</a>
+        </nav>
 
-        <div class="cta">
-          <span class="pill">High-End Only</span>
-          <a class="btn primary" href="#contact">Demander une soumission</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="wrap">
-      <div class="heroGrid">
-        <div class="card">
-          <div class="heroMain">
-            <!-- Aigle watermark -->
-            <div class="eagleMark" aria-hidden="true">
-              <img src="assets/eagle.png" alt="" />
-            </div>
-
-            <span class="pill">Deck Goliath</span>
-            <h2 class="headline">
-              Minimaliste.<br/>
-              <span style="color:var(--gold)">Luxueux</span>.<br/>
-              <span style="color:var(--ember)">Inébranlable</span>.
-            </h2>
-
-            <p class="sub">
-              Conception + installation avec des matériaux <b>haut de gamme</b> (sans entretien).
-              Un seul responsable du début à la fin — aucune confusion.
-            </p>
-
-            <div class="badges">
-              <div class="badge">🏆 <b>Choix du consommateur</b> · 3 années de suite</div>
-              <div class="badge">✅ <b>1</b> responsable</div>
-              <div class="badge">✅ Finition <b>premium</b></div>
-              <div class="badge">✅ Propreté &amp; rigueur</div>
-            </div>
-
-            <div class="heroBtns">
-              <a class="btn primary" href="#contact">Obtenir une estimation</a>
-              <a class="btn" href="#verification">Vérifier l’entrepreneur</a>
-            </div>
-
-            <div class="chain" aria-hidden="true"></div>
-            <p class="small" style="margin:14px 0 0;">
-              <b>Note :</b> Nous ne construisons plus de patios avec une finition en <b>bois traité</b>
-              (qualité inférieure des matériaux disponibles aujourd’hui). Une exception peut être faite pour des
-              <b>très grands projets</b> (ex. &gt; 700 pi²) lorsque le coût du sans-entretien devient trop élevé.
-            </p>
-          </div>
-        </div>
-
-        <aside class="heroSide">
-          <div class="sideBox">
-            <h3>Approche</h3>
-            <p>
-              Un chantier premium = <b>contrôle qualité</b>.
-              Un seul intervenant = exécution constante + décisions rapides.
-            </p>
-          </div>
-
-          <div class="statRow">
-            <div class="stat">
-              <div class="n">0</div>
-              <div class="l">intermédiaire</div>
-            </div>
-            <div class="stat">
-              <div class="n">100%</div>
-              <div class="l">responsable unique</div>
-            </div>
-          </div>
-
-          <div class="sideBox">
-            <h3>RBQ</h3>
-            <p><b>RBQ 5756-0096-01</b><br/>Transparence totale. Vérifiable.</p>
-          </div>
-        </aside>
+        <a href="#soumission" class="btn primary">Demander une soumission</a>
       </div>
     </div>
   </header>
 
-  <!-- POURQUOI (minimaliste) -->
-  <section id="pourquoi">
-    <div class="wrap">
-      <div class="sectionTitle">
-        <h2>Pourquoi Deck Goliath</h2>
-        <p>Un seul responsable. Du premier pieu à la dernière vis de finition.</p>
-      </div>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-card">
+          <div class="hero-grid">
+            <div class="hero-main">
+              <span class="pill">Deck Goliath</span>
 
-      <div class="grid3">
-        <div class="tile">
-          <h3>Aucun intermédiaire</h3>
-          <p>Une seule personne, un seul standard, un résultat cohérent.</p>
-        </div>
-        <div class="tile">
-          <h3>Zéro malcommunication</h3>
-          <p>Décisions rapides. Exécution propre. Pas de “téléphone cassé”.</p>
-        </div>
-        <div class="tile">
-          <h3>Qualité contrôlée</h3>
-          <p>Alignements, coupes, finition, propreté : tout est vérifié.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+              <h1 class="hero-title">
+                Minimaliste.<br>
+                <span class="gold">Luxueux.</span><br>
+                Inébranlable.
+              </h1>
 
-  <!-- MATERIAUX -->
-  <section id="materiaux">
-    <div class="wrap">
-      <div class="sectionTitle">
-        <h2>Matériaux : haut de gamme</h2>
-        <p>On privilégie le durable, le stable et le sans-entretien.</p>
-      </div>
+              <p class="hero-copy">
+                Conception et installation de patios <strong>haut de gamme</strong> sans entretien.
+                <strong>Un seul responsable</strong> du premier pieu à la dernière vis — aucune confusion.
+              </p>
 
-      <div class="grid2">
-        <div class="tile">
-          <h3>Sans entretien (priorité)</h3>
-          <p>Platelage composite/PVC haut de gamme + visserie de finition + détails pensés pour le climat du Québec.</p>
-        </div>
-        <div class="tile">
-          <h3>Bois traité (exception)</h3>
-          <p>Exception possible pour <b>très grands projets</b> (ex. &gt; 700 pi²) lorsque le budget sans-entretien devient trop élevé.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+              <div class="hero-actions">
+                <a class="btn primary" href="#soumission">Demander une soumission</a>
+                <a class="btn" href="#realisations">Voir nos réalisations</a>
+              </div>
 
-  <!-- REALISATIONS -->
-  <section id="realisations">
-    <div class="wrap">
-      <div class="sectionTitle">
-        <h2>Réalisations</h2>
-        <p>Place tes photos ici (avant/après + détails). Le site va être débile une fois rempli.</p>
-      </div>
-
-      <div class="gallery">
-        <div class="mock" role="img" aria-label="Aperçu réalisation principale (placeholder)">
-          <div class="cap">
-            <b>Projet Signature</b> — lignes nettes, finition premium (placeholder).
-          </div>
-        </div>
-
-        <div class="miniGrid">
-          <div class="mini" role="img" aria-label="Aperçu 2 (placeholder)">
-            <div class="cap">Détail finition · coupe · vis cachées (placeholder)</div>
-          </div>
-          <div class="mini" role="img" aria-label="Aperçu 3 (placeholder)">
-            <div class="cap">Escalier · contremarches · alignements (placeholder)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VERIFICATION -->
-  <section id="verification">
-    <div class="wrap">
-      <div class="sectionTitle">
-        <h2>Guide du citoyen — Vérifier un entrepreneur</h2>
-        <p>La vraie tranquillité d’esprit commence avant la signature.</p>
-      </div>
-
-      <div class="grid2">
-        <div class="tile">
-          <h3>Checklist rapide</h3>
-          <p style="margin:0 0 10px;color:var(--muted);font-size:14px;line-height:1.6;">
-            Avant de signer :
-          </p>
-          <div style="display:grid;gap:10px">
-            <div class="badge" style="display:inline-flex;align-items:center;gap:10px;width:fit-content">
-              ✅ Licence RBQ active (catégories + statut)
+              <div class="badges">
+                <div class="badge featured">🏆 Choix du consommateur</div>
+                <div class="badge">✔ 1 seul responsable</div>
+                <div class="badge">✔ Matériaux premium</div>
+                <div class="badge">✔ Installation professionnelle</div>
+              </div>
             </div>
-            <div class="badge" style="display:inline-flex;align-items:center;gap:10px;width:fit-content">
-              ✅ Assurance responsabilité à jour
-            </div>
-            <div class="badge" style="display:inline-flex;align-items:center;gap:10px;width:fit-content">
-              ✅ Contrat clair (matériaux + inclus/exclus + échéancier)
+
+            <div class="hero-right">
+              <img class="logo-corner" src="assets/logo-fire.png" alt="Deck Goliath">
+              <div class="hero-glow"></div>
+              <div class="eagle-line">
+                <img src="assets/eagle-line.png" alt="Aigle Deck Goliath">
+              </div>
             </div>
           </div>
-
-          <div class="small" style="margin-top:12px;">
-            Tu peux mettre ici 2 boutons plus tard : “Vérifier RBQ” + “Guide du citoyen”.
-          </div>
         </div>
 
-        <!-- TON TEXTE (emphase) -->
-        <div class="callout">
+        <div class="partners">
+          <div class="partners-grid">
+            <div class="partner">TimberTech</div>
+            <div class="partner">DeckStars</div>
+            <div class="partner">Google<br><small>5.0 ★★★★★</small></div>
+            <div class="partner">Deckorators<br><small>Certified Pro</small></div>
+            <div class="partner">Regal Ideas</div>
+            <div class="partner">RBQ 5756-0096-01</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="verifier">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Guide du citoyen — Vérifier un entrepreneur</h2>
           <p>
-            <strong>Un entrepreneur sérieux n’a jamais peur d’être vérifié.</strong><br/>
-            La transparence protège les citoyens.<br/><br/>
-            Oui, un entrepreneur sérieux a un prix.<br/>
-            Mais la conformité, la solidité et la tranquillité d’esprit…<br/>
-            <strong>ça, ça n’a pas de prix.</strong>
+            Avant de signer, prends 2 minutes pour valider que l’entrepreneur est en règle.
           </p>
-          <div class="small">Deck Goliath · Transparence · Conformité · Solidité</div>
+        </div>
+
+        <div class="verify-card">
+          <div class="stamp-wrap">
+            <div class="stamp">
+              <img src="assets/eagle-stamp.png" alt="Stamp premium Deck Goliath">
+            </div>
+          </div>
+
+          <div class="verify-copy">
+            <h3>
+              Un entrepreneur sérieux n’a jamais peur
+              <span class="gold">d’être vérifié.</span>
+            </h3>
+
+            <p><strong>La transparence protège les citoyens.</strong></p>
+
+            <p>
+              Oui, un entrepreneur sérieux a un <strong>prix</strong>.<br>
+              Mais la conformité, la solidité et la tranquillité d’esprit…<br>
+              <strong>ça, ça n’a pas de prix.</strong>
+            </p>
+
+            <div class="check-grid">
+              <div class="check">
+                <h4>✔ RBQ</h4>
+                <p>
+                  Vérifie la licence, les catégories, le statut et les conditions.
+                  Demande le numéro et confirme qu’il est actif.
+                </p>
+              </div>
+
+              <div class="check">
+                <h4>✔ Assurance responsabilité</h4>
+                <p>
+                  Demande une preuve d’assurance à jour, avec montant et dates.
+                  Un pro sérieux te l’envoie sans hésiter.
+                </p>
+              </div>
+
+              <div class="check">
+                <h4>✔ Contrat & détails</h4>
+                <p>
+                  Prix, matériaux, plan, échéancier, inclus/exclus, garantie.
+                  Tout doit être clair avant le dépôt.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- CONTACT -->
-  <section id="contact">
+  <footer class="footer">
     <div class="wrap">
-      <div class="sectionTitle">
-        <h2>Soumission</h2>
-        <p>Démo de formulaire (on peut le brancher email/Google Form/CRM plus tard).</p>
-      </div>
-
-      <div class="grid2">
-        <div class="tile">
-          <h3>Ton projet</h3>
-          <form onsubmit="return demoSubmit(event)">
-            <input required name="nom" placeholder="Nom complet" />
-            <input required name="tel" placeholder="Téléphone" />
-            <input required type="email" name="email" placeholder="Courriel" />
-            <select name="type">
-              <option value="sans-entretien">Sans entretien (recommandé)</option>
-              <option value="grand-projet">Très grand projet (+700 pi²)</option>
-              <option value="a-discuter">À discuter</option>
-            </select>
-            <textarea name="details" placeholder="Détails (dimensions approx, style, rampes/escaliers, délai souhaité)"></textarea>
-            <button class="btn primary" type="submit">Envoyer (démo)</button>
-            <div class="small">En démo, ça n’envoie rien : message de confirmation seulement.</div>
-          </form>
-        </div>
-
-        <div class="tile">
-          <h3>Positionnement</h3>
-          <p style="margin:0;color:var(--muted);line-height:1.7">
-            Deck Goliath = haut de gamme, finition nette, contrôle total par une seule personne.
-            Si tu veux du “solide” qui reste beau, c’est ça.
-          </p>
-
-          <div class="chain" aria-hidden="true" style="margin-top:14px"></div>
-
-          <p class="small" style="margin:12px 0 0;">
-            <b>RBQ :</b> 5756-0096-01 · <b>Zone :</b> Outaouais · <b>Approche :</b> sans compromis
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap">
-      <div class="footRow">
-        <div class="tagline">🛠️ It’s not just solid… it’s Goliath.</div>
-        <div>© <span id="year"></span> Deck Goliath · Démo site</div>
+      <div class="footer-row">
+        <div class="footer-brand">Deck Goliath</div>
+        <div>RBQ 5756-0096-01</div>
+        <div>Outaouais</div>
       </div>
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    function demoSubmit(e){
-      e.preventDefault();
-      const f = e.target;
-      const nom = f.nom.value.trim() || "Client";
-      alert("Merci " + nom + " ! ✅\n\nDémo : message prêt.\nProchaine étape : brancher à ton email/CRM.");
-      f.reset();
-      return false;
-    }
-  </script>
 </body>
 </html>
