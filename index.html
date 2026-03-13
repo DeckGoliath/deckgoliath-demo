@@ -147,30 +147,34 @@
       radial-gradient(ellipse 35% 50% at 72% 38%, rgba(110,68,10,0.2) 0%, transparent 60%);
   }
 
-  /* Eagle hero image - right side */
+  /* Eagle hero image - sits right next to text, black fills right side */
   .hero-eagle {
     position: absolute;
-    right: 0;
+    left: 46%;
     top: 50%;
     transform: translateY(-50%);
-    width: 55%;
-    max-width: 900px;
-    min-width: 400px;
-    opacity: 0.82;
+    width: 46%;
+    max-width: 680px;
+    opacity: 0.88;
     mix-blend-mode: screen;
     pointer-events: none;
   }
 
-  /* Fade eagle smoothly into background — no hard line */
+  /* Fade eagle: left edge blends into text, right side fades to black */
   .hero-eagle-mask {
     position: absolute;
-    right: 0;
+    left: 46%;
     top: 0;
     bottom: 0;
-    width: 55%;
-    max-width: 900px;
-    min-width: 400px;
-    background: linear-gradient(to right, #0A0806 0%, rgba(10,8,6,0.8) 18%, rgba(10,8,6,0.3) 45%, rgba(10,8,6,0) 65%);
+    width: 54%;
+    background: linear-gradient(to right,
+      #0A0806 0%,
+      rgba(10,8,6,0.55) 8%,
+      rgba(10,8,6,0) 22%,
+      rgba(10,8,6,0) 68%,
+      rgba(10,8,6,0.7) 82%,
+      #0A0806 100%
+    );
     pointer-events: none;
     z-index: 1;
   }
@@ -178,7 +182,7 @@
   .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 50%;
+    max-width: 48%;
     min-width: 320px;
   }
 
