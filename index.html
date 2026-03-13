@@ -717,9 +717,35 @@
   @media (max-width: 960px) {
     nav { padding: 14px 22px; }
     nav ul { display: none; }
-    .hero { padding: 100px 22px 60px; }
-    .hero-eagle { opacity: 0.18; width: 100%; right: 0; }
-    .hero-eagle-mask { display: none; }
+    .hero {
+      padding: 100px 22px 60px;
+      min-height: 100vh;
+    }
+    /* Eagle reste visible — en overlay sur tout le hero, fondu droit */
+    .hero-eagle {
+      left: auto;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 75%;
+      min-width: 0;
+      opacity: 0.28;
+    }
+    .hero-eagle-mask {
+      display: block;
+      left: auto;
+      right: 0;
+      width: 75%;
+      min-width: 0;
+      background: linear-gradient(to right,
+        #0A0806 0%,
+        rgba(10,8,6,0.6) 15%,
+        rgba(10,8,6,0) 40%,
+        rgba(10,8,6,0) 75%,
+        #0A0806 100%
+      );
+    }
+    .hero-content { max-width: 100%; }
     .section { padding: 70px 22px; }
     .logos-bar { gap: 28px; padding: 24px 22px; }
     .guide-layout { grid-template-columns: 1fr; }
