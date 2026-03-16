@@ -1172,6 +1172,86 @@
     filter: drop-shadow(0 0 20px rgba(201,150,42,0.5));
     opacity: 0.92;
   }
+
+  /* ═══════════════════════ SERVICE BLOCS COMBINÉS ═══════════════════════ */
+  .service-bloc {
+    padding: 60px 6vw;
+    border-top: 1px solid rgba(201,150,42,0.1);
+  }
+
+  .service-bloc--alt {
+    background: var(--dark-surface);
+  }
+
+  .service-bloc__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    max-width: 1140px;
+    margin: 0 auto 44px;
+  }
+
+  .service-bloc__num {
+    font-family: 'Cinzel', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: rgba(201,150,42,0.12);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 80px;
+  }
+
+  .service-bloc__info {
+    flex: 1;
+  }
+
+  .service-bloc__info h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .service-bloc__info p {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 6px;
+  }
+
+  .service-bloc__photos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .service-bloc__photos .realisation-card {
+    aspect-ratio: 4/3;
+  }
+
+  /* 3-photo row */
+  .service-bloc__photos:has(.realisation-card:nth-child(3):last-child) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 2-photo row */
+  .service-bloc__photos:has(.realisation-card:nth-child(2):last-child) {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 600px;
+    margin-left: 0;
+  }
+
+  @media (max-width: 960px) {
+    .service-bloc { padding: 50px 22px; }
+    .service-bloc__header { flex-direction: column; gap: 16px; }
+    .service-bloc__num { font-size: 48px; width: auto; }
+    .service-bloc__photos { grid-template-columns: repeat(2, 1fr) !important; max-width: 100% !important; }
+  }
 </style>
 </head>
 <body>
@@ -1187,7 +1267,7 @@
   <ul>
     <li><a href="#pourquoi">Pourquoi<br><span>nous</span></a></li>
     <li><a href="#secteurs">Secteurs<br><span>d'activité</span></a></li>
-    <li><a href="#realisations">Réalisations<br><span>Signées Deck Goliath</span></a></li>
+    <li><a href="#services">Réalisations<br><span>Signées Deck Goliath</span></a></li>
     <li><a href="#verifier">Vérifier<br><span>un entrepreneur</span></a></li>
   </ul>
   <button class="btn-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
@@ -1368,42 +1448,125 @@
   </div>
 </section>
 
-<!-- ═══ SERVICES ═══ -->
-<section class="section" id="services">
+<!-- ═══ SERVICES & RÉALISATIONS ═══ -->
+<section class="section" id="services" style="padding-bottom: 0;">
   <div class="section-inner">
     <div class="gold-line"></div>
-    <h2 class="section-title">Nos <span class="gold">Services</span></h2>
-    <p class="section-sub">Une expertise ciblée, des résultats durables.</p>
-
-    <div class="services-grid">
-
-      <div class="service-card">
-        <div class="service-num">01</div>
-        <div class="service-icon">🪵</div>
-        <h3>Construction de patio avec minimum d'entretien</h3>
-        <p>Conception et installation complète de patios en matériaux composites, PVC et minéraux. Minimum d'entretien, durabilité maximale, esthétique premium.</p>
-        <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-num">02</div>
-        <div class="service-icon">🔩</div>
-        <h3>Remplacement de rampes en aluminium</h3>
-        <p>Remplacement de vos rampes existantes par des rampes en aluminium de qualité supérieure. Solides, élégantes et sans entretien pour des décennies.</p>
-        <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-num">03</div>
-        <div class="service-icon">⚙️</div>
-        <h3>Installation de pieux vissés CCMC</h3>
-        <p>Installation de pieux vissés certifiés CCMC pour fondations résidentielles. Une solution permanente, rapide et approuvée.</p>
-        <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
-      </div>
-
-    </div>
+    <h2 class="section-title">Nos <span class="gold">Services</span> &amp; Réalisations</h2>
+    <p class="section-sub">Une expertise ciblée — quelques projets qui en témoignent.</p>
   </div>
 </section>
+
+<!-- SERVICE 01 -->
+<div class="service-bloc" id="realisations">
+  <div class="service-bloc__header">
+    <div class="service-bloc__num">01</div>
+    <div class="service-bloc__info">
+      <div class="service-icon">🪵</div>
+      <h3>Construction de patio avec minimum d'entretien</h3>
+      <p>Conception et installation complète de patios en matériaux composites, PVC et minéraux. Minimum d'entretien, durabilité maximale, esthétique premium.</p>
+      <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
+    </div>
+  </div>
+  <div class="service-bloc__photos">
+    <!--
+    AJOUTER UNE PHOTO PATIO — copier-coller ce bloc et changer le nom du fichier:
+    <div class="realisation-card">
+      <img src="assets/patio-nom.jpg" alt="Description">
+      <div class="realisation-info"><span>Description</span></div>
+    </div>
+    -->
+    <!-- PATIO 1 — changer "assets/patio-1.jpg" -->
+    <div class="realisation-card">
+      <img src="assets/patio-1.jpg" alt="Patio sur mesure Gatineau">
+      <div class="realisation-info"><span>Patio sur mesure — Gatineau</span></div>
+    </div>
+    <!-- PATIO 2 — changer "assets/patio-2.jpg" -->
+    <div class="realisation-card">
+      <img src="assets/patio-2.jpg" alt="Patio sur mesure Buckingham">
+      <div class="realisation-info"><span>Patio sur mesure — Buckingham</span></div>
+    </div>
+    <!-- PATIO 3 — changer "assets/patio-3.jpg" -->
+    <div class="realisation-card">
+      <img src="assets/patio-3.jpg" alt="Patio sur mesure Aylmer">
+      <div class="realisation-info"><span>Patio sur mesure — Aylmer</span></div>
+    </div>
+    <!-- PATIO 4 — changer "assets/patio-4.jpg" -->
+    <div class="realisation-card">
+      <img src="assets/patio-4.jpg" alt="Patio sur mesure Hull">
+      <div class="realisation-info"><span>Patio sur mesure — Hull</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE 02 -->
+<div class="service-bloc service-bloc--alt">
+  <div class="service-bloc__header">
+    <div class="service-bloc__num">02</div>
+    <div class="service-bloc__info">
+      <div class="service-icon">🔩</div>
+      <h3>Remplacement de rampes en aluminium</h3>
+      <p>Remplacement de vos rampes existantes par des rampes en aluminium de qualité supérieure. Solides, élégantes et avec minimum d'entretien pour des décennies.</p>
+      <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
+    </div>
+  </div>
+  <div class="service-bloc__photos">
+    <!--
+    AJOUTER UNE PHOTO RAMPE — copier-coller ce bloc et changer le nom du fichier:
+    <div class="realisation-card">
+      <img src="assets/rampe-nom.jpg" alt="Description">
+      <div class="realisation-info"><span>Description</span></div>
+    </div>
+    -->
+    <!-- RAMPE 1 — changer "assets/rampe-1.jpg" -->
+    <div class="realisation-card">
+      <img src="assets/rampe-1.jpg" alt="Rampes aluminium Gatineau">
+      <div class="realisation-info"><span>Rampes aluminium — Gatineau</span></div>
+    </div>
+    <!-- RAMPE 2 — changer "assets/rampe-2.jpg" -->
+    <div class="realisation-card">
+      <img src="assets/rampe-2.jpg" alt="Rampes aluminium Hull">
+      <div class="realisation-info"><span>Rampes aluminium — Hull</span></div>
+    </div>
+    <!-- RAMPE 3 — changer "assets/rampe-3.jpg" -->
+    <div class="realisation-card">
+      <img src="assets/rampe-3.jpg" alt="Rampes aluminium Aylmer">
+      <div class="realisation-info"><span>Rampes aluminium — Aylmer</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE 03 -->
+<div class="service-bloc">
+  <div class="service-bloc__header">
+    <div class="service-bloc__num">03</div>
+    <div class="service-bloc__info">
+      <div class="service-icon">⚙️</div>
+      <h3>Installation de pieux vissés CCMC</h3>
+      <p>Installation de pieux vissés certifiés CCMC pour fondations résidentielles. Une solution permanente, rapide et approuvée.</p>
+      <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
+    </div>
+  </div>
+  <div class="service-bloc__photos">
+    <!--
+    AJOUTER UNE PHOTO PIEUX — copier-coller ce bloc et changer le nom du fichier:
+    <div class="realisation-card">
+      <img src="assets/pieux-nom.jpg" alt="Description">
+      <div class="realisation-info"><span>Description</span></div>
+    </div>
+    -->
+    <!-- PIEUX 1 — changer "assets/pieux-1.jpg" -->
+    <div class="realisation-card">
+      <img src="assets/pieux-1.jpg" alt="Pieux vissés Gatineau">
+      <div class="realisation-info"><span>Pieux vissés — Gatineau</span></div>
+    </div>
+    <!-- PIEUX 2 — changer "assets/pieux-2.jpg" -->
+    <div class="realisation-card">
+      <img src="assets/pieux-2.jpg" alt="Pieux vissés Buckingham">
+      <div class="realisation-info"><span>Pieux vissés — Buckingham</span></div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ GUIDE DU CITOYEN ═══ -->
 <section class="section" id="verifier">
@@ -1447,66 +1610,6 @@
 
 
 
-<!-- ═══ RÉALISATIONS ═══ -->
-<section class="section" id="realisations">
-  <div class="section-inner">
-    <div class="gold-line"></div>
-    <h2 class="section-title">Quelques projets <span class="gold">Signés Deck Goliath</span></h2>
-    <p class="section-sub">Chaque réalisation témoigne de notre engagement envers la qualité et le souci du détail.</p>
-
-    <!--
-    ╔══════════════════════════════════════════════════════════════╗
-    ║  AJOUTER UNE PHOTO — copier-coller le bloc ci-dessous       ║
-    ║  et changer "assets/photo-nom.jpg" par ton fichier image    ║
-    ║  et "Description du projet" par le texte voulu              ║
-    ╚══════════════════════════════════════════════════════════════╝
-
-    <div class="realisation-card">
-      <img src="assets/photo-nom.jpg" alt="Description du projet">
-      <div class="realisation-info">
-        <span>Description du projet</span>
-      </div>
-    </div>
-
-    -->
-    <div class="realisations-grid">
-
-      <!-- PROJET 1 — changer "assets/projet-1.jpg" et le texte -->
-      <div class="realisation-card">
-        <img src="assets/projet-1.jpg" alt="Terrasse composite Gatineau">
-        <div class="realisation-info">
-          <span>Terrasse composite — Gatineau</span>
-        </div>
-      </div>
-
-      <!-- PROJET 2 — changer "assets/projet-2.jpg" et le texte -->
-      <div class="realisation-card">
-        <img src="assets/projet-2.jpg" alt="Patio TimberTech Buckingham">
-        <div class="realisation-info">
-          <span>Patio TimberTech — Buckingham</span>
-        </div>
-      </div>
-
-      <!-- PROJET 3 — changer "assets/projet-3.jpg" et le texte -->
-      <div class="realisation-card">
-        <img src="assets/projet-3.jpg" alt="Deck aluminium Aylmer">
-        <div class="realisation-info">
-          <span>Deck aluminium — Aylmer</span>
-        </div>
-      </div>
-
-      <!-- PROJET 4 — changer "assets/projet-4.jpg" et le texte -->
-      <div class="realisation-card">
-        <img src="assets/projet-4.jpg" alt="Terrasse PVC Hull">
-        <div class="realisation-info">
-          <span>Terrasse PVC — Hull</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ═══ CTA ═══ -->
 <section class="cta-section" id="contact">
   <div class="gold-line"></div>
@@ -1527,7 +1630,7 @@
   <ul class="footer-links">
     <li><a href="#pourquoi">Pourquoi nous</a></li>
     <li><a href="#secteurs">Secteurs d'activité</a></li>
-    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#services">Réalisations</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#verifier">Vérifier</a></li>
     <li><a href="#contact">Contact</a></li>
