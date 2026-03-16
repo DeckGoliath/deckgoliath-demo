@@ -1420,13 +1420,12 @@
   }
 
   .guide-closing {
-    margin-top: 28px;
+    margin-top: 36px;
     font-family: 'EB Garamond', serif;
-    font-size: 17px;
+    font-size: 18px;
     font-style: italic;
     color: var(--gold-light);
-    border-left: 2px solid var(--gold);
-    padding-left: 16px;
+    text-align: center;
     line-height: 1.7;
   }
 
@@ -1676,6 +1675,86 @@
     text-align: center;
     margin-top: 14px;
     margin-left: 0 !important;
+  }
+
+  /* ═══ VERIFIER CARDS ═══ */
+  .vc-list {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .vc-card {
+    background: rgba(20,16,10,0.8);
+    border: 1px solid rgba(201,150,42,0.2);
+    padding: 32px 40px;
+    text-align: center;
+    transition: border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .vc-card:hover { border-color: rgba(201,150,42,0.45); }
+
+  .vc-num {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 6px;
+  }
+
+  .vc-title {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+
+  .vc-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .vc-text strong { color: rgba(240,234,214,0.85); }
+
+  .vc-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,150,42,0.3);
+    padding-bottom: 2px;
+    transition: all 0.2s;
+  }
+
+  .vc-link:hover {
+    color: var(--gold-pale);
+    border-bottom-color: var(--gold);
+  }
+
+  @media (max-width: 960px) {
+    .vc-card { padding: 24px 20px; }
   }
 </style>
 </head>
@@ -1992,33 +2071,38 @@
     </div>
 
     <!-- 5 cartes empilées pleine largeur -->
-    <div class="verifier-cards-col">
+    <div class="vc-list">
 
-      <div class="guide-card guide-card--center-title">
-        <h3><span class="check">✓</span> Licence RBQ</h3>
-        <p>Le numéro de licence RBQ devrait être affiché clairement sur le site web, la soumission, les documents de l'entreprise ou le véhicule. S'il n'est pas visible, demandez-le. Vérifiez ensuite que la licence est bien <strong>active</strong> et que les catégories autorisées correspondent réellement aux travaux demandés.</p>
-        <a href="https://www.pes.rbq.gouv.qc.ca/RegistreLicences" target="_blank" class="guide-link guide-link--block">🔍 Vérifier au registre RBQ →</a>
+      <div class="vc-card">
+        <p class="vc-num">01</p>
+        <h3 class="vc-title"><span class="check">✓</span> Licence RBQ</h3>
+        <p class="vc-text">Le numéro de licence RBQ devrait être affiché clairement sur le site web, la soumission, les documents de l'entreprise ou le véhicule. S'il n'est pas visible, demandez-le. Vérifiez ensuite que la licence est bien <strong>active</strong> et que les catégories autorisées correspondent réellement aux travaux demandés.</p>
+        <a href="https://www.pes.rbq.gouv.qc.ca/RegistreLicences" target="_blank" class="vc-link">🔍 Vérifier au registre RBQ →</a>
       </div>
 
-      <div class="guide-card guide-card--center-title">
-        <h3><span class="check">✓</span> NEQ — Registre des entreprises</h3>
-        <p>Vérifiez que l'entreprise est bien immatriculée au Registre des entreprises du Québec et que ses informations sont à jour. Une entreprise <strong>établie, identifiable et transparente</strong> inspire davantage confiance.</p>
-        <a href="https://www.registreentreprises.gouv.qc.ca/fr/rechercher/" target="_blank" class="guide-link guide-link--block">🔍 Rechercher au Registre du Québec →</a>
+      <div class="vc-card">
+        <p class="vc-num">02</p>
+        <h3 class="vc-title"><span class="check">✓</span> NEQ — Registre des entreprises</h3>
+        <p class="vc-text">Vérifiez que l'entreprise est bien immatriculée au Registre des entreprises du Québec et que ses informations sont à jour. Une entreprise <strong>établie, identifiable et transparente</strong> inspire davantage confiance.</p>
+        <a href="https://www.registreentreprises.gouv.qc.ca/fr/rechercher/" target="_blank" class="vc-link">🔍 Rechercher au Registre du Québec →</a>
       </div>
 
-      <div class="guide-card guide-card--center-title">
-        <h3><span class="check">✓</span> Assurance responsabilité</h3>
-        <p>Exigez une <strong>preuve d'assurance</strong> indiquant le montant de couverture ainsi que les dates de validité. Un entrepreneur sérieux devrait être en mesure de la fournir clairement, sans hésitation.</p>
+      <div class="vc-card">
+        <p class="vc-num">03</p>
+        <h3 class="vc-title"><span class="check">✓</span> Assurance responsabilité</h3>
+        <p class="vc-text">Exigez une <strong>preuve d'assurance</strong> indiquant le montant de couverture ainsi que les dates de validité. Un entrepreneur sérieux devrait être en mesure de la fournir clairement, sans hésitation.</p>
       </div>
 
-      <div class="guide-card guide-card--center-title">
-        <h3><span class="check">✓</span> Contrat clair</h3>
-        <p>Un bon contrat indique clairement les <strong>travaux prévus, les inclusions, les exclusions et le prix convenu</strong>. Avant de signer, assurez-vous de bien comprendre les conditions ainsi que toute situation exceptionnelle pouvant entraîner un ajustement.</p>
+      <div class="vc-card">
+        <p class="vc-num">04</p>
+        <h3 class="vc-title"><span class="check">✓</span> Contrat clair</h3>
+        <p class="vc-text">Un bon contrat indique clairement les <strong>travaux prévus, les inclusions, les exclusions et le prix convenu</strong>. Avant de signer, assurez-vous de bien comprendre les conditions ainsi que toute situation exceptionnelle pouvant entraîner un ajustement.</p>
       </div>
 
-      <div class="guide-card guide-card--center-title">
-        <h3><span class="check">✓</span> Avis clients</h3>
-        <p>Les avis Google peuvent aider à mieux comprendre l'expérience vécue par d'autres clients. Au-delà de la note générale, prenez le temps de consulter les <strong>commentaires les plus récents</strong> et de voir si les avis sont répartis dans le temps, afin d'obtenir un portrait plus juste et plus actuel de l'entreprise.</p>
+      <div class="vc-card">
+        <p class="vc-num">05</p>
+        <h3 class="vc-title"><span class="check">✓</span> Avis clients</h3>
+        <p class="vc-text">Les avis Google peuvent aider à mieux comprendre l'expérience vécue par d'autres clients. Au-delà de la note générale, prenez le temps de consulter les <strong>commentaires les plus récents</strong> et de voir si les avis sont répartis dans le temps, afin d'obtenir un portrait plus juste et plus actuel de l'entreprise.</p>
       </div>
 
     </div>
