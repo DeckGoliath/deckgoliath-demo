@@ -1132,6 +1132,32 @@
     align-items: center;
     justify-content: center;
   }
+
+  /* Hero title + badge side by side */
+  .hero-title-row {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  .hero-title-row .hero-title {
+    margin-bottom: 0;
+  }
+
+  .hero-badge-img {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-badge-img img {
+    /* Same height as the 3 title lines combined */
+    height: calc(clamp(36px, 4.8vw, 72px) * 3.15);
+    width: auto;
+    filter: drop-shadow(0 0 20px rgba(201,150,42,0.5));
+    opacity: 0.92;
+  }
 </style>
 </head>
 <body>
@@ -1159,11 +1185,18 @@
   <div class="hero-eagle-mask"></div>
 
   <div class="hero-content">
-    <h1 class="hero-title">
-      Minimaliste.<br>
-      <span class="gold">Luxueux.</span><br>
-      Inébranlable.
-    </h1>
+    <div class="hero-title-row">
+      <h1 class="hero-title">
+        Minimaliste.<br>
+        <span class="gold">Luxueux.</span><br>
+        Inébranlable.
+      </h1>
+      <!-- Badge Choix du consommateur — mettre ton image dans assets/choix-president.png -->
+      <div class="hero-badge-img">
+        <img src="assets/choix-president.png" alt="Choix du consommateur"
+          onerror="this.style.display='none'">
+      </div>
+    </div>
     <p class="hero-subtitle">
       Chez Deck Goliath, nous privilégions une approche claire : un accompagnement direct du début à la fin, une exécution maîtrisée et des matériaux de qualité supérieure tels que la gamme minérale de Deckorators, le PVC de TimberTech / AZEK, ainsi que les rampes en aluminium Regal Ideas. Par souci de qualité et de durabilité, nous ne réalisons plus de patios avec finition en bois traité.
     </p>
@@ -1330,7 +1363,7 @@
       <div class="service-card">
         <div class="service-num">01</div>
         <div class="service-icon">🪵</div>
-        <h3>Construction de patio sans entretien</h3>
+        <h3>Construction de patio avec minimum d'entretien</h3>
         <p>Conception et installation complète de patios en matériaux composites, PVC et minéraux. Minimum d'entretien, durabilité maximale, esthétique premium.</p>
         <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
       </div>
@@ -1472,7 +1505,7 @@
   </a>
   <div class="footer-info">
     <p>RBQ 5756-0096-01</p>
-    <p>info@deckgoliath.ca</p>
+    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb82858d84ab8f8e88808c8487828a9f83c5888a">[email&#160;protected]</a></p>
   </div>
   <ul class="footer-links">
     <li><a href="#pourquoi">Pourquoi nous</a></li>
@@ -1482,7 +1515,4 @@
     <li><a href="#verifier">Vérifier</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <p style="font-size:11px; color:var(--text-dim); letter-spacing:0.5px;">© 2026 Deck Goliath. Tous droits réservés.</p>
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-d
+  <p style="font-size:11px; color:var(--text-dim); letter-spacing:0.5px;">© 2026 Deck Goliath. To
