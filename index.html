@@ -1880,6 +1880,24 @@
   @media (max-width: 960px) {
     #popup-inner { padding: 32px 20px; }
   }
+
+  .btn-lang {
+    background: transparent;
+    border: 1px solid rgba(201,150,42,0.4);
+    color: var(--text-muted);
+    padding: 7px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-right: 8px;
+  }
+  .btn-lang:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
 </style>
 </head>
 <body>
@@ -1890,14 +1908,17 @@
     <span class="logo-text-only">DECK GOLIATH</span>
   </a>
   <ul>
-    <li><a href="#pourquoi">Pourquoi<br><span>nous</span></a></li>
-    <li><a href="#secteurs">Secteurs<br><span>d'activité</span></a></li>
-    <li><a href="#services">Réalisations<br><span>Signées Deck Goliath</span></a></li>
-    <li><a href="#verifier">Vérifier<br><span>un entrepreneur</span></a></li>
+    <li><a href="#pourquoi" data-fr="Pourquoi<br><span>nous</span>" data-en="Why<br><span>us</span>">Pourquoi<br><span>nous</span></a></li>
+    <li><a href="#secteurs" data-fr="Secteurs<br><span>d'activité</span>" data-en="Service<br><span>areas</span>">Secteurs<br><span>d'activité</span></a></li>
+    <li><a href="#services" data-fr="Réalisations<br><span>Signées Deck Goliath</span>" data-en="Projects<br><span>By Deck Goliath</span>">Réalisations<br><span>Signées Deck Goliath</span></a></li>
+    <li><a href="#verifier" data-fr="Vérifier<br><span>un entrepreneur</span>" data-en="Verify<br><span>a contractor</span>">Vérifier<br><span>un entrepreneur</span></a></li>
   </ul>
-  <button class="btn-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-    Demander une soumission
-  </button>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="btn-lang" onclick="toggleLang()" id="btn-lang">EN</button>
+    <button class="btn-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Demander une soumission
+    </button>
+  </div>
 </nav>
 
 <!-- ═══ HERO ═══ -->
@@ -1913,17 +1934,11 @@
         <img src="assets/choix-president.png" alt="Choix du consommateur"
           onerror="this.style.display='none'">
       </div>
-      <h1 class="hero-title">
-        Minimaliste.<br>
-        <span class="gold">Luxueux.</span><br>
-        Inébranlable.
-      </h1>
+      <h1 class="hero-title" id="t-hero-title">Minimaliste.<br><span class="gold">Luxueux.</span><br>Inébranlable.</h1>
     </div>
-    <p class="hero-subtitle">
-      Chez Deck Goliath, nous privilégions une approche claire : un accompagnement direct du début à la fin, une exécution maîtrisée et des matériaux de qualité supérieure tels que la gamme minérale de Deckorators, le PVC de TimberTech / AZEK, ainsi que les rampes en aluminium Regal Ideas. Par souci de qualité et de durabilité, nous ne réalisons plus de patios avec finition en bois traité.
+    <p class="hero-subtitle" id="t-hero-p1">Chez Deck Goliath, nous privilégions une approche claire : un accompagnement direct du début à la fin, une exécution maîtrisée et des matériaux de qualité supérieure tels que la gamme minérale de Deckorators, le PVC de TimberTech / AZEK, ainsi que les rampes en aluminium Regal Ideas. Par souci de qualité et de durabilité, nous ne réalisons plus de patios avec finition en bois traité.
     </p>
-    <p class="hero-subtitle hero-subtitle--p2">
-      Pour nous, il n'y a ni petit projet ni gros projet : il y a <em>votre</em> projet. Il mérite le même sérieux, la même écoute et le même niveau d'attention. Le service à la clientèle est une priorité, au même titre que la qualité de ce que nous construisons. Dès la première rencontre, nous prenons le temps de bien évaluer vos besoins, de vous orienter selon vos priorités et de vous présenter une estimation cohérente avec vos choix.
+    <p class="hero-subtitle hero-subtitle--p2" id="t-hero-p2">Pour nous, il n'y a ni petit projet ni gros projet : il y a <em>votre</em> projet. Il mérite le même sérieux, la même écoute et le même niveau d'attention. Le service à la clientèle est une priorité, au même titre que la qualité de ce que nous construisons. Dès la première rencontre, nous prenons le temps de bien évaluer vos besoins, de vous orienter selon vos priorités et de vous présenter une estimation cohérente avec vos choix.
     </p>
     <button class="hero-mobile-cta" style="display:none; margin-top:28px;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander une soumission</button>
 
@@ -2006,33 +2021,33 @@
   <section class="section">
     <div class="section-inner">
       <div class="gold-line"></div>
-      <h2 class="section-title">Pourquoi <span class="gold">Deck Goliath</span></h2>
-      <p class="section-sub">Ce qui nous distingue depuis le premier appel jusqu'à la dernière vis.</p>
+      <h2 class="section-title" id="t-pourquoi-title">Pourquoi <span class="gold">Deck Goliath</span></h2>
+      <p class="section-sub" id="t-pourquoi-sub">Ce qui nous distingue depuis le premier appel jusqu'à la dernière vis.</p>
       <div class="why-grid">
         <div class="why-item">
           <span class="why-icon">🏗️</span>
-          <h3>Un seul responsable</h3>
-          <p>De la conception à l'installation, une équipe, zéro confusion, zéro sous-traitance surprise.</p>
+          <h3 id="t-why-1-title">Un seul responsable</h3>
+          <p id="t-why-1-text">De la conception à l'installation, une équipe, zéro confusion, zéro sous-traitance surprise.</p>
         </div>
         <div class="why-item">
           <span class="why-icon">💎</span>
-          <h3>Matériaux premium</h3>
-          <p>Produits à base de minéraux, aluminium, PVC — des produits avec minimum d'entretien qui tiennent des décennies.</p>
+          <h3 id="t-why-2-title">Matériaux premium</h3>
+          <p id="t-why-2-text">Produits à base de minéraux, aluminium, PVC — des produits avec minimum d'entretien qui tiennent des décennies.</p>
         </div>
         <div class="why-item">
           <span class="why-icon">🛡️</span>
-          <h3>Licence RBQ active</h3>
-          <p>Entrepreneur licencié, assuré, conforme. Tout est vérifiable en ligne. Rien à cacher.</p>
+          <h3 id="t-why-3-title">Licence RBQ active</h3>
+          <p id="t-why-3-text">Entrepreneur licencié, assuré, conforme. Tout est vérifiable en ligne. Rien à cacher.</p>
         </div>
         <div class="why-item">
           <span class="why-icon">✨</span>
-          <h3>Finition parfaite</h3>
-          <p>Chaque détail compte. Chantier propre, livraison soignée, client entièrement satisfait.</p>
+          <h3 id="t-why-4-title">Finition parfaite</h3>
+          <p id="t-why-4-text">Chaque détail compte. Chantier propre, livraison soignée, client entièrement satisfait.</p>
         </div>
         <div class="why-item">
           <span class="why-icon">🏆</span>
-          <h3>Choix du consommateur</h3>
-          <p>3 années consécutives gagnant du prix Choix du consommateur. Une reconnaissance qui se mérite.</p>
+          <h3 id="t-why-5-title">Choix du consommateur</h3>
+          <p id="t-why-5-text">3 années consécutives gagnant du prix Choix du consommateur. Une reconnaissance qui se mérite.</p>
         </div>
       </div>
     </div>
@@ -2043,27 +2058,27 @@
 <section class="section" id="secteurs">
   <div class="section-inner">
     <div class="gold-line"></div>
-    <h2 class="section-title">Secteurs <span class="gold">d'activité</span></h2>
+    <h2 class="section-title" id="t-secteurs-title">Secteurs <span class="gold">d'activité</span></h2>
     <div class="secteurs-intro">
-      <p class="secteurs-intro__main">Nous desservons la grande région de l'Outaouais auprès d'une clientèle <strong>résidentielle uniquement propriétaire-occupant</strong>. Nos disponibilités sont établies selon une cédule de réalisation propre à chaque secteur.</p>
+      <p class="secteurs-intro__main" id="t-secteurs-main">Nous desservons la grande région de l'Outaouais auprès d'une clientèle <strong>résidentielle uniquement propriétaire-occupant</strong>. Nos disponibilités sont établies selon une cédule de réalisation propre à chaque secteur.</p>
       <div class="secteurs-intro__alert">
         <span class="secteurs-intro__icon">⚠</span>
-        <p>Nous ne réalisons présentement <strong>aucun travaux</strong> dans le secteur commercial ni pour les immeubles locatifs.</p>
+        <p id="t-secteurs-alert">Nous ne réalisons présentement <strong>aucun travaux</strong> dans le secteur commercial ni pour les immeubles locatifs.</p>
       </div>
     </div>
 
     <div class="secteurs-grid">
       <div class="secteur-card">
         <div class="secteur-icon">📍</div>
-        <h3>Gatineau à Buckingham</h3>
-        <div class="secteur-period">De mai à octobre 2026</div>
-        <p>Disponibilité complète pour les travaux prévus durant la saison principale de construction.</p>
+        <h3 id="t-sect1-title">Gatineau à Buckingham</h3>
+        <div class="secteur-period" id="t-sect1-period">De mai à octobre 2026</div>
+        <p id="t-sect1-text">Disponibilité complète pour les travaux prévus durant la saison principale de construction.</p>
       </div>
       <div class="secteur-card secteur-card--limited">
         <div class="secteur-icon">📍</div>
-        <h3>Hull · Aylmer · Chelsea · Cantley</h3>
-        <div class="secteur-period">Juillet — Août 2026 seulement</div>
-        <p>En raison du trafic ainsi que de notre réalité familiale liée aux horaires scolaires de nos enfants, nous pourrons réaliser des projets dans ce secteur uniquement durant les mois de juillet et août 2026.</p>
+        <h3 id="t-sect2-title">Hull · Aylmer · Chelsea · Cantley</h3>
+        <div class="secteur-period" id="t-sect2-period">Juillet — Août 2026 seulement</div>
+        <p id="t-sect2-text">En raison du trafic ainsi que de notre réalité familiale liée aux horaires scolaires de nos enfants, nous pourrons réaliser des projets dans ce secteur uniquement durant les mois de juillet et août 2026.</p>
       </div>
     </div>
   </div>
@@ -2073,8 +2088,8 @@
 <section class="section" id="services" style="padding-top: 50px; padding-bottom: 16px;">
   <div class="section-inner">
     <div class="gold-line"></div>
-    <h2 class="section-title">Nos <span class="gold">Services</span> &amp; Réalisations</h2>
-    <p class="section-sub">Une expertise ciblée — quelques projets qui en témoignent.</p>
+    <h2 class="section-title" id="t-services-title">Nos <span class="gold">Services</span> &amp; Réalisations</h2>
+    <p class="section-sub" id="t-services-sub">Une expertise ciblée — quelques projets qui en témoignent.</p>
   </div>
 </section>
 
@@ -2085,10 +2100,10 @@
       <div class="service-bloc__num">01</div>
       <div class="service-bloc__info">
         <div class="service-icon">🪵</div>
-        <h3>Construction de patio avec minimum d'entretien</h3>
-        <p>Par souci de qualité et de durabilité, nous ne réalisons plus de patios avec finition en bois traité.</p>
-        <p>Conception et installation complète de patios en matériaux composites, PVC et minéraux. Minimum d'entretien, durabilité maximale, esthétique premium.</p>
-        <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
+        <h3 id="t-s1-title">Construction de patio avec minimum d'entretien</h3>
+        <p id="t-s1-p1">Par souci de qualité et de durabilité, nous ne réalisons plus de patios avec finition en bois traité.</p>
+        <p id="t-s1-p2">Conception et installation complète de patios en matériaux composites, PVC et minéraux. Minimum d'entretien, durabilité maximale, esthétique premium.</p>
+        <p class="service-mention" id="t-s1-mention">— Résidentiel uniquement, propriétaire-occupant</p>
       </div>
     </div>
     <div class="service-bloc__photos">
@@ -2117,9 +2132,9 @@
       <div class="service-bloc__num">02</div>
       <div class="service-bloc__info">
         <div class="service-icon">🔩</div>
-        <h3>Remplacement de rampes en aluminium</h3>
-        <p>Remplacement de vos rampes existantes par des rampes en aluminium de qualité supérieure. Solides, élégantes et avec minimum d'entretien pour des décennies.</p>
-        <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
+        <h3 id="t-s2-title">Remplacement de rampes en aluminium</h3>
+        <p id="t-s2-text">Remplacement de vos rampes existantes par des rampes en aluminium de qualité supérieure. Solides, élégantes et avec minimum d'entretien pour des décennies.</p>
+        <p class="service-mention" id="t-s2-mention">— Résidentiel uniquement, propriétaire-occupant</p>
       </div>
     </div>
     <div class="service-bloc__photos">
@@ -2148,9 +2163,9 @@
       <div class="service-bloc__num">03</div>
       <div class="service-bloc__info">
         <div class="service-icon">⚙️</div>
-        <h3>Installation de pieux vissés CCMC</h3>
-        <p>Installation de pieux vissés certifiés CCMC pour fondations résidentielles. Une solution permanente, rapide et approuvée.</p>
-        <p class="service-mention">— Résidentiel uniquement, propriétaire-occupant</p>
+        <h3 id="t-s3-title">Installation de pieux vissés CCMC</h3>
+        <p id="t-s3-text">Installation de pieux vissés certifiés CCMC pour fondations résidentielles. Une solution permanente, rapide et approuvée.</p>
+        <p class="service-mention" id="t-s3-mention">— Résidentiel uniquement, propriétaire-occupant</p>
       </div>
     </div>
     <div class="service-bloc__photos">
@@ -2173,8 +2188,8 @@
 <section class="section" id="verifier">
   <div class="section-inner">
     <div class="gold-line"></div>
-    <h2 class="section-title">Guide du citoyen — <span class="gold">Vérifier un entrepreneur</span></h2>
-    <p class="section-sub">Avant de signer, prenez 2 minutes pour valider que l'entrepreneur est en règle.</p>
+    <h2 class="section-title" id="t-verifier-title">Guide du citoyen — <span class="gold">Vérifier un entrepreneur</span></h2>
+    <p class="section-sub" id="t-verifier-sub">Avant de signer, prenez 2 minutes pour valider que l'entrepreneur est en règle.</p>
 
     <!-- Medallion + intro centered -->
     <div class="verifier-intro">
@@ -2182,9 +2197,9 @@
         <img src="assets/eagle-stamp.png" alt="Deck Goliath — RBQ 5756-0096-01">
       </div>
       <div class="verifier-intro__text">
-        <h2>Un entrepreneur sérieux n'a jamais peur d'être vérifié.</h2>
-        <p>La transparence protège les citoyens.</p>
-        <p>Nous ne prétendons pas à la perfection. Mais nous croyons qu'un entrepreneur sérieux doit être <strong>transparent, conforme</strong> et faire tout en son pouvoir pour livrer des travaux de qualité, dans les règles de l'art. Oui, un entrepreneur sérieux a un <strong>prix.</strong> Mais la conformité, la qualité d'exécution et la tranquillité d'esprit ont une vraie valeur.</p>
+        <h2 id="t-verifier-h2">Un entrepreneur sérieux n'a jamais peur d'être vérifié.</h2>
+        <p id="t-verifier-p1">La transparence protège les citoyens.</p>
+        <p id="t-verifier-p2">Nous ne prétendons pas à la perfection. Mais nous croyons qu'un entrepreneur sérieux doit être <strong>transparent, conforme</strong> et faire tout en son pouvoir pour livrer des travaux de qualité, dans les règles de l'art. Oui, un entrepreneur sérieux a un <strong>prix.</strong> Mais la conformité, la qualité d'exécution et la tranquillité d'esprit ont une vraie valeur.</p>
       </div>
     </div>
 
@@ -2193,41 +2208,41 @@
 
       <div class="vc-card">
         <p class="vc-num">01</p>
-        <h3 class="vc-title"><span class="check">✓</span> Licence RBQ</h3>
+        <h3 class="vc-title" id="t-v1-title"><span class="check">✓</span> Licence RBQ</h3>
         <p class="vc-ref">RBQ : 5756-0096-01</p>
-        <p class="vc-text">Le numéro de licence RBQ devrait être affiché clairement sur le site web, la soumission, les documents de l'entreprise ou le véhicule. S'il n'est pas visible, demandez-le. Vérifiez ensuite que la licence est bien <strong>active</strong> et que les catégories autorisées correspondent réellement aux travaux demandés.</p>
-        <a href="https://www.pes.rbq.gouv.qc.ca/RegistreLicences" target="_blank" class="vc-link">🔍 Vérifier au registre RBQ →</a>
+        <p class="vc-text" id="t-v1-text">Le numéro de licence RBQ devrait être affiché clairement sur le site web, la soumission, les documents de l'entreprise ou le véhicule. S'il n'est pas visible, demandez-le. Vérifiez ensuite que la licence est bien <strong>active</strong> et que les catégories autorisées correspondent réellement aux travaux demandés.</p>
+        <a href="https://www.pes.rbq.gouv.qc.ca/RegistreLicences" target="_blank" class="vc-link" id="t-v1-link">🔍 Vérifier au registre RBQ →</a>
       </div>
 
       <div class="vc-card">
         <p class="vc-num">02</p>
-        <h3 class="vc-title"><span class="check">✓</span> NEQ — Registre des entreprises</h3>
+        <h3 class="vc-title" id="t-v2-title"><span class="check">✓</span> NEQ — Registre des entreprises</h3>
         <p class="vc-ref">NEQ : 2270858360</p>
-        <p class="vc-text">Vérifiez que l'entreprise est bien immatriculée au Registre des entreprises du Québec et que ses informations sont à jour. Une entreprise <strong>établie, identifiable et transparente</strong> inspire davantage confiance.</p>
-        <a href="https://www.registreentreprises.gouv.qc.ca/fr/rechercher/" target="_blank" class="vc-link">🔍 Rechercher au Registre du Québec →</a>
+        <p class="vc-text" id="t-v2-text">Vérifiez que l'entreprise est bien immatriculée au Registre des entreprises du Québec et que ses informations sont à jour. Une entreprise <strong>établie, identifiable et transparente</strong> inspire davantage confiance.</p>
+        <a href="https://www.registreentreprises.gouv.qc.ca/fr/rechercher/" target="_blank" class="vc-link" id="t-v2-link">🔍 Rechercher au Registre du Québec →</a>
       </div>
 
       <div class="vc-card">
         <p class="vc-num">03</p>
-        <h3 class="vc-title"><span class="check">✓</span> Assurance responsabilité</h3>
-        <p class="vc-text">Exigez une <strong>preuve d'assurance</strong> indiquant le montant de couverture ainsi que les dates de validité. Un entrepreneur sérieux devrait être en mesure de la fournir clairement, sans hésitation.</p>
+        <h3 class="vc-title" id="t-v3-title"><span class="check">✓</span> Assurance responsabilité</h3>
+        <p class="vc-text" id="t-v3-text">Exigez une <strong>preuve d'assurance</strong> indiquant le montant de couverture ainsi que les dates de validité. Un entrepreneur sérieux devrait être en mesure de la fournir clairement, sans hésitation.</p>
       </div>
 
       <div class="vc-card">
         <p class="vc-num">04</p>
-        <h3 class="vc-title"><span class="check">✓</span> Contrat clair</h3>
-        <p class="vc-text">Un bon contrat indique clairement les <strong>travaux prévus, les inclusions, les exclusions et le prix convenu</strong>. Avant de signer, assurez-vous de bien comprendre les conditions ainsi que toute situation exceptionnelle pouvant entraîner un ajustement.</p>
+        <h3 class="vc-title" id="t-v4-title"><span class="check">✓</span> Contrat clair</h3>
+        <p class="vc-text" id="t-v4-text">Un bon contrat indique clairement les <strong>travaux prévus, les inclusions, les exclusions et le prix convenu</strong>. Avant de signer, assurez-vous de bien comprendre les conditions ainsi que toute situation exceptionnelle pouvant entraîner un ajustement.</p>
       </div>
 
       <div class="vc-card">
         <p class="vc-num">05</p>
-        <h3 class="vc-title"><span class="check">✓</span> Avis clients</h3>
-        <p class="vc-text">Les avis Google peuvent aider à mieux comprendre l'expérience vécue par d'autres clients. Au-delà de la note générale, prenez le temps de consulter les <strong>commentaires les plus récents</strong> et de voir si les avis sont répartis dans le temps, afin d'obtenir un portrait plus juste et plus actuel de l'entreprise.</p>
+        <h3 class="vc-title" id="t-v5-title"><span class="check">✓</span> Avis clients</h3>
+        <p class="vc-text" id="t-v5-text">Les avis Google peuvent aider à mieux comprendre l'expérience vécue par d'autres clients. Au-delà de la note générale, prenez le temps de consulter les <strong>commentaires les plus récents</strong> et de voir si les avis sont répartis dans le temps, afin d'obtenir un portrait plus juste et plus actuel de l'entreprise.</p>
       </div>
 
     </div>
 
-    <p class="guide-closing">Un entrepreneur sérieux n'a jamais peur d'être vérifié. Au contraire, il devrait vous encourager à le faire.</p>
+    <p class="guide-closing" id="t-verifier-closing">Un entrepreneur sérieux n'a jamais peur d'être vérifié. Au contraire, il devrait vous encourager à le faire.</p>
     <div class="gold-line" style="margin-top:36px;"></div>
 
   </div>
@@ -2239,10 +2254,10 @@
 
 <!-- ═══ CTA ═══ -->
 <section class="cta-section" id="contact">
-  <h2 class="section-title"><span class="gold">Prêt à construire</span><br>quelque chose d'exceptionnel?</h2>
+  <h2 class="section-title" id="t-cta-title"><span class="gold">Prêt à construire</span><br>quelque chose d'exceptionnel?</h2>
   <div class="gold-line" style="margin:16px auto 24px;"></div>
-  <p>Soumission gratuite, sans engagement.</p>
-  <button class="btn-cta" onclick="ouvrirFormulaire()">Demander une soumission</button>
+  <p id="t-cta-sub">Soumission gratuite, sans engagement.</p>
+  <button class="btn-cta" id="t-cta-btn" onclick="ouvrirFormulaire()">Demander une soumission</button>
 </section>
 
 <!-- ═══ POPUP FORMULAIRE ═══ -->
@@ -2271,28 +2286,28 @@
     <!-- ══ MODE FORMULAIRE (actif quand FORMULAIRE_ACTIF = true) ══ -->
     <div id="mode-formulaire" style="display:none;">
       <div class="gold-line" style="margin:0 0 20px;"></div>
-      <h2 style="font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:#E8B84B;margin-bottom:6px;text-align:center;">Demande de soumission</h2>
-      <p style="font-family:'EB Garamond',serif;font-size:15px;color:var(--text-muted);text-align:center;margin-bottom:28px;font-style:italic;">Par souci de qualité et de durabilité, nous ne réalisons plus de patios avec finition en bois traité.</p>
+      <h2 style="font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:#E8B84B;margin-bottom:6px;text-align:center;" id="t-form-title">Demande de soumission</h2>
+      <p style="font-family:'EB Garamond',serif;font-size:15px;color:var(--text-muted);text-align:center;margin-bottom:28px;font-style:italic;" id="t-form-sub">Par souci de qualité et de durabilité, nous ne réalisons plus de patios avec finition en bois traité.</p>
 
       <form id="form-soumission" action="https://formspree.io/f/mdawwpzg" method="POST" enctype="multipart/form-data">
 
         <div class="form-group">
-          <label>Nom <span style="color:#C9962A;">*</span></label>
+          <label id="t-form-nom">Nom <span style="color:#C9962A;">*</span></label>
           <input type="text" name="nom" placeholder="Entrez votre nom." required>
         </div>
 
         <div class="form-group">
-          <label>Numéro de téléphone <span style="color:#C9962A;">*</span></label>
+          <label id="t-form-tel">Numéro de téléphone <span style="color:#C9962A;">*</span></label>
           <input type="tel" name="telephone" required>
         </div>
 
         <div class="form-group">
-          <label>E-mail <span style="color:#C9962A;">*</span></label>
+          <label id="t-form-email">E-mail <span style="color:#C9962A;">*</span></label>
           <input type="email" name="email" placeholder="Entrez votre adresse e-mail." required>
         </div>
 
         <div class="form-group">
-          <label>Secteur <span style="color:#999;font-size:13px;">(date d'ouverture de prise de rendez-vous selon le secteur)</span></label>
+          <label><span id="t-form-secteur">Secteur</span> <span style="color:#999;font-size:13px;" id="t-form-secteur-hint">(date d'ouverture de prise de rendez-vous selon le secteur)</span></label>
           <select name="secteur" id="select-secteur" onchange="verifierSecteur(this.value)" required>
             <option value="">SVP - Faire un choix</option>
             <option value="gatineau">Secteur de Gatineau</option>
@@ -2306,16 +2321,16 @@
         </div>
 
         <div class="form-group">
-          <label>Descriptif de votre projet</label>
+          <label id="t-form-projet">Descriptif de votre projet</label>
           <textarea name="projet" rows="4"></textarea>
         </div>
 
         <div class="form-group">
-          <label>Photos de votre cour actuelle</label>
+          <label id="t-form-photos">Photos de votre cour actuelle</label>
           <p style="font-family:'EB Garamond',serif;font-size:16px;color:var(--text-muted);line-height:1.7;margin-top:6px;">Des photos nous aident à mieux évaluer votre projet. Veuillez les envoyer par courriel à <strong style="color:var(--gold-light);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4c25222a230c28292f272b2320252d3824622f2321">[email&#160;protected]</a></strong> en indiquant votre adresse en objet.</p>
         </div>
 
-        <button type="submit" class="btn-cta" style="width:100%;margin-top:8px;">ENVOYER</button>
+        <button type="submit" class="btn-cta" id="t-form-send" style="width:100%;margin-top:8px;">ENVOYER</button>
       </form>
     </div>
   </div>
@@ -2324,13 +2339,13 @@
 <!-- ══ POPUP HULL/AYLMER ══ -->
 <div id="popup-hull" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9000;align-items:center;justify-content:center;padding:20px;">
   <div style="background:#fff;max-width:560px;width:100%;padding:36px;border-radius:4px;position:relative;">
-    <h3 style="font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:#1a1200;margin-bottom:16px;">Information importante — Secteur Hull / Aylmer / Chelsea / Cantley</h3>
-    <p style="font-size:15px;color:#333;line-height:1.75;margin-bottom:12px;">En raison du trafic et de notre réalité familiale liée aux horaires scolaires de nos enfants, nous ne pourrons réaliser de projets dans ce secteur qu'en <strong>juillet et août 2026</strong>.</p>
-    <p style="font-size:15px;color:#333;line-height:1.75;margin-bottom:12px;">Les prises de rendez-vous pour les soumissions y <strong>débuteront à la fin mars 2026</strong>, à la fonte de la neige, <strong>selon les disponibilités restantes</strong>.</p>
-    <p style="font-size:15px;color:#333;line-height:1.75;margin-bottom:24px;">Nous vous remercions sincèrement de votre compréhension et vous invitons à nous recontacter en avril afin de vérifier les disponibilités restantes et planifier un rendez-vous.</p>
+    <h3 style="font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:#1a1200;margin-bottom:16px;" id="t-hull-title">Information importante — Secteur Hull / Aylmer / Chelsea / Cantley</h3>
+    <p style="font-size:15px;color:#333;line-height:1.75;margin-bottom:12px;" id="t-hull-p1">En raison du trafic et de notre réalité familiale liée aux horaires scolaires de nos enfants, nous ne pourrons réaliser de projets dans ce secteur qu'en <strong>juillet et août 2026</strong>.</p>
+    <p style="font-size:15px;color:#333;line-height:1.75;margin-bottom:12px;" id="t-hull-p2">Les prises de rendez-vous pour les soumissions y <strong>débuteront à la fin mars 2026</strong>, à la fonte de la neige, <strong>selon les disponibilités restantes</strong>.</p>
+    <p style="font-size:15px;color:#333;line-height:1.75;margin-bottom:24px;" id="t-hull-p3">Nous vous remercions sincèrement de votre compréhension et vous invitons à nous recontacter en avril afin de vérifier les disponibilités restantes et planifier un rendez-vous.</p>
     <div style="display:flex;gap:12px;justify-content:flex-end;">
-      <button onclick="fermerHull(false)" style="padding:10px 24px;background:#f0f0f0;border:none;cursor:pointer;font-size:14px;">Fermer</button>
-      <button onclick="fermerHull(true)" style="padding:10px 24px;background:#1a1200;color:#E8B84B;border:none;cursor:pointer;font-size:14px;font-weight:700;">J'ai compris</button>
+      <button onclick="fermerHull(false)" id="t-hull-fermer" style="padding:10px 24px;background:#f0f0f0;border:none;cursor:pointer;font-size:14px;">Fermer</button>
+      <button onclick="fermerHull(true)" id="t-hull-compris" style="padding:10px 24px;background:#1a1200;color:#E8B84B;border:none;cursor:pointer;font-size:14px;font-weight:700;">J'ai compris</button>
     </div>
   </div>
 </div>
@@ -2408,13 +2423,14 @@ document.addEventListener('keydown', function(e) {
     <p>RBQ 5756-0096-01</p>
   </div>
   <ul class="footer-links">
-    <li><a href="#pourquoi">Pourquoi nous</a></li>
-    <li><a href="#secteurs">Secteurs d'activité</a></li>
-    <li><a href="#services">Réalisations</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#verifier">Vérifier</a></li>
+    <li><a href="#pourquoi" id="t-footer-link1">Pourquoi nous</a></li>
+    <li><a href="#secteurs" id="t-footer-link2">Secteurs d'activité</a></li>
+    <li><a href="#services" id="t-footer-link3">Réalisations</a></li>
+    <li><a href="#services" id="t-footer-link4">Services</a></li>
+    <li><a href="#verifier" id="t-footer-link5">Vérifier</a></li>
   </ul>
-  <p style="font-size:11px; color:var(--text-dim); letter-spacing:0.5px;">© 2026 Deck Goliath. Tous droits réservés.</p>
+  <p style="font-size:11px; color:var(--text-dim); letter-spacing:0.5px;"><span id="t-footer-copy">© 2026 Deck Goliath. Tous droits réservés.</span>
+  <p id="t-footer-disclaimer" style="display:none; font-size:11px; color:var(--text-dim); font-style:italic; margin-top:8px; letter-spacing:0.3px;">The French version of this website is the original. The English version is a translation provided for convenience.</p></p>
 </footer>
 
 <!-- LIGHTBOX -->
