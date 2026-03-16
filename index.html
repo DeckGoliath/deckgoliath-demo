@@ -1244,6 +1244,133 @@
     .service-bloc__num { font-size: 48px; width: auto; }
     .service-bloc__photos { grid-template-columns: repeat(2, 1fr); }
   }
+
+  /* ═══════════════════════ LIGHTBOX GALERIE ═══════════════════════ */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .lightbox-overlay.active {
+    display: flex;
+  }
+
+  .lightbox-main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+    flex: 1;
+  }
+
+  .lightbox-img {
+    max-height: 72vh;
+    max-width: 100%;
+    object-fit: contain;
+    border: 1px solid rgba(201,150,42,0.3);
+    box-shadow: 0 0 80px rgba(0,0,0,0.8);
+  }
+
+  .lightbox-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(201,150,42,0.15);
+    border: 1px solid rgba(201,150,42,0.4);
+    color: var(--gold-light);
+    font-size: 26px;
+    width: 52px;
+    height: 52px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    user-select: none;
+    z-index: 2;
+  }
+
+  .lightbox-btn:hover {
+    background: rgba(201,150,42,0.35);
+  }
+
+  .lightbox-btn--prev { left: -64px; }
+  .lightbox-btn--next { right: -64px; }
+
+  .lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: rgba(240,234,214,0.7);
+    font-size: 36px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+    z-index: 9001;
+  }
+
+  .lightbox-close:hover { color: var(--gold-light); }
+
+  .lightbox-counter {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-top: 16px;
+  }
+
+  /* Thumbnails strip at bottom */
+  .lightbox-thumbs {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1100px;
+  }
+
+  .lightbox-thumb {
+    width: 64px;
+    height: 48px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.45;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .lightbox-thumb.active,
+  .lightbox-thumb:hover {
+    opacity: 1;
+    border-color: var(--gold);
+  }
+
+  /* Clickable cards */
+  .realisation-card {
+    cursor: pointer;
+  }
+
+  /* Hidden gallery images (beyond first 8 visible) */
+  .gallery-hidden {
+    display: none !important;
+  }
+
+  @media (max-width: 960px) {
+    .lightbox-btn--prev { left: 0; }
+    .lightbox-btn--next { right: 0; }
+    .lightbox-btn { width: 40px; height: 40px; font-size: 20px; }
+  }
 </style>
 </head>
 <body>
@@ -1470,6 +1597,8 @@
       <!-- PATIO 6 --><div class="realisation-card"><img src="assets/patio-6.png" alt="Patio sur mesure 6"></div>
       <!-- PATIO 7 --><div class="realisation-card"><img src="assets/patio-7.png" alt="Patio sur mesure 7"></div>
       <!-- PATIO 8 --><div class="realisation-card"><img src="assets/patio-8.png" alt="Patio sur mesure 8"></div>
+      <!-- PATIO 9 --><div class="realisation-card"><img src="assets/patio-9.png" alt="Patio sur mesure 9"></div>
+      <!-- PATIO 10 --><div class="realisation-card"><img src="assets/patio-10.png" alt="Patio sur mesure 10"></div>
       <!--
       AJOUTER UNE PHOTO PATIO — copier-coller ce bloc:
       <div class="realisation-card"><img src="assets/patio-X.png" alt="Description"></div>
@@ -1499,6 +1628,8 @@
       <!-- RAMPE 6 --><div class="realisation-card"><img src="assets/rampe-6.png" alt="Rampes aluminium 6"></div>
       <!-- RAMPE 7 --><div class="realisation-card"><img src="assets/rampe-7.png" alt="Rampes aluminium 7"></div>
       <!-- RAMPE 8 --><div class="realisation-card"><img src="assets/rampe-8.png" alt="Rampes aluminium 8"></div>
+      <!-- RAMPE 9 --><div class="realisation-card"><img src="assets/rampe-9.png" alt="Rampes aluminium 9"></div>
+      <!-- RAMPE 10 --><div class="realisation-card"><img src="assets/rampe-10.png" alt="Rampes aluminium 10"></div>
       <!--
       AJOUTER UNE PHOTO RAMPE — copier-coller ce bloc:
       <div class="realisation-card"><img src="assets/rampe-X.png" alt="Description"></div>
