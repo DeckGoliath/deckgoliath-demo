@@ -65,7 +65,7 @@
   /* ═══════════════════════ NAV ═══════════════════════ */
   nav {
     position: absolute;
-    top: 34px; left: 0; right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -2064,10 +2064,7 @@
   @media (max-width: 960px) {
     #topbar { padding: 6px 14px; }
     #topbar p { font-size: 11px; letter-spacing: 0.5px; }
-  }
-  @media (max-width: 600px) {
     #topbar span { display: none; }
-    #topbar p { text-align: right; }
   }
 </style>
 <script>
@@ -2220,7 +2217,7 @@ function applyLang(){
 <body>
 
 <!-- ═══ TOPBAR ═══ -->
-<div id="topbar" style="background:rgba(10,8,6,0.97); border-bottom:1px solid rgba(201,150,42,0.2); padding:7px 52px; position:fixed; top:0; left:0; right:0; z-index:1001; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+<div id="topbar" style="background:rgba(10,8,6,0.97); border-bottom:1px solid rgba(201,150,42,0.2); padding:7px 52px; position:relative; z-index:1001; display:flex; align-items:center; justify-content:space-between; gap:12px;">
   <a href="tel:+18194847851" style="font-family:'Montserrat',sans-serif; font-size:12px; font-weight:600; color:rgba(201,150,42,0.85); letter-spacing:1px; text-decoration:none; white-space:nowrap;">📞 819-484-7851</a>
   <p id="t-slogan" style="font-family:'EB Garamond',serif; font-size:13px; font-style:italic; color:rgba(240,234,214,0.7); letter-spacing:1.5px; margin:0; text-align:center; flex:1;">Vos besoins, vos rêves, notre spécialité!</p>
   <span style="font-family:'Montserrat',sans-serif; font-size:12px; color:rgba(201,150,42,0.85); letter-spacing:1px; white-space:nowrap;">📍 Gatineau, Outaouais</span>
