@@ -1952,6 +1952,21 @@
   .social-link:hover svg {
     opacity: 1;
   }
+
+  /* Signé Deck Goliath logo — responsive */
+  .signe-logo {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    max-width: 900px;
+    height: auto;
+  }
+
+  @media (max-width: 960px) {
+    .signe-logo {
+      width: 95%;
+    }
+  }
 </style>
 <script>
 var LANG='fr';
@@ -2635,7 +2650,7 @@ document.addEventListener('keydown', function(e) {
 
 <!-- Logo feu entre CTA et footer -->
 <div style="text-align:center; padding: 30px 0 60px; background: var(--dark);">
-  <img src="assets/signe_deck_goliath_10000px.png" alt="Signé Deck Goliath" style="width:70%; max-width:900px; min-width:280px; height:auto; display:block; margin:0 auto; mix-blend-mode:screen; opacity:0.92;">
+  <img src="assets/signe_deck_goliath_10000px.png" alt="Signé Deck Goliath" class="signe-logo" style="mix-blend-mode:screen; opacity:0.92;">
 </div>
 
 <!-- ═══ FOOTER ═══ -->
