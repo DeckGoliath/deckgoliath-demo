@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Bannière Facebook — Deck Goliath</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#1a1a1a; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+
+  .banniere {
+    width: 820px;
+    height: 312px;
+    position: relative;
+    overflow: hidden;
+    background: #0A0806;
+    font-family: 'Cinzel', serif;
+  }
+
+  /* Fond dégradé */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 40% 50%, rgba(70,45,8,0.6) 0%, transparent 65%),
+      radial-gradient(ellipse 30% 50% at 70% 40%, rgba(110,68,10,0.2) 0%, transparent 55%),
+      #0A0806;
+  }
+
+  /* Aigle en fond */
+  .eagle {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 340px;
+    width: auto;
+    opacity: 0.25;
+    mix-blend-mode: screen;
+  }
+
+  /* Contenu gauche */
+  .left {
+    position: absolute;
+    left: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  .logo-img {
+    height: 160px;
+    width: auto;
+    filter: drop-shadow(0 0 20px rgba(201,150,42,0.4));
+  }
+
+  /* Contenu centre/droite */
+  .right {
+    position: absolute;
+    right: 200px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    text-align: left;
+  }
+
+  .title {
+    font-family: 'Cinzel', serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.05;
+    color: #F0EAD6;
+    letter-spacing: -0.5px;
+  }
+
+  .title .gold { color: #E8B84B; }
+
+  .slogan {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 15px;
+    font-style: italic;
+    color: rgba(240,234,214,0.65);
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Badge choix du consommateur */
+  .badge {
+    position: absolute;
+    left: 200px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    height: 110px;
+    width: auto;
+    filter: drop-shadow(0 0 12px rgba(201,150,42,0.5));
+  }
+
+  /* Ligne dorée verticale */
+  .divider {
+    position: absolute;
+    left: 320px;
+    top: 20px;
+    bottom: 20px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(201,150,42,0.5), transparent);
+    z-index: 2;
+  }
+
+  /* Bas de page : infos */
+  .bottom-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 38px;
+    background: rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(201,150,42,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    z-index: 3;
+  }
+
+  .bottom-bar span {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 11px;
+    color: rgba(201,150,42,0.8);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .dot { color: rgba(201,150,42,0.4); margin: 0 10px; }
+
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=EB+Garamond:ital@1&family=Montserrat:wght@400;600&display=swap');
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=EB+Garamond:ital,wght@1,400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="banniere">
+  <div class="bg"></div>
+
+  <!-- Aigle en fond -->
+  <img src="assets/eagle-line.png" class="eagle" alt="">
+
+  <!-- Logo gauche -->
+  <div class="left">
+    <img src="assets/logo.png" class="logo-img" alt="Deck Goliath"
+      onerror="this.style.display='none'">
+  </div>
+
+  <!-- Badge Choix du consommateur -->
+  <img src="assets/choix-president.png" class="badge" alt="Choix du consommateur 2026"
+    onerror="this.style.display='none'">
+
+  <!-- Ligne séparatrice -->
+  <div class="divider"></div>
+
+  <!-- Texte droite -->
+  <div class="right">
+    <div class="title">
+      Minimaliste.<br>
+      <span class="gold">Luxueux.</span><br>
+      Inébranlable.
+    </div>
+    <p class="slogan">Vos besoins, vos rêves, notre spécialité!</p>
+  </div>
+
+  <!-- Barre du bas -->
+  <div class="bottom-bar">
+    <span>deckgoliath.com</span>
+    <span>
+      819-484-7851
+      <span class="dot">·</span>
+      Gatineau, Outaouais
+      <span class="dot">·</span>
+      RBQ 5756-0096-01
+    </span>
+    <span>Patios · Rampes · Pieux vissés</span>
+  </div>
+</div>
+
+</body>
+</html>
