@@ -740,6 +740,17 @@ body {
   padding: 2px 6px;
   border-radius: 2px;
 }
+.garantie-link {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.garantie-link:hover { color: var(--gold-light); }
 @media (max-width: 700px) {
   .est-fields-row { grid-template-columns: 1fr 1fr; }
   .est-cards-grid { grid-template-columns: 1fr; }
@@ -903,11 +914,11 @@ body {
         <div class="est-fields-row">
           <div class="est-field">
             <label class="est-label">Longueur (pi)</label>
-            <input class="est-input" type="number" id="est-long" value="12" min="4" max="100">
+            <input class="est-input" type="number" id="est-long" value="12" min="4" max="100" oninput="updateSurface()">
           </div>
           <div class="est-field">
             <label class="est-label">Largeur (pi)</label>
-            <input class="est-input" type="number" id="est-larg" value="12" min="4" max="100">
+            <input class="est-input" type="number" id="est-larg" value="12" min="4" max="100" oninput="updateSurface()">
           </div>
           <div class="est-field est-field-calc">
             <label class="est-label">Surface</label>
@@ -921,13 +932,13 @@ body {
             <label class="est-label">Pieux vissés</label>
             <div class="est-stepper">
               <button class="est-step-btn" onclick="step('est-pieux',-1)">−</button>
-              <span class="est-step-val" id="est-pieux">6</span>
+              <span class="est-step-val" id="est-pieux">3</span>
               <button class="est-step-btn" onclick="step('est-pieux',1)">+</button>
             </div>
           </div>
           <div class="est-field">
             <label class="est-label">Rampe (pi lin)</label>
-            <input class="est-input" type="number" id="est-rampe" value="20" min="0" max="200">
+            <input class="est-input" type="number" id="est-rampe" value="40" min="0" max="200">
           </div>
           <div class="est-field">
             <label class="est-label">Escaliers</label>
@@ -938,6 +949,9 @@ body {
             </div>
           </div>
         </div>
+
+        <!-- Note poteaux de rampe -->
+        <p class="q-note" style="margin-bottom:16px;">⚠ Prévoir un poteau aux 6 pieds maximum pour le calcul de votre rampe.</p>
 
         <!-- Note 6 : Géotextile incluse -->
         <div class="geo-note">
@@ -1105,6 +1119,7 @@ const GAMMES = {
       facteur: 1.00,
       prixPL: 6,
       garantie: '25 ans structural / 25 ans taches',
+      garantieUrl: 'https://www.deckorators.com/cdn/shop/files/French_Decking_Porch_Flooring_and_Composite_Railing_Warranty_7971.pdf',
       couleurs: ['Cliffside', 'Boulder', 'Glacier']
     },
     {
@@ -1114,6 +1129,7 @@ const GAMMES = {
       facteur: 1.00,
       prixPL: 9,
       garantie: '50 ans structural / 25 ans taches / 25 ans remplacement',
+      garantieUrl: 'https://www.deckorators.com/cdn/shop/files/French_Decking_Porch_Flooring_and_Composite_Railing_Warranty_7971.pdf',
       couleurs: ['Costa', 'Sierra', 'Khaya', 'Tundra', 'Sedona']
     }
   ],
@@ -1125,6 +1141,8 @@ const GAMMES = {
       facteur: 1.00,
       prixPL: 8,
       garantie: '50 ans taches · À vie sur le produit',
+      garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
+      garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
       couleurs: ['Slate Gray', 'Kona', 'Brownstone']
     },
     {
@@ -1134,6 +1152,8 @@ const GAMMES = {
       facteur: 1.00,
       prixPL: 9,
       garantie: '50 ans taches · À vie sur le produit',
+      garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
+      garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
       couleurs: ['Toasted Wheat', 'Timber Gray']
     },
     {
@@ -1143,6 +1163,8 @@ const GAMMES = {
       facteur: 1.00,
       prixPL: 10,
       garantie: '50 ans taches · À vie sur le produit',
+      garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
+      garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
       couleurs: ['French White Oak', 'American Walnut', 'Castle Gate']
     },
     {
@@ -1152,6 +1174,8 @@ const GAMMES = {
       facteur: 1.00,
       prixPL: 12.25,
       garantie: '50 ans taches · À vie sur le produit',
+      garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
+      garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
       couleurs: ['Weathered Teak', 'Coastline', 'English Walnut']
     }
   ]
@@ -1208,6 +1232,7 @@ function updateSurface() {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('est-long').addEventListener('input', updateSurface);
   document.getElementById('est-larg').addEventListener('input', updateSurface);
+  updateSurface();
 });
 
 function fmtPrix(n) {
@@ -1234,6 +1259,10 @@ function renderCards(containerId, gammes, surface, pieux, rampe, escaliers) {
       <div class="mat-row"><span class="mat-label">Garantie</span><span class="mat-val good">${g.garantie}</span></div>
       <div class="mat-row"><span class="mat-label">Prix matériau</span><span class="mat-val">${g.prixPL}$/pi lin</span></div>
       <div class="est-card-colors" style="margin-top:12px;">${g.couleurs.map(c => `<span class="est-color-chip">${c}</span>`).join('')}</div>
+      <div style="margin-top:14px;">
+        <a href="${g.garantieUrl}" target="_blank" class="garantie-link">Voir détails garantie →</a>
+        ${g.garantieUrl2 ? `<a href="${g.garantieUrl2}" target="_blank" class="garantie-link" style="margin-top:6px;">Voir garantie à vie →</a>` : ''}
+      </div>
     `;
     container.appendChild(card);
   });
