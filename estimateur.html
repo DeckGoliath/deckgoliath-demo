@@ -1057,10 +1057,6 @@ body {
           </div>
         </div>
 
-        <!-- Note poteaux retirée de l'estimateur patio -->
-
-        <button class="btn-start" style="margin-top:20px;" onclick="calculerEst()">Calculer les prix →</button>
-
         <!-- Note géotextile + Joist Guard -->
         <div class="geo-note">
           <span class="geo-icon">⬡</span>
@@ -1226,6 +1222,7 @@ const GAMMES = {
       type: 'À base minérale · Surestone®',
       facteur: 1.00,
       prixPL: 6,
+      prixAffiche: '6$+/-',
       garantie: '25 ans structural / 25 ans taches',
       garantieUrl: 'https://www.deckorators.com/cdn/shop/files/French_Decking_Porch_Flooring_and_Composite_Railing_Warranty_7971.pdf',
       couleurs: [
@@ -1241,6 +1238,7 @@ const GAMMES = {
       type: 'À base minérale · Surestone®',
       facteur: 1.00,
       prixPL: 9,
+      prixAffiche: '9$+/-',
       garantie: '50 ans structural / 25 ans taches / 25 ans remplacement',
       garantieUrl: 'https://www.deckorators.com/cdn/shop/files/French_Decking_Porch_Flooring_and_Composite_Railing_Warranty_7971.pdf',
       couleurs: [
@@ -1260,6 +1258,7 @@ const GAMMES = {
       type: 'Advanced PVC · Cathedral Grain',
       facteur: 1.00,
       prixPL: 8,
+      prixAffiche: '8$+/-',
       garantie: '50 ans taches · À vie sur le produit',
       garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
       garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
@@ -1275,6 +1274,7 @@ const GAMMES = {
       type: 'Advanced Polymer · Cathedral Grain',
       facteur: 1.00,
       prixPL: 9,
+      prixAffiche: '9$+/-',
       garantie: '50 ans taches · À vie sur le produit',
       garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
       garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
@@ -1289,6 +1289,7 @@ const GAMMES = {
       type: 'Advanced Polymer · Bois durs recoupés',
       facteur: 1.00,
       prixPL: 10,
+      prixAffiche: '10$+/-',
       garantie: '50 ans taches · À vie sur le produit',
       garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
       garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
@@ -1304,7 +1305,8 @@ const GAMMES = {
       brand: 'TimberTech',
       type: 'Advanced Polymer · Bois durs exotiques',
       facteur: 1.00,
-      prixPL: 12.25,
+      prixPL: 12,
+      prixAffiche: '12$+/-',
       garantie: '50 ans taches · À vie sur le produit',
       garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
       garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
@@ -1379,12 +1381,15 @@ function fmtPrix(n) {
 }
 
 function renderCards(containerId, gammes, surface, pieux, rampe, escaliers) {
+  window._gammesCouleurs = window._gammesCouleurs || {};
   const container = document.getElementById(containerId);
   container.innerHTML = '';
-  gammes.forEach(g => {
+  gammes.forEach((g, gi) => {
     const p = calculerPrixGamme(surface, pieux, rampe, escaliers, g);
+    const key = containerId + '-' + gi;
+    window._gammesCouleurs[key] = { titre: g.brand + ' ' + g.nom, couleurs: g.couleurs };
     const swatchesHtml = g.couleurs.map(c => `
-      <div class="color-swatch-wrap" onclick="openPopup('${g.brand} ${g.nom}', ${JSON.stringify(g.couleurs).replace(/'/g,"&#39;")})">
+      <div class="color-swatch-wrap" onclick="openPopup('${key}')">
         <div class="color-swatch" style="background-image:url('${c.img}')"></div>
         <div class="color-swatch-name">${c.nom}</div>
       </div>
@@ -1402,9 +1407,9 @@ function renderCards(containerId, gammes, surface, pieux, rampe, escaliers) {
       <div class="mat-row"><span class="mat-label">Entretien</span><span class="mat-val good">Minimal</span></div>
       <div class="mat-row"><span class="mat-label">Durabilité</span><span class="mat-val good">${g.brand === 'Deckorators' && g.nom === 'Summit' ? 'Haute' : 'Très haute'}</span></div>
       <div class="mat-row"><span class="mat-label">Garantie</span><span class="mat-val good">${g.garantie}</span></div>
-      <div class="mat-row"><span class="mat-label">Prix matériau</span><span class="mat-val">${g.prixPL}$/pi lin</span></div>
+      <div class="mat-row"><span class="mat-label">Prix matériau approximatif</span><span class="mat-val">${g.prixAffiche} pi.lin.</span></div>
       <div class="est-card-divider"></div>
-      <div class="est-card-price-label" style="margin-bottom:10px;">Couleurs disponibles</div>
+      <div class="est-card-price-label" style="margin-bottom:10px;">Couleurs disponibles — cliquez pour voir</div>
       <div class="color-swatches-row">${swatchesHtml}</div>
       <div style="margin-top:14px;">
         <a href="${g.garantieUrl}" target="_blank" class="garantie-link">Voir détails garantie →</a>
@@ -1416,17 +1421,18 @@ function renderCards(containerId, gammes, surface, pieux, rampe, escaliers) {
 }
 
 // ── POPUP COULEURS ──
-function openPopup(titre, couleurs) {
-  const popup = document.getElementById('color-popup');
-  document.getElementById('popup-title').textContent = titre + ' — Couleurs disponibles';
+function openPopup(key) {
+  const data = window._gammesCouleurs[key];
+  if (!data) return;
+  document.getElementById('popup-title').textContent = data.titre + ' — Couleurs disponibles';
   const grid = document.getElementById('popup-grid');
-  grid.innerHTML = couleurs.map(c => `
+  grid.innerHTML = data.couleurs.map(c => `
     <div class="popup-color-item">
-      <img src="${c.img}" alt="${c.nom}" class="popup-color-img" onerror="this.style.background='#2a2218'">
+      <img src="${c.img}" alt="${c.nom}" class="popup-color-img">
       <div class="popup-color-name">${c.nom}</div>
     </div>
   `).join('');
-  popup.classList.add('active');
+  document.getElementById('color-popup').classList.add('active');
 }
 
 function closePopup() {
