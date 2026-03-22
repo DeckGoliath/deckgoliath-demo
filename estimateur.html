@@ -751,6 +751,113 @@ body {
   transition: color 0.2s;
 }
 .garantie-link:hover { color: var(--gold-light); }
+
+/* ── PASTILLES COULEUR ── */
+.color-swatches-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.color-swatch-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+.color-swatch-wrap:hover { transform: translateY(-2px); }
+.color-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background-size: cover;
+  background-position: center;
+  transition: border-color 0.2s;
+}
+.color-swatch-wrap:hover .color-swatch { border-color: var(--gold); }
+.color-swatch-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+  color: var(--dim);
+  text-align: center;
+  max-width: 48px;
+  line-height: 1.2;
+}
+
+/* ── POPUP ── */
+.color-popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.color-popup-overlay.active { display: flex; }
+.color-popup-box {
+  background: var(--dark-2);
+  border: 1px solid var(--border-strong);
+  padding: 28px;
+  max-width: 640px;
+  width: 100%;
+  animation: fadeIn 0.2s ease;
+}
+.color-popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.color-popup-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+.color-popup-close {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 14px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.color-popup-close:hover { border-color: var(--gold); color: var(--gold); }
+.color-popup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+.popup-color-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.popup-color-img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+.popup-color-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--cream);
+  text-align: center;
+  text-transform: uppercase;
+}
 @media (max-width: 700px) {
   .est-fields-row { grid-template-columns: 1fr 1fr; }
   .est-cards-grid { grid-template-columns: 1fr; }
@@ -837,13 +944,13 @@ body {
 
 <!-- NAV ONGLETS -->
 <div class="tab-nav">
-  <button class="tab-btn active" onclick="switchTab('quiz', this)">Recommandation matériau</button>
-  <button class="tab-btn" onclick="switchTab('estimateur', this)">Estimateur patio</button>
+  <!-- <button class="tab-btn" onclick="switchTab('quiz', this)">Recommandation matériau</button> -->
+  <button class="tab-btn active" onclick="switchTab('estimateur', this)">Estimateur patio</button>
   <button class="tab-btn" onclick="switchTab('rampe', this)">Estimateur rampe</button>
 </div>
 
-<!-- TAB : QUIZ -->
-<div class="tab-content active" id="tab-quiz">
+<!-- TAB : QUIZ (caché temporairement) -->
+<div class="tab-content" id="tab-quiz" style="display:none!important;">
 
 <!-- ÉCRAN 0 : INTRO -->
 <div class="screen active" id="screen-intro">
@@ -896,7 +1003,7 @@ body {
 </div><!-- /tab-quiz -->
 
 <!-- TAB : ESTIMATEUR DE PRIX -->
-<div class="tab-content" id="tab-estimateur">
+<div class="tab-content active" id="tab-estimateur">
   <div class="screen active" id="screen-est">
     <div class="est-wrap">
 
@@ -950,13 +1057,14 @@ body {
           </div>
         </div>
 
-        <!-- Note poteaux de rampe -->
-        <p class="q-note" style="margin-bottom:16px;">⚠ Prévoir un poteau aux 6 pieds maximum pour le calcul de votre rampe.</p>
+        <!-- Note poteaux retirée de l'estimateur patio -->
 
-        <!-- Note 6 : Géotextile incluse -->
+        <button class="btn-start" style="margin-top:20px;" onclick="calculerEst()">Calculer les prix →</button>
+
+        <!-- Note géotextile + Joist Guard -->
         <div class="geo-note">
           <span class="geo-icon">⬡</span>
-          <span>Inclus pour tout projet — géotextile avec roche 3/4 net installée sous chaque patio avant la construction.</span>
+          <span>Inclus pour tout projet — géotextile avec roche 3/4 net installée sous chaque patio, et protecteur imperméable <strong>Joist Guard</strong> appliqué sur chaque solive avant la construction.</span>
         </div>
 
         <button class="btn-start" style="margin-top:20px;" onclick="calculerEst()">Calculer les prix →</button>
@@ -1120,7 +1228,12 @@ const GAMMES = {
       prixPL: 6,
       garantie: '25 ans structural / 25 ans taches',
       garantieUrl: 'https://www.deckorators.com/cdn/shop/files/French_Decking_Porch_Flooring_and_Composite_Railing_Warranty_7971.pdf',
-      couleurs: ['Cliffside', 'Boulder', 'Glacier']
+      couleurs: [
+        { nom: 'Cliffside',  img: 'assets/deckorators/cliffside.jpg' },
+        { nom: 'Boulder',    img: 'assets/deckorators/boulder.jpg' },
+        { nom: 'Glacier',    img: 'assets/deckorators/glacier.jpg' },
+        { nom: 'Dark Slate', img: 'assets/deckorators/darkslate.jpg' }
+      ]
     },
     {
       nom: 'Voyage',
@@ -1130,7 +1243,14 @@ const GAMMES = {
       prixPL: 9,
       garantie: '50 ans structural / 25 ans taches / 25 ans remplacement',
       garantieUrl: 'https://www.deckorators.com/cdn/shop/files/French_Decking_Porch_Flooring_and_Composite_Railing_Warranty_7971.pdf',
-      couleurs: ['Costa', 'Sierra', 'Khaya', 'Tundra', 'Sedona']
+      couleurs: [
+        { nom: 'Costa',      img: 'assets/deckorators/costa.jpg' },
+        { nom: 'Sierra',     img: 'assets/deckorators/sierra.jpg' },
+        { nom: 'Khaya',      img: 'assets/deckorators/khaya.jpg' },
+        { nom: 'Tundra',     img: 'assets/deckorators/tundra.jpg' },
+        { nom: 'Sedona',     img: 'assets/deckorators/sedona.jpg' },
+        { nom: 'Dark Slate', img: 'assets/deckorators/darkslate.jpg' }
+      ]
     }
   ],
   tt: [
@@ -1143,7 +1263,11 @@ const GAMMES = {
       garantie: '50 ans taches · À vie sur le produit',
       garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
       garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
-      couleurs: ['Slate Gray', 'Kona', 'Brownstone']
+      couleurs: [
+        { nom: 'Slate Gray',  img: 'assets/timbertech/slategray.jpg' },
+        { nom: 'Kona',        img: 'assets/timbertech/kona.jpg' },
+        { nom: 'Brownstone',  img: 'assets/timbertech/brownstone.jpg' }
+      ]
     },
     {
       nom: 'Harvest+',
@@ -1154,7 +1278,10 @@ const GAMMES = {
       garantie: '50 ans taches · À vie sur le produit',
       garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
       garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
-      couleurs: ['Toasted Wheat', 'Timber Gray']
+      couleurs: [
+        { nom: 'Toasted Wheat', img: 'assets/timbertech/ToastedWheat.jpg' },
+        { nom: 'Timber Gray',   img: 'assets/timbertech/TimberGray.jpg' }
+      ]
     },
     {
       nom: 'Landmark',
@@ -1165,7 +1292,12 @@ const GAMMES = {
       garantie: '50 ans taches · À vie sur le produit',
       garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
       garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
-      couleurs: ['French White Oak', 'American Walnut', 'Castle Gate']
+      couleurs: [
+        { nom: 'French White Oak',  img: 'assets/timbertech/WhiteOak.jpg' },
+        { nom: 'American Walnut',   img: 'assets/timbertech/AmericanWalnut.jpg' },
+        { nom: 'Castle Gate',       img: 'assets/timbertech/CastleGate.jpg' },
+        { nom: 'Boardwalk',         img: 'assets/timbertech/Boardwalk.jpg' }
+      ]
     },
     {
       nom: 'Vintage',
@@ -1176,7 +1308,14 @@ const GAMMES = {
       garantie: '50 ans taches · À vie sur le produit',
       garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
       garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
-      couleurs: ['Weathered Teak', 'Coastline', 'English Walnut']
+      couleurs: [
+        { nom: 'Weathered Teak',  img: 'assets/timbertech/weatheredteak.jpg' },
+        { nom: 'Cypress',         img: 'assets/timbertech/cypress.jpg' },
+        { nom: 'Coastline',       img: 'assets/timbertech/coastline.jpeg' },
+        { nom: 'Mahogany',        img: 'assets/timbertech/mahogany.jpg' },
+        { nom: 'English Walnut',  img: 'assets/timbertech/englishwalnut.jpg' },
+        { nom: 'Dark Hickory',    img: 'assets/timbertech/darkhickory.jpg' }
+      ]
     }
   ]
 };
@@ -1244,6 +1383,12 @@ function renderCards(containerId, gammes, surface, pieux, rampe, escaliers) {
   container.innerHTML = '';
   gammes.forEach(g => {
     const p = calculerPrixGamme(surface, pieux, rampe, escaliers, g);
+    const swatchesHtml = g.couleurs.map(c => `
+      <div class="color-swatch-wrap" onclick="openPopup('${g.brand} ${g.nom}', ${JSON.stringify(g.couleurs).replace(/'/g,"&#39;")})">
+        <div class="color-swatch" style="background-image:url('${c.img}')"></div>
+        <div class="color-swatch-name">${c.nom}</div>
+      </div>
+    `).join('');
     const card = document.createElement('div');
     card.className = 'est-card';
     card.innerHTML = `
@@ -1258,7 +1403,9 @@ function renderCards(containerId, gammes, surface, pieux, rampe, escaliers) {
       <div class="mat-row"><span class="mat-label">Durabilité</span><span class="mat-val good">${g.brand === 'Deckorators' && g.nom === 'Summit' ? 'Haute' : 'Très haute'}</span></div>
       <div class="mat-row"><span class="mat-label">Garantie</span><span class="mat-val good">${g.garantie}</span></div>
       <div class="mat-row"><span class="mat-label">Prix matériau</span><span class="mat-val">${g.prixPL}$/pi lin</span></div>
-      <div class="est-card-colors" style="margin-top:12px;">${g.couleurs.map(c => `<span class="est-color-chip">${c}</span>`).join('')}</div>
+      <div class="est-card-divider"></div>
+      <div class="est-card-price-label" style="margin-bottom:10px;">Couleurs disponibles</div>
+      <div class="color-swatches-row">${swatchesHtml}</div>
       <div style="margin-top:14px;">
         <a href="${g.garantieUrl}" target="_blank" class="garantie-link">Voir détails garantie →</a>
         ${g.garantieUrl2 ? `<a href="${g.garantieUrl2}" target="_blank" class="garantie-link" style="margin-top:6px;">Voir garantie à vie →</a>` : ''}
@@ -1267,6 +1414,25 @@ function renderCards(containerId, gammes, surface, pieux, rampe, escaliers) {
     container.appendChild(card);
   });
 }
+
+// ── POPUP COULEURS ──
+function openPopup(titre, couleurs) {
+  const popup = document.getElementById('color-popup');
+  document.getElementById('popup-title').textContent = titre + ' — Couleurs disponibles';
+  const grid = document.getElementById('popup-grid');
+  grid.innerHTML = couleurs.map(c => `
+    <div class="popup-color-item">
+      <img src="${c.img}" alt="${c.nom}" class="popup-color-img" onerror="this.style.background='#2a2218'">
+      <div class="popup-color-name">${c.nom}</div>
+    </div>
+  `).join('');
+  popup.classList.add('active');
+}
+
+function closePopup() {
+  document.getElementById('color-popup').classList.remove('active');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
 
 function calculerEst() {
   const l      = parseFloat(document.getElementById('est-long').value) || 12;
@@ -1674,5 +1840,16 @@ function goToContact() {
   else window.location.href = 'index.html#contact';
 }
 </script>
+<!-- POPUP COULEURS -->
+<div class="color-popup-overlay" id="color-popup" onclick="closePopup()">
+  <div class="color-popup-box" onclick="event.stopPropagation()">
+    <div class="color-popup-header">
+      <span class="color-popup-title" id="popup-title"></span>
+      <button class="color-popup-close" onclick="closePopup()">✕</button>
+    </div>
+    <div class="color-popup-grid" id="popup-grid"></div>
+  </div>
+</div>
+
 </body>
 </html>
