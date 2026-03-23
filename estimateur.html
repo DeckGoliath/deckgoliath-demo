@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quel matériau pour votre patio? — Deck Goliath</title>
+<title>Deck Goliath | Construction de patios et terrasses haut de gamme à Gatineau</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -882,6 +882,55 @@ body {
   .est-form { padding: 20px; }
 }
 
+/* ── CHARTE PIEUX ── */
+.pieux-guide {
+  margin-top: 16px;
+  background: rgba(201,150,42,0.04);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 14px 18px;
+}
+.pieux-guide-title {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.pieux-guide-grid {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.pieux-col { text-align: center; }
+.pieux-range {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pieux-nb {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cream);
+}
+.pieux-sep {
+  color: var(--border-strong);
+  font-size: 20px;
+}
+.pieux-note {
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--dim);
+}
+
 /* ── NOTE GÉOTEXTILE ── */
 .geo-note {
   display: flex;
@@ -1027,8 +1076,8 @@ body {
 
       <p class="intro-badge">Deck Goliath · Gatineau · Outaouais</p>
       <div class="gold-line"></div>
-      <h2 id="est-title" class="est-title">Estimateur de prix par gamme</h2>
-      <p id="est-sub" class="est-sub">Entrez les caractéristiques de votre projet. Nous calculons une fourchette indicative pour chaque gamme de matériau — avant taxes.</p>
+      <h2 id="est-title" class="est-title" style="text-align:center;">Estimateur de prix par gamme</h2>
+      <p id="est-sub" class="est-sub" style="text-align:center;">Entrez les caractéristiques de votre projet. Nous calculons une fourchette indicative pour chaque gamme de matériau — avant taxes.</p>
 
       <!-- Note 5 : Disclaimer en haut -->
       <p id="est-disclaimer-top" class="disclaimer" style="margin-bottom:28px;">Ces estimations sont basées sur des projets typiques en Outaouais. Chaque projet est unique — une visite de chantier est nécessaire pour une soumission précise.</p>
@@ -1073,6 +1122,28 @@ body {
               <button class="est-step-btn" onclick="step('est-escal',1)">+</button>
             </div>
           </div>
+        </div>
+
+        <!-- Charte pieux -->
+        <div class="pieux-guide">
+          <div class="pieux-guide-title">⬡ Guide — Nombre de pieux selon la longueur</div>
+          <div class="pieux-guide-grid">
+            <div class="pieux-col">
+              <div class="pieux-range">≤ 10 pi</div>
+              <div class="pieux-nb">2 pieux</div>
+            </div>
+            <div class="pieux-sep">·</div>
+            <div class="pieux-col">
+              <div class="pieux-range">11 – 16 pi</div>
+              <div class="pieux-nb">3 pieux</div>
+            </div>
+            <div class="pieux-sep">·</div>
+            <div class="pieux-col">
+              <div class="pieux-range">17 pi et +</div>
+              <div class="pieux-nb">4 pieux</div>
+            </div>
+          </div>
+          <div class="pieux-note">* Peut varier selon le type de sol</div>
         </div>
 
         <!-- Note géotextile + Joist Guard -->
@@ -1229,8 +1300,674 @@ body {
   </div>
 </div><!-- /tab-rampe -->
 
+<script>
+// ══════════════════════════════════════════════════
+//  ONGLETS
+// ══════════════════════════════════════════════════
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
 
+// ══════════════════════════════════════════════════
+//  ESTIMATEUR DE PRIX
+// ══════════════════════════════════════════════════
+const GAMMES = {
+  deko: [
+    {
+      nom: 'Summit',
+      brand: 'Deckorators',
+      type: 'À base minérale · Surestone®',
+      facteur: 1.00,
+      prixPL: 6,
+      prixAffiche: '6$+/-',
+      garantie: '25 ans structural / 25 ans taches',
+      garantieUrl: 'https://www.deckorators.com/cdn/shop/files/French_Decking_Porch_Flooring_and_Composite_Railing_Warranty_7971.pdf',
+      couleurs: [
+        { nom: 'Cliffside',  img: 'assets/deckorators/cliffside.jpg' },
+        { nom: 'Boulder',    img: 'assets/deckorators/boulder.jpg' },
+        { nom: 'Glacier',    img: 'assets/deckorators/glacier.jpg' },
+        { nom: 'Dark Slate', img: 'assets/deckorators/darkslate.jpg' }
+      ]
+    },
+    {
+      nom: 'Voyage',
+      brand: 'Deckorators',
+      type: 'À base minérale · Surestone®',
+      facteur: 1.00,
+      prixPL: 9,
+      prixAffiche: '9$+/-',
+      garantie: '50 ans structural / 25 ans taches / 25 ans remplacement',
+      garantieUrl: 'https://www.deckorators.com/cdn/shop/files/French_Decking_Porch_Flooring_and_Composite_Railing_Warranty_7971.pdf',
+      couleurs: [
+        { nom: 'Costa',      img: 'assets/deckorators/costa.jpg' },
+        { nom: 'Sierra',     img: 'assets/deckorators/sierra.jpg' },
+        { nom: 'Khaya',      img: 'assets/deckorators/khaya.jpg' },
+        { nom: 'Tundra',     img: 'assets/deckorators/tundra.jpg' },
+        { nom: 'Sedona',     img: 'assets/deckorators/sedona.jpg' },
+        { nom: 'Dark Slate', img: 'assets/deckorators/darkslate.jpg' }
+      ]
+    }
+  ],
+  tt: [
+    {
+      nom: 'Harvest',
+      brand: 'TimberTech',
+      type: 'Advanced PVC · Cathedral Grain',
+      facteur: 1.00,
+      prixPL: 8,
+      prixAffiche: '8$+/-',
+      garantie: '50 ans taches · À vie sur le produit',
+      garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
+      garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
+      couleurs: [
+        { nom: 'Slate Gray',  img: 'assets/timbertech/slategray.jpg' },
+        { nom: 'Brownstone',  img: 'assets/timbertech/brownstone.jpg' }
+      ]
+    },
+    {
+      nom: 'Harvest+',
+      brand: 'TimberTech',
+      type: 'Advanced Polymer · Cathedral Grain',
+      facteur: 1.00,
+      prixPL: 9,
+      prixAffiche: '9$+/-',
+      garantie: '50 ans taches · À vie sur le produit',
+      garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
+      garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
+      couleurs: [
+        { nom: 'Toasted Wheat', img: 'assets/timbertech/ToastedWheat.jpg' },
+        { nom: 'Timber Gray',   img: 'assets/timbertech/TimberGray.jpg' }
+      ]
+    },
+    {
+      nom: 'Landmark',
+      brand: 'TimberTech',
+      type: 'Advanced Polymer · Bois durs recoupés',
+      facteur: 1.00,
+      prixPL: 10,
+      prixAffiche: '10$+/-',
+      garantie: '50 ans taches · À vie sur le produit',
+      garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
+      garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
+      couleurs: [
+        { nom: 'French White Oak',  img: 'assets/timbertech/WhiteOak.jpg' },
+        { nom: 'American Walnut',   img: 'assets/timbertech/AmericanWalnut.jpg' },
+        { nom: 'Castle Gate',       img: 'assets/timbertech/CastleGate.jpg' },
+        { nom: 'Boardwalk',         img: 'assets/timbertech/Boardwalk.jpg' }
+      ]
+    },
+    {
+      nom: 'Vintage',
+      brand: 'TimberTech',
+      type: 'Advanced Polymer · Bois durs exotiques',
+      facteur: 1.00,
+      prixPL: 12,
+      prixAffiche: '12$+/-',
+      garantie: '50 ans taches · À vie sur le produit',
+      garantieUrl: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-fadestain-warranty-frCA-10.01.23.pdf',
+      garantieUrl2: 'https://assets.timbertech.com/content/dam/wp-content/TimberTech-advanced-PVC-limited-warranty-frCA-10.01.23.pdf',
+      couleurs: [
+        { nom: 'Weathered Teak',  img: 'assets/timbertech/weatheredteak.jpg' },
+        { nom: 'Coastline',       img: 'assets/timbertech/coastline.jpeg' },
+        { nom: 'Mahogany',        img: 'assets/timbertech/mahogany.jpg' },
+        { nom: 'English Walnut',  img: 'assets/timbertech/englishwalnut.jpg' },
+        { nom: 'Dark Hickory',    img: 'assets/timbertech/darkhickory.jpg' }
+      ]
+    }
+  ]
+};
 
+// Grille de prix au pi² (base de structure, main-d'oeuvre, etc.) — paliers ajustés -10%
+const PALIERS_EST = [
+  { max: 60,    prix: 140, min: 7500 },
+  { max: 140,   prix: 112, min: 13000 },
+  { max: 220,   prix:  95, min: 13000 },
+  { max: 99999, prix:  82, min: 13000 }
+];
+const RAMPE_VENTE    = 100;  // $/pi lin (estimateur patio)
+const ESCALIER_VENTE = 1800; // $/escalier
+const PIEUX_VENTE    = 300;  // $/unité
+// Coût planches composite de référence (Summit = base 1.00)
+// prixPL $/pi lin → pi lin = surface / (5.5/12) * (1+0.10)
+function planchesCout(surface, prixPL) {
+  const largUtile = 5.5 / 12; // pi
+  const perte = 1.10;
+  const piLin = (surface / largUtile) * perte;
+  return piLin * prixPL;
+}
+
+function calculerPrixGamme(surface, pieux, rampe, escaliers, gamme) {
+  const palier = PALIERS_EST.find(p => surface <= p.max);
+  // Base structure + M.O. au pi² (sans les planches — on soustrait coût planches Summit de référence et on remplace)
+  // On utilise la logique de l'estimateur v3 : prix au pi² × surface = tout inclus (planches Deckorators Summit @ 6$/pi lin)
+  // Pour les autres gammes on recalcule en ajustant la diff de coût planches
+  const coutPlanchesRef = planchesCout(surface, 6); // Summit = référence
+  const coutPlanchesGamme = planchesCout(surface, gamme.prixPL);
+  const diffPlanches = coutPlanchesGamme - coutPlanchesRef;
+
+  const basePrix = Math.max(surface * palier.prix, palier.min);
+  const extras = (pieux * PIEUX_VENTE) + (rampe * RAMPE_VENTE) + (escaliers * ESCALIER_VENTE);
+  const total = basePrix + extras + diffPlanches;
+
+  const bas  = Math.round(total * 0.88 / 100) * 100;
+  const haut = Math.round(total * 1.12 / 100) * 100;
+  return { bas, haut };
+}
+
+function step(id, delta) {
+  const el = document.getElementById(id);
+  const val = Math.max(0, parseInt(el.textContent) + delta);
+  el.textContent = val;
+}
+
+function updateSurface() {
+  const l = parseFloat(document.getElementById('est-long').value) || 0;
+  const w = parseFloat(document.getElementById('est-larg').value) || 0;
+  document.getElementById('est-surface').textContent = (l * w).toFixed(0) + ' pi²';
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('est-long').addEventListener('input', updateSurface);
+  document.getElementById('est-larg').addEventListener('input', updateSurface);
+  updateSurface();
+});
+
+function fmtPrix(n) {
+  return '$\u00a0' + n.toLocaleString('fr-CA');
+}
+
+function renderCards(containerId, gammes, surface, pieux, rampe, escaliers) {
+  window._gammesCouleurs = window._gammesCouleurs || {};
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  gammes.forEach((g, gi) => {
+    const p = calculerPrixGamme(surface, pieux, rampe, escaliers, g);
+    const key = containerId + '-' + gi;
+    window._gammesCouleurs[key] = { titre: g.brand + ' ' + g.nom, couleurs: g.couleurs };
+    const T = CARDS_TRANS[currentLang];
+    const durab = (g.brand === 'Deckorators' && g.nom === 'Summit') ? T.haute : T.tresHaute;
+    const swatchesHtml = g.couleurs.map(c => `
+      <div class="color-swatch-wrap" onclick="openPopup('${key}')">
+        <div class="color-swatch" style="background-image:url('${c.img}')"></div>
+        <div class="color-swatch-name">${c.nom}</div>
+      </div>
+    `).join('');
+    const card = document.createElement('div');
+    card.className = 'est-card';
+    card.innerHTML = `
+      <div class="est-card-brand">${g.brand}</div>
+      <div class="est-card-name">${g.nom}</div>
+      <div class="est-card-type">${g.type}</div>
+      <div class="est-card-divider"></div>
+      <div class="est-card-price-label">${T.fourchette}</div>
+      <div class="est-card-price">${fmtPrix(p.bas)}&nbsp;–&nbsp;${fmtPrix(p.haut)}</div>
+      <div class="est-card-divider"></div>
+      <div class="mat-row"><span class="mat-label">${T.entretien}</span><span class="mat-val good">${T.minimal}</span></div>
+      <div class="mat-row"><span class="mat-label">${T.durabilite}</span><span class="mat-val good">${durab}</span></div>
+      <div class="mat-row"><span class="mat-label">${T.garantie}</span><span class="mat-val good">${g.garantie}</span></div>
+      <div class="mat-row"><span class="mat-label">${T.prixMateriaux}</span><span class="mat-val">${g.prixAffiche} pi.lin.</span></div>
+      <div class="est-card-divider"></div>
+      <div class="est-card-price-label" style="margin-bottom:10px;">${T.couleursDispo}</div>
+      <div class="color-swatches-row">${swatchesHtml}</div>
+      <div style="margin-top:14px;">
+        <a href="${g.garantieUrl}" target="_blank" class="garantie-link">${T.voirGarantie}</a>
+        ${g.garantieUrl2 ? `<a href="${g.garantieUrl2}" target="_blank" class="garantie-link" style="margin-top:6px;">${T.voirGarantieVie}</a>` : ''}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// ── POPUP COULEURS ──
+function openPopup(key) {
+  const data = window._gammesCouleurs[key];
+  if (!data) return;
+  document.getElementById('popup-title').textContent = data.titre + ' — Couleurs disponibles';
+  const grid = document.getElementById('popup-grid');
+  grid.innerHTML = data.couleurs.map(c => `
+    <div class="popup-color-item">
+      <img src="${c.img}" alt="${c.nom}" class="popup-color-img">
+      <div class="popup-color-name">${c.nom}</div>
+    </div>
+  `).join('');
+  document.getElementById('color-popup').classList.add('active');
+}
+
+function closePopup() {
+  document.getElementById('color-popup').classList.remove('active');
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+function calculerEst() {
+  const l      = parseFloat(document.getElementById('est-long').value) || 12;
+  const w      = parseFloat(document.getElementById('est-larg').value) || 12;
+  const pieux  = parseInt(document.getElementById('est-pieux').textContent) || 0;
+  const rampe  = parseFloat(document.getElementById('est-rampe').value) || 0;
+  const escal  = parseInt(document.getElementById('est-escal').textContent) || 0;
+  const surface = l * w;
+
+  document.getElementById('est-res-dim').textContent   = l + ' × ' + w + ' pi (' + surface + ' pi²)';
+  document.getElementById('est-res-pieux').textContent = pieux;
+  document.getElementById('est-res-rampe').textContent = rampe;
+  document.getElementById('est-res-escal').textContent = escal;
+
+  renderCards('est-cards-deko', GAMMES.deko, surface, pieux, rampe, escal);
+  renderCards('est-cards-tt',   GAMMES.tt,   surface, pieux, rampe, escal);
+
+  document.getElementById('est-results').style.display = 'block';
+  document.getElementById('est-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetEst() {
+  document.getElementById('est-results').style.display = 'none';
+  document.querySelector('.est-form').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ══════════════════════════════════════════════════
+//  ESTIMATEUR RAMPE
+// ══════════════════════════════════════════════════
+const RAMPE_VENTE_RAMPE    = 125;  // $/pi lin rampe seule
+const POTEAU_VENTE         = 75;   // $/unité (coût) → prix vente ~150$
+const RAMPE_ESCAL_VENTE    = 900;  // $/rampe d'escalier
+
+function calculerRampe() {
+  const pl      = parseFloat(document.getElementById('rampe-pl').value) || 0;
+  const poteaux = parseInt(document.getElementById('rampe-poteaux').textContent) || 0;
+
+  const totalRampe = (pl * RAMPE_VENTE_RAMPE) + (poteaux * 150);
+  const bas  = Math.round(totalRampe * 0.88 / 100) * 100;
+  const haut = Math.round(totalRampe * 1.12 / 100) * 100;
+
+  const L = currentLang;
+  document.getElementById('rampe-results-note').textContent =
+    pl + (L==='fr' ? ' pi lin · ' : ' lin ft · ') + poteaux + (L==='fr' ? ' poteaux — avant taxes — fourchette indicative ±12%' : ' posts — before taxes — indicative range ±12%');
+  document.getElementById('rampe-price-range').textContent = fmtPrix(bas) + '\u00a0–\u00a0' + fmtPrix(haut);
+  document.getElementById('rampe-detail').textContent = '⬡ ' + pl + ' pi lin × ' + RAMPE_VENTE_RAMPE + '$/pi lin + ' + poteaux + ' poteaux × 150$';
+
+  document.getElementById('rampe-results').style.display = 'block';
+  document.getElementById('rampe-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function resetRampe() {
+  document.getElementById('rampe-results').style.display = 'none';
+  document.querySelector('#tab-rampe .est-form').scrollIntoView({ behavior: 'smooth' });
+}
+
+</script>
+<script>
+// ══════════════════════════════════════════════════
+//  DONNÉES PRODUITS
+// ══════════════════════════════════════════════════
+const FAMILLES = {
+  deko: {
+    nom: 'Deckorators',
+    soustitre: 'À base minérale · Technologie Surestone® · Zéro fibre de bois',
+    gammes: {
+      summit: {
+        nom: 'Summit', serie: 'Deckorators Summit', prixPL: 6,
+        garantie: '25 ans structural · 25 ans anti-taches',
+        lifespan: '25–30+ ans en Outaouais',
+        bestFor: 'Excellent rapport qualité-prix. La technologie minérale Surestone® sans compromis sur la durabilité — idéal pour la majorité des projets.',
+        points: [
+          { texte: 'À base minérale — zéro fibre de bois', check: true },
+          { texte: 'Technologie Surestone® brevetée', check: true },
+          { texte: '35% plus léger que les produits traditionnels', check: true },
+          { texte: 'Aucun teinturage ni scellage requis', check: true },
+          { texte: '3 couleurs : Cliffside, Boulder, Glacier', check: true },
+          { texte: 'Garantie 25/25 ans', check: true }
+        ]
+      },
+      voyage: {
+        nom: 'Voyage', serie: 'Deckorators Voyage', prixPL: 9,
+        garantie: '50 ans structural · 25 ans anti-taches · 25 ans retrait/remplacement',
+        lifespan: '40–50+ ans en Outaouais',
+        bestFor: 'La gamme premium Deckorators. Garantie 50/25/25 ans, micro-gaufrage anti-chaleur, 34% plus de traction et 5 couleurs exclusives.',
+        points: [
+          { texte: 'À base minérale — zéro fibre de bois', check: true },
+          { texte: 'Garantie 50/25/25 ans — la meilleure du marché', check: true },
+          { texte: 'Micro-gaufrage réduit la rétention de chaleur', check: true },
+          { texte: '34% plus de traction en conditions humides', check: true },
+          { texte: '5 couleurs : Costa, Sierra, Khaya, Tundra, Sedona', check: true },
+          { texte: 'Investissement plus élevé que Summit', check: false }
+        ]
+      }
+    }
+  },
+  tt: {
+    nom: 'TimberTech',
+    soustitre: 'Advanced PVC/Polymer · 100% polymère · Zéro fibre de bois',
+    gammes: {
+      harvest: {
+        nom: 'Harvest', serie: 'TimberTech Harvest', prixPL: 8,
+        garantie: '50 ans anti-taches · Garantie à vie sur le produit',
+        lifespan: '40–50+ ans en Outaouais',
+        bestFor: 'Look bois traditionnel raffiné (Refined Cathedral Grain). Style classique et chaleureux avec zéro entretien et Cool Touch.',
+        points: [
+          { texte: '100% polymère — zéro fibre de bois', check: true },
+          { texte: 'Garantie à vie sur le produit', check: true },
+          { texte: 'Cool Touch — jusqu\'à 30° plus frais au toucher', check: true },
+          { texte: 'Résistant zones d\'incendie Classe A / WUI', check: true },
+          { texte: '2 couleurs : Slate Gray, Brownstone', check: true },
+          { texte: 'Moins de variété de couleurs que Harvest+', check: false }
+        ]
+      },
+      harvestplus: {
+        nom: 'Harvest+', serie: 'TimberTech Harvest+', prixPL: 9,
+        garantie: '50 ans anti-taches · Garantie à vie sur le produit',
+        lifespan: '40–50+ ans en Outaouais',
+        bestFor: 'Version améliorée du Harvest. Grain cathedral subtil, look bois patiné naturel vivant. Deux couleurs neutres et polyvalentes.',
+        points: [
+          { texte: '100% polymère — zéro fibre de bois', check: true },
+          { texte: 'Garantie à vie sur le produit', check: true },
+          { texte: 'Cool Touch — jusqu\'à 30° plus frais au toucher', check: true },
+          { texte: 'Patine naturelle vieillie — look authentique', check: true },
+          { texte: '2 couleurs : Toasted Wheat, Timber Gray', check: true },
+          { texte: 'Choix de couleurs limité', check: false }
+        ]
+      },
+      landmark: {
+        nom: 'Landmark', serie: 'TimberTech Landmark', prixPL: 10,
+        garantie: '50 ans anti-taches · Garantie à vie sur le produit',
+        lifespan: '40–50+ ans en Outaouais',
+        bestFor: 'Look bois dur recoupé audacieux (chêne blanc, noyer). Caractère fort et esthétique sophistiquée pour un projet distinctif.',
+        points: [
+          { texte: '100% polymère — zéro fibre de bois', check: true },
+          { texte: 'Garantie à vie sur le produit', check: true },
+          { texte: 'Cool Touch — jusqu\'à 30° plus frais au toucher', check: true },
+          { texte: 'Texture bois dur recoupé très réaliste', check: true },
+          { texte: '3 couleurs : French White Oak, American Walnut, Castle Gate', check: true },
+          { texte: 'Prix plus élevé que Harvest/Harvest+', check: false }
+        ]
+      },
+      vintage: {
+        nom: 'Vintage', serie: 'TimberTech Vintage', prixPL: 12.25,
+        garantie: '50 ans anti-taches · Garantie à vie sur le produit',
+        lifespan: '40–50+ ans en Outaouais',
+        bestFor: 'La gamme haut de gamme TimberTech. Reproduit l\'ipé, l\'acajou et le teck avec une précision remarquable. Pour les projets prestige.',
+        points: [
+          { texte: '100% polymère — zéro fibre de bois', check: true },
+          { texte: 'Garantie à vie sur le produit', check: true },
+          { texte: 'Cool Touch — jusqu\'à 30° plus frais au toucher', check: true },
+          { texte: 'Look bois exotique de luxe (ipé, acajou, teck)', check: true },
+          { texte: '3 couleurs : Weathered Teak, Coastline, English Walnut', check: true },
+          { texte: 'Investissement le plus élevé de la gamme', check: false }
+        ]
+      }
+    }
+  }
+};
+
+const PALIERS_QUIZ = [
+  { max: 60,    prix: 140, min: 7500  },
+  { max: 140,   prix: 112, min: 13000 },
+  { max: 220,   prix:  95, min: 13000 },
+  { max: 99999, prix:  82, min: 13000 }
+];
+
+function estimerPrixQuiz(prixPL, surface=168, pieux=6, rampe=20, escaliers=1) {
+  const palier = PALIERS_QUIZ.find(p => surface <= p.max);
+  const diffPlanches = ((surface / (5.5/12)) * 1.10) * (prixPL - 6);
+  const base = Math.max(surface * palier.prix, palier.min);
+  const extras = (pieux * 300) + (rampe * 100) + (escaliers * 1800);
+  const total = base + extras + diffPlanches;
+  return {
+    bas:  Math.round(total * 0.88 / 100) * 100,
+    haut: Math.round(total * 1.12 / 100) * 100
+  };
+}
+
+// ══════════════════════════════════════════════════
+//  QUESTIONS
+// ══════════════════════════════════════════════════
+const QUESTIONS = [
+  {
+    titre: "Quelle est votre priorité principale?",
+    note: "Cela oriente notre recommandation entre Deckorators et TimberTech.",
+    options: [
+      { texte: "Meilleur rapport qualité-prix",           scores: { deko: 3, tt: 1 } },
+      { texte: "Durabilité maximale — long terme",        scores: { deko: 2, tt: 3 } },
+      { texte: "Look bois le plus réaliste possible",     scores: { deko: 1, tt: 3 } },
+      { texte: "Je ne suis pas encore certain",           scores: { deko: 2, tt: 2 } }
+    ]
+  },
+  {
+    titre: "Quel style vous attire le plus?",
+    note: "TimberTech offre une plus grande variété de looks, dont les bois exotiques.",
+    options: [
+      { texte: "Look épuré, couleurs modernes et uniformes",     scores: { deko: 3, tt: 2 } },
+      { texte: "Look bois dur recoupé — chêne blanc, noyer",     scores: { deko: 1, tt: 3 } },
+      { texte: "Look bois exotique — ipé, acajou, teck",         scores: { deko: 0, tt: 3 } },
+      { texte: "Je veux voir des échantillons avant de décider", scores: { deko: 2, tt: 2 } }
+    ]
+  },
+  {
+    titre: "Votre patio sera-t-il exposé au soleil?",
+    note: "TimberTech Advanced Polymer reste jusqu'à 30° plus frais que les concurrents.",
+    options: [
+      { texte: "Plein soleil la majorité du temps",  scores: { deko: 1, tt: 3 } },
+      { texte: "Mi-ombre, mi-soleil",               scores: { deko: 2, tt: 2 } },
+      { texte: "Surtout à l'ombre ou couvert",      scores: { deko: 3, tt: 2 } },
+      { texte: "Je ne sais pas encore",             scores: { deko: 2, tt: 2 } }
+    ]
+  },
+  {
+    titre: "Quelle utilisation prévoyez-vous?",
+    note: "Les deux familles sont robustes — certaines gammes offrent plus de traction.",
+    options: [
+      { texte: "Détente légère — café, lecture",                         scores: { deko: 3, tt: 2 } },
+      { texte: "Familial — enfants, BBQ, trafic régulier",               scores: { deko: 2, tt: 3 } },
+      { texte: "Intensif — animaux, réceptions, déplacements fréquents", scores: { deko: 3, tt: 2 } },
+      { texte: "Pas encore certain",                                      scores: { deko: 2, tt: 2 } }
+    ]
+  },
+  {
+    titre: "Combien de temps comptez-vous garder votre maison?",
+    note: "La garantie Voyage 50/25/25 ans et la garantie à vie TimberTech valent l'investissement à long terme.",
+    options: [
+      { texte: "Moins de 5 ans",                scores: { deko: 3, tt: 1 } },
+      { texte: "5 à 10 ans",                    scores: { deko: 2, tt: 2 } },
+      { texte: "10 ans et plus",                scores: { deko: 2, tt: 3 } },
+      { texte: "C'est ma résidence permanente", scores: { deko: 2, tt: 3 } }
+    ]
+  },
+  {
+    titre: "Quel est votre budget approximatif pour le matériau?",
+    note: "Les deux familles offrent des gammes d'entrée et premium.",
+    options: [
+      { texte: "Je cherche le meilleur prix possible",         scores: { deko: 3, tt: 1 } },
+      { texte: "Prêt à investir pour une meilleure qualité",   scores: { deko: 2, tt: 3 } },
+      { texte: "Je veux le haut de gamme — projet prestige",   scores: { deko: 1, tt: 3 } },
+      { texte: "Le budget n'est pas le facteur principal",     scores: { deko: 2, tt: 3 } }
+    ]
+  }
+];
+
+// ══════════════════════════════════════════════════
+//  LOGIQUE GAMME RECOMMANDÉE
+// ══════════════════════════════════════════════════
+function recommanderGamme(famille, reponses) {
+  let premiumScore = 0;
+  if (reponses[4] >= 2) premiumScore += 2; // long terme / permanent
+  if (reponses[5] >= 1) premiumScore += 2; // budget élevé
+  const lookIdx = reponses[1];             // 0=moderne 1=bois dur 2=exotique 3=neutre
+
+  if (famille === 'deko') {
+    return (premiumScore >= 3) ? 'voyage' : 'summit';
+  } else {
+    if (lookIdx === 2) return 'vintage';
+    if (lookIdx === 1) return 'landmark';
+    if (premiumScore >= 3) return 'harvestplus';
+    return 'harvest';
+  }
+}
+
+// ══════════════════════════════════════════════════
+//  ÉTAT
+// ══════════════════════════════════════════════════
+let current = 0;
+let scores = { deko: 0, tt: 0 };
+let reponses = [];
+
+function startQuiz() {
+  current = 0; scores = { deko: 0, tt: 0 }; reponses = [];
+  showScreen('screen-q');
+  renderQuestion();
+}
+
+function showScreen(id) {
+  document.querySelectorAll('#tab-quiz .screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[current];
+  const pct = Math.round(((current + 1) / QUESTIONS.length) * 100);
+  document.getElementById('q-step').textContent = `Question ${current + 1} de ${QUESTIONS.length}`;
+  document.getElementById('q-progress-bar').style.width = pct + '%';
+  document.getElementById('q-title').textContent = q.titre;
+  document.getElementById('q-note').textContent = q.note || '';
+  const container = document.getElementById('q-options');
+  container.innerHTML = '';
+  q.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'q-option';
+    btn.innerHTML = `<span class="q-option-icon"></span>${opt.texte}`;
+    btn.onclick = () => selectOption(opt.scores, btn, idx);
+    container.appendChild(btn);
+  });
+}
+
+function selectOption(optScores, btn, idx) {
+  document.querySelectorAll('.q-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  btn.querySelector('.q-option-icon').textContent = '✓';
+  setTimeout(() => {
+    Object.keys(optScores).forEach(k => scores[k] += optScores[k]);
+    reponses.push(idx);
+    current++;
+    if (current >= QUESTIONS.length) showResult(); else renderQuestion();
+  }, 300);
+}
+
+// ══════════════════════════════════════════════════
+//  RÉSULTAT
+// ══════════════════════════════════════════════════
+function showResult() {
+  showScreen('screen-result');
+  const totalScore = scores.deko + scores.tt || 1;
+  const pcts = {
+    deko: Math.round((scores.deko / totalScore) * 100),
+    tt:   Math.round((scores.tt   / totalScore) * 100)
+  };
+  const bestFamille = scores.deko >= scores.tt ? 'deko' : 'tt';
+  const ordre = bestFamille === 'deko' ? ['deko','tt'] : ['tt','deko'];
+  const gammeReco = {
+    deko: recommanderGamme('deko', reponses),
+    tt:   recommanderGamme('tt',   reponses)
+  };
+
+  const grid = document.getElementById('result-grid');
+  grid.innerHTML = '';
+  ordre.forEach(fKey => {
+    const f = FAMILLES[fKey];
+    const g = f.gammes[gammeReco[fKey]];
+    const isReco = fKey === bestFamille;
+    const p = estimerPrixQuiz(g.prixPL);
+    const card = document.createElement('div');
+    card.className = 'result-card' + (isReco ? ' recommended' : '');
+    card.innerHTML = `
+      <div class="card-series">${f.nom}</div>
+      <div class="card-name">${g.serie}</div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:10px;color:var(--dim);letter-spacing:1px;margin-bottom:16px;">${f.soustitre}</div>
+      <div class="card-score-label">Compatibilité avec votre profil</div>
+      <div class="card-score-bar-wrap">
+        <div class="card-score-bar" style="width:0%" data-target="${pcts[fKey]}%"></div>
+      </div>
+      <div class="card-score-pct">${pcts[fKey]}%</div>
+      <div class="card-section-title">Gamme recommandée</div>
+      <div class="card-best-for">${g.bestFor}</div>
+      <div class="card-section-title">Points clés</div>
+      <ul class="card-points">
+        ${g.points.map(pt => `<li class="${pt.check?'check':'cross'}">${pt.texte}</li>`).join('')}
+      </ul>
+      <div class="card-divider"></div>
+      <div class="card-lifespan">Durée de vie typique en Outaouais</div>
+      <div class="card-lifespan-val">${g.lifespan}</div>
+      <div class="card-section-title">Garantie</div>
+      <div class="card-lifespan-val" style="font-size:13px;">${g.garantie}</div>
+      <div class="card-section-title">Estimation de prix *</div>
+      <div class="card-price-range">${fmt(p.bas)}&nbsp;–&nbsp;${fmt(p.haut)}</div>
+      <div class="card-price-note">* Patio 12×14 pi², 6 pieux, 20 pi lin rampe, 1 escalier — avant taxes — fourchette indicative</div>
+      <button class="btn-contact lang-soumission" onclick="goToContact('${g.brand} ${g.nom}')">Demander une soumission →</button>
+    `;
+    grid.appendChild(card);
+  });
+
+  setTimeout(() => {
+    document.querySelectorAll('.card-score-bar').forEach(bar => { bar.style.width = bar.dataset.target; });
+  }, 100);
+
+  // Tableau comparatif 6 gammes
+  const mgrid = document.getElementById('materials-grid');
+  mgrid.innerHTML = '';
+  mgrid.style.gridTemplateColumns = 'repeat(3,1fr)';
+  const recoKeys = [`deko-${gammeReco.deko}`, `tt-${gammeReco.tt}`];
+  [
+    { key:'deko-summit',    famille:'Deckorators', nom:'Summit',   entretien:'Minimal', cout:'6$/pi lin',    durab:'Haute',       garantie:'25/25 ans' },
+    { key:'deko-voyage',    famille:'Deckorators', nom:'Voyage',   entretien:'Minimal', cout:'9$/pi lin',    durab:'Très haute',  garantie:'50/25/25 ans' },
+    { key:'tt-harvest',     famille:'TimberTech',  nom:'Harvest',  entretien:'Minimal', cout:'8$/pi lin',    durab:'Très haute',  garantie:'À vie' },
+    { key:'tt-harvestplus', famille:'TimberTech',  nom:'Harvest+', entretien:'Minimal', cout:'9$/pi lin',    durab:'Très haute',  garantie:'À vie' },
+    { key:'tt-landmark',    famille:'TimberTech',  nom:'Landmark', entretien:'Minimal', cout:'10$/pi lin',   durab:'Très haute',  garantie:'À vie' },
+    { key:'tt-vintage',     famille:'TimberTech',  nom:'Vintage',  entretien:'Minimal', cout:'12,25$/pi lin',durab:'Très haute',  garantie:'À vie' },
+  ].forEach(g => {
+    const isHL = recoKeys.includes(g.key);
+    mgrid.innerHTML += `
+      <div class="mat-card ${isHL?'highlight':''}">
+        <div class="mat-name" style="font-size:12px;">${g.famille}<br><span style="color:var(--gold-light);font-size:15px;">${g.nom}</span></div>
+        <div class="mat-row"><span class="mat-label">Entretien</span><span class="mat-val good">${g.entretien}</span></div>
+        <div class="mat-row"><span class="mat-label">Prix matériau</span><span class="mat-val">${g.cout}</span></div>
+        <div class="mat-row"><span class="mat-label">Durabilité</span><span class="mat-val good">${g.durab}</span></div>
+        <div class="mat-row"><span class="mat-label">Fibres de bois</span><span class="mat-val good">Aucune</span></div>
+        <div class="mat-row"><span class="mat-label">Garantie</span><span class="mat-val good">${g.garantie}</span></div>
+      </div>`;
+  });
+}
+
+function fmt(n) { return '$\u00a0' + n.toLocaleString('fr-CA'); }
+
+function restart() {
+  current = 0; scores = { deko: 0, tt: 0 }; reponses = [];
+  showScreen('screen-intro');
+}
+
+function goToContact(gamme) {
+  // Construire les paramètres
+  var params = new URLSearchParams();
+  params.set('formulaire', '1');
+
+  // Gamme passée en paramètre (depuis une carte spécifique)
+  if (gamme) {
+    params.set('materiau', gamme);
+  }
+
+  // Détails du projet si l'estimateur a été utilisé
+  var long = document.getElementById('est-long') ? document.getElementById('est-long').value : '';
+  var larg = document.getElementById('est-larg') ? document.getElementById('est-larg').value : '';
+  var pieux = document.getElementById('est-pieux') ? document.getElementById('est-pieux').textContent : '';
+  var rampe = document.getElementById('est-rampe') ? document.getElementById('est-rampe').value : '';
+  var escal = document.getElementById('est-escal') ? document.getElementById('est-escal').textContent : '';
+
+  if (long && larg && document.getElementById('est-results').style.display !== 'none') {
+    var surface = parseFloat(long) * parseFloat(larg);
+    var details = long + ' × ' + larg + ' pi (' + surface + ' pi²) · ' + pieux + ' pieux · ' + rampe + ' pi lin rampe · ' + escal + ' escalier(s)';
+    params.set('details', encodeURIComponent(details));
+  }
+
+  window.location.href = 'index.html?' + params.toString();
+}
+</script>
 <!-- POPUP COULEURS -->
 <div class="color-popup-overlay" id="color-popup" onclick="closePopup()">
   <div class="color-popup-box" onclick="event.stopPropagation()">
@@ -1242,8 +1979,174 @@ body {
   </div>
 </div>
 
+<script>
+// ══════════════════════════════════════════════════
+//  LANGUE FR/EN
+// ══════════════════════════════════════════════════
+let currentLang = 'fr';
 
+const TRANSLATIONS = {
+  'header-title':       { fr: 'Outils de patio — Deck Goliath',         en: 'Deck Tools — Deck Goliath' },
+  'est-disclaimer-top': { fr: 'Ces estimations sont basées sur des projets typiques en Outaouais. Chaque projet est unique — une visite de chantier est nécessaire pour une soumission précise.', en: 'These estimates are based on typical projects in the Outaouais region. Each project is unique — a site visit is required for an accurate quote.' },
+  'est-disclaimer-bot': { fr: 'Ces estimations sont basées sur des projets typiques en Outaouais. Chaque projet est unique — une visite de chantier est nécessaire pour une soumission précise.', en: 'These estimates are based on typical projects in the Outaouais region. Each project is unique — a site visit is required for an accurate quote.' },
+  'est-title':          { fr: 'Estimateur de prix par gamme',            en: 'Price Estimator by Product Line' },
+  'est-sub':            { fr: 'Entrez les caractéristiques de votre projet. Nous calculons une fourchette indicative pour chaque gamme de matériau — avant taxes.', en: 'Enter your project details. We calculate an indicative price range for each product line — before taxes.' },
+  'lbl-dim':            { fr: 'Dimensions du patio',                     en: 'Deck Dimensions' },
+  'lbl-long':           { fr: 'Longueur (pi)',                           en: 'Length (ft)' },
+  'lbl-larg':           { fr: 'Largeur (pi)',                            en: 'Width (ft)' },
+  'lbl-surf':           { fr: 'Surface',                                 en: 'Area' },
+  'lbl-extras':         { fr: 'Extras',                                  en: 'Add-ons' },
+  'lbl-pieux':          { fr: 'Pieux vissés',                            en: 'Helical Piles' },
+  'lbl-rampe':          { fr: 'Rampe (pi lin)',                          en: 'Railing (lin ft)' },
+  'lbl-escal':          { fr: 'Escaliers',                               en: 'Stairs' },
+  'geo-text':           { fr: 'Inclus pour tout projet — géotextile avec roche 3/4 net installée sous chaque patio, et protecteur imperméable Joist Guard appliqué sur chaque solive avant la construction.', en: 'Included with every project — geotextile with 3/4 clean stone under every deck, and waterproof Joist Guard protector applied to each joist before construction.' },
+  'btn-calc':           { fr: 'Calculer les prix →',                     en: 'Calculate Prices →' },
+  'res-title':          { fr: 'Fourchette estimée par gamme',            en: 'Estimated Price Range by Product Line' },
+  'brand-deko':         { fr: 'Deckorators — À base minérale · Technologie Surestone®', en: 'Deckorators — Mineral-Based · Surestone® Technology' },
+  'brand-tt':           { fr: 'TimberTech Advanced PVC/Polymer — 100% polymère', en: 'TimberTech Advanced PVC/Polymer — 100% polymer' },
+  'factors-title':      { fr: 'Ce qui peut influencer le prix final',    en: 'What Can Influence the Final Price' },
+  'btn-modify':         { fr: '← Modifier',                             en: '← Modify' },
+  'rampe-title':        { fr: 'Estimateur de rampe',                     en: 'Railing Estimator' },
+  'rampe-sub':          { fr: 'Entrez les détails de votre rampe. Obtenez une fourchette de prix indicative — avant taxes.', en: 'Enter your railing details. Get an indicative price range — before taxes.' },
+  'lbl-dim-rampe':      { fr: 'Dimensions',                              en: 'Dimensions' },
+  'lbl-pl':             { fr: 'Pieds linéaires de rampe',                en: 'Linear feet of railing' },
+  'lbl-poteaux':        { fr: 'Nombre de poteaux',                       en: 'Number of posts' },
+  'rampe-note':         { fr: "⚠ N'oubliez pas d'inclure les rampes d'escalier dans votre calcul de longueur totale.", en: '⚠ Don\'t forget to include stair railings in your total length calculation.' },
+  'btn-calc-rampe':     { fr: 'Calculer →',                              en: 'Calculate →' },
+  'rampe-res-title':    { fr: 'Estimation rampe',                        en: 'Railing Estimate' },
+  'rampe-card-name':    { fr: 'Rampe complète',                          en: 'Complete Railing' },
+  'rampe-card-type':    { fr: 'Poteaux inclus · Installation comprise',  en: 'Posts included · Installation included' },
+  'rampe-disclaimer':   { fr: 'Ces estimations sont indicatives. Chaque projet est unique — une visite est nécessaire pour une soumission précise.', en: 'These estimates are indicative. Each project is unique — a site visit is required for an accurate quote.' },
+  'btn-modify-rampe':   { fr: '← Modifier',                             en: '← Modify' },
+};
 
-<script>(function(){var _d=atob('Ci8vIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkAovLyAgT05HTEVUUwovLyDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZAKZnVuY3Rpb24gc3dpdGNoVGFiKHRhYiwgYnRuKSB7CiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLnRhYi1idG4nKS5mb3JFYWNoKGIgPT4gYi5jbGFzc0xpc3QucmVtb3ZlKCdhY3RpdmUnKSk7CiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLnRhYi1jb250ZW50JykuZm9yRWFjaChjID0+IGMuY2xhc3NMaXN0LnJlbW92ZSgnYWN0aXZlJykpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0YWItJyArIHRhYikuY2xhc3NMaXN0LmFkZCgnYWN0aXZlJyk7CiAgYnRuLmNsYXNzTGlzdC5hZGQoJ2FjdGl2ZScpOwp9CgovLyDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZAKLy8gIEVTVElNQVRFVVIgREUgUFJJWAovLyDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZAKY29uc3QgR0FNTUVTID0gewogIGRla286IFsKICAgIHsKICAgICAgbm9tOiAnU3VtbWl0JywKICAgICAgYnJhbmQ6ICdEZWNrb3JhdG9ycycsCiAgICAgIHR5cGU6ICfDgCBiYXNlIG1pbsOpcmFsZSDCtyBTdXJlc3RvbmXCricsCiAgICAgIGZhY3RldXI6IDEuMDAsCiAgICAgIHByaXhQTDogNiwKICAgICAgcHJpeEFmZmljaGU6ICc2JCsvLScsCiAgICAgIGdhcmFudGllOiAnMjUgYW5zIHN0cnVjdHVyYWwgLyAyNSBhbnMgdGFjaGVzJywKICAgICAgZ2FyYW50aWVVcmw6ICdodHRwczovL3d3dy5kZWNrb3JhdG9ycy5jb20vY2RuL3Nob3AvZmlsZXMvRnJlbmNoX0RlY2tpbmdfUG9yY2hfRmxvb3JpbmdfYW5kX0NvbXBvc2l0ZV9SYWlsaW5nX1dhcnJhbnR5Xzc5NzEucGRmJywKICAgICAgY291bGV1cnM6IFsKICAgICAgICB7IG5vbTogJ0NsaWZmc2lkZScsICBpbWc6ICdhc3NldHMvZGVja29yYXRvcnMvY2xpZmZzaWRlLmpwZycgfSwKICAgICAgICB7IG5vbTogJ0JvdWxkZXInLCAgICBpbWc6ICdhc3NldHMvZGVja29yYXRvcnMvYm91bGRlci5qcGcnIH0sCiAgICAgICAgeyBub206ICdHbGFjaWVyJywgICAgaW1nOiAnYXNzZXRzL2RlY2tvcmF0b3JzL2dsYWNpZXIuanBnJyB9LAogICAgICAgIHsgbm9tOiAnRGFyayBTbGF0ZScsIGltZzogJ2Fzc2V0cy9kZWNrb3JhdG9ycy9kYXJrc2xhdGUuanBnJyB9CiAgICAgIF0KICAgIH0sCiAgICB7CiAgICAgIG5vbTogJ1ZveWFnZScsCiAgICAgIGJyYW5kOiAnRGVja29yYXRvcnMnLAogICAgICB0eXBlOiAnw4AgYmFzZSBtaW7DqXJhbGUgwrcgU3VyZXN0b25lwq4nLAogICAgICBmYWN0ZXVyOiAxLjAwLAogICAgICBwcml4UEw6IDksCiAgICAgIHByaXhBZmZpY2hlOiAnOSQrLy0nLAogICAgICBnYXJhbnRpZTogJzUwIGFucyBzdHJ1Y3R1cmFsIC8gMjUgYW5zIHRhY2hlcyAvIDI1IGFucyByZW1wbGFjZW1lbnQnLAogICAgICBnYXJhbnRpZVVybDogJ2h0dHBzOi8vd3d3LmRlY2tvcmF0b3JzLmNvbS9jZG4vc2hvcC9maWxlcy9GcmVuY2hfRGVja2luZ19Qb3JjaF9GbG9vcmluZ19hbmRfQ29tcG9zaXRlX1JhaWxpbmdfV2FycmFudHlfNzk3MS5wZGYnLAogICAgICBjb3VsZXVyczogWwogICAgICAgIHsgbm9tOiAnQ29zdGEnLCAgICAgIGltZzogJ2Fzc2V0cy9kZWNrb3JhdG9ycy9jb3N0YS5qcGcnIH0sCiAgICAgICAgeyBub206ICdTaWVycmEnLCAgICAgaW1nOiAnYXNzZXRzL2RlY2tvcmF0b3JzL3NpZXJyYS5qcGcnIH0sCiAgICAgICAgeyBub206ICdLaGF5YScsICAgICAgaW1nOiAnYXNzZXRzL2RlY2tvcmF0b3JzL2toYXlhLmpwZycgfSwKICAgICAgICB7IG5vbTogJ1R1bmRyYScsICAgICBpbWc6ICdhc3NldHMvZGVja29yYXRvcnMvdHVuZHJhLmpwZycgfSwKICAgICAgICB7IG5vbTogJ1NlZG9uYScsICAgICBpbWc6ICdhc3NldHMvZGVja29yYXRvcnMvc2Vkb25hLmpwZycgfSwKICAgICAgICB7IG5vbTogJ0RhcmsgU2xhdGUnLCBpbWc6ICdhc3NldHMvZGVja29yYXRvcnMvZGFya3NsYXRlLmpwZycgfQogICAgICBdCiAgICB9CiAgXSwKICB0dDogWwogICAgewogICAgICBub206ICdIYXJ2ZXN0JywKICAgICAgYnJhbmQ6ICdUaW1iZXJUZWNoJywKICAgICAgdHlwZTogJ0FkdmFuY2VkIFBWQyDCtyBDYXRoZWRyYWwgR3JhaW4nLAogICAgICBmYWN0ZXVyOiAxLjAwLAogICAgICBwcml4UEw6IDgsCiAgICAgIHByaXhBZmZpY2hlOiAnOCQrLy0nLAogICAgICBnYXJhbnRpZTogJzUwIGFucyB0YWNoZXMgwrcgw4AgdmllIHN1ciBsZSBwcm9kdWl0JywKICAgICAgZ2FyYW50aWVVcmw6ICdodHRwczovL2Fzc2V0cy50aW1iZXJ0ZWNoLmNvbS9jb250ZW50L2RhbS93cC1jb250ZW50L1RpbWJlclRlY2gtYWR2YW5jZWQtUFZDLWZhZGVzdGFpbi13YXJyYW50eS1mckNBLTEwLjAxLjIzLnBkZicsCiAgICAgIGdhcmFudGllVXJsMjogJ2h0dHBzOi8vYXNzZXRzLnRpbWJlcnRlY2guY29tL2NvbnRlbnQvZGFtL3dwLWNvbnRlbnQvVGltYmVyVGVjaC1hZHZhbmNlZC1QVkMtbGltaXRlZC13YXJyYW50eS1mckNBLTEwLjAxLjIzLnBkZicsCiAgICAgIGNvdWxldXJzOiBbCiAgICAgICAgeyBub206ICdTbGF0ZSBHcmF5JywgIGltZzogJ2Fzc2V0cy90aW1iZXJ0ZWNoL3NsYXRlZ3JheS5qcGcnIH0sCiAgICAgICAgeyBub206ICdCcm93bnN0b25lJywgIGltZzogJ2Fzc2V0cy90aW1iZXJ0ZWNoL2Jyb3duc3RvbmUuanBnJyB9CiAgICAgIF0KICAgIH0sCiAgICB7CiAgICAgIG5vbTogJ0hhcnZlc3QrJywKICAgICAgYnJhbmQ6ICdUaW1iZXJUZWNoJywKICAgICAgdHlwZTogJ0FkdmFuY2VkIFBvbHltZXIgwrcgQ2F0aGVkcmFsIEdyYWluJywKICAgICAgZmFjdGV1cjogMS4wMCwKICAgICAgcHJpeFBMOiA5LAogICAgICBwcml4QWZmaWNoZTogJzkkKy8tJywKICAgICAgZ2FyYW50aWU6ICc1MCBhbnMgdGFjaGVzIMK3IMOAIHZpZSBzdXIgbGUgcHJvZHVpdCcsCiAgICAgIGdhcmFudGllVXJsOiAnaHR0cHM6Ly9hc3NldHMudGltYmVydGVjaC5jb20vY29udGVudC9kYW0vd3AtY29udGVudC9UaW1iZXJUZWNoLWFkdmFuY2VkLVBWQy1mYWRlc3RhaW4td2FycmFudHktZnJDQS0xMC4wMS4yMy5wZGYnLAogICAgICBnYXJhbnRpZVVybDI6ICdodHRwczovL2Fzc2V0cy50aW1iZXJ0ZWNoLmNvbS9jb250ZW50L2RhbS93cC1jb250ZW50L1RpbWJlclRlY2gtYWR2YW5jZWQtUFZDLWxpbWl0ZWQtd2FycmFudHktZnJDQS0xMC4wMS4yMy5wZGYnLAogICAgICBjb3VsZXVyczogWwogICAgICAgIHsgbm9tOiAnVG9hc3RlZCBXaGVhdCcsIGltZzogJ2Fzc2V0cy90aW1iZXJ0ZWNoL1RvYXN0ZWRXaGVhdC5qcGcnIH0sCiAgICAgICAgeyBub206ICdUaW1iZXIgR3JheScsICAgaW1nOiAnYXNzZXRzL3RpbWJlcnRlY2gvVGltYmVyR3JheS5qcGcnIH0KICAgICAgXQogICAgfSwKICAgIHsKICAgICAgbm9tOiAnTGFuZG1hcmsnLAogICAgICBicmFuZDogJ1RpbWJlclRlY2gnLAogICAgICB0eXBlOiAnQWR2YW5jZWQgUG9seW1lciDCtyBCb2lzIGR1cnMgcmVjb3Vww6lzJywKICAgICAgZmFjdGV1cjogMS4wMCwKICAgICAgcHJpeFBMOiAxMCwKICAgICAgcHJpeEFmZmljaGU6ICcxMCQrLy0nLAogICAgICBnYXJhbnRpZTogJzUwIGFucyB0YWNoZXMgwrcgw4AgdmllIHN1ciBsZSBwcm9kdWl0JywKICAgICAgZ2FyYW50aWVVcmw6ICdodHRwczovL2Fzc2V0cy50aW1iZXJ0ZWNoLmNvbS9jb250ZW50L2RhbS93cC1jb250ZW50L1RpbWJlclRlY2gtYWR2YW5jZWQtUFZDLWZhZGVzdGFpbi13YXJyYW50eS1mckNBLTEwLjAxLjIzLnBkZicsCiAgICAgIGdhcmFudGllVXJsMjogJ2h0dHBzOi8vYXNzZXRzLnRpbWJlcnRlY2guY29tL2NvbnRlbnQvZGFtL3dwLWNvbnRlbnQvVGltYmVyVGVjaC1hZHZhbmNlZC1QVkMtbGltaXRlZC13YXJyYW50eS1mckNBLTEwLjAxLjIzLnBkZicsCiAgICAgIGNvdWxldXJzOiBbCiAgICAgICAgeyBub206ICdGcmVuY2ggV2hpdGUgT2FrJywgIGltZzogJ2Fzc2V0cy90aW1iZXJ0ZWNoL1doaXRlT2FrLmpwZycgfSwKICAgICAgICB7IG5vbTogJ0FtZXJpY2FuIFdhbG51dCcsICAgaW1nOiAnYXNzZXRzL3RpbWJlcnRlY2gvQW1lcmljYW5XYWxudXQuanBnJyB9LAogICAgICAgIHsgbm9tOiAnQ2FzdGxlIEdhdGUnLCAgICAgICBpbWc6ICdhc3NldHMvdGltYmVydGVjaC9DYXN0bGVHYXRlLmpwZycgfSwKICAgICAgICB7IG5vbTogJ0JvYXJkd2FsaycsICAgICAgICAgaW1nOiAnYXNzZXRzL3RpbWJlcnRlY2gvQm9hcmR3YWxrLmpwZycgfQogICAgICBdCiAgICB9LAogICAgewogICAgICBub206ICdWaW50YWdlJywKICAgICAgYnJhbmQ6ICdUaW1iZXJUZWNoJywKICAgICAgdHlwZTogJ0FkdmFuY2VkIFBvbHltZXIgwrcgQm9pcyBkdXJzIGV4b3RpcXVlcycsCiAgICAgIGZhY3RldXI6IDEuMDAsCiAgICAgIHByaXhQTDogMTIsCiAgICAgIHByaXhBZmZpY2hlOiAnMTIkKy8tJywKICAgICAgZ2FyYW50aWU6ICc1MCBhbnMgdGFjaGVzIMK3IMOAIHZpZSBzdXIgbGUgcHJvZHVpdCcsCiAgICAgIGdhcmFudGllVXJsOiAnaHR0cHM6Ly9hc3NldHMudGltYmVydGVjaC5jb20vY29udGVudC9kYW0vd3AtY29udGVudC9UaW1iZXJUZWNoLWFkdmFuY2VkLVBWQy1mYWRlc3RhaW4td2FycmFudHktZnJDQS0xMC4wMS4yMy5wZGYnLAogICAgICBnYXJhbnRpZVVybDI6ICdodHRwczovL2Fzc2V0cy50aW1iZXJ0ZWNoLmNvbS9jb250ZW50L2RhbS93cC1jb250ZW50L1RpbWJlclRlY2gtYWR2YW5jZWQtUFZDLWxpbWl0ZWQtd2FycmFudHktZnJDQS0xMC4wMS4yMy5wZGYnLAogICAgICBjb3VsZXVyczogWwogICAgICAgIHsgbm9tOiAnV2VhdGhlcmVkIFRlYWsnLCAgaW1nOiAnYXNzZXRzL3RpbWJlcnRlY2gvd2VhdGhlcmVkdGVhay5qcGcnIH0sCiAgICAgICAgeyBub206ICdDb2FzdGxpbmUnLCAgICAgICBpbWc6ICdhc3NldHMvdGltYmVydGVjaC9jb2FzdGxpbmUuanBlZycgfSwKICAgICAgICB7IG5vbTogJ01haG9nYW55JywgICAgICAgIGltZzogJ2Fzc2V0cy90aW1iZXJ0ZWNoL21haG9nYW55LmpwZycgfSwKICAgICAgICB7IG5vbTogJ0VuZ2xpc2ggV2FsbnV0JywgIGltZzogJ2Fzc2V0cy90aW1iZXJ0ZWNoL2VuZ2xpc2h3YWxudXQuanBnJyB9LAogICAgICAgIHsgbm9tOiAnRGFyayBIaWNrb3J5JywgICAgaW1nOiAnYXNzZXRzL3RpbWJlcnRlY2gvZGFya2hpY2tvcnkuanBnJyB9CiAgICAgIF0KICAgIH0KICBdCn07CgovLyBHcmlsbGUgZGUgcHJpeCBhdSBwacKyIChiYXNlIGRlIHN0cnVjdHVyZSwgbWFpbi1kJ29ldXZyZSwgZXRjLikg4oCUIHBhbGllcnMgYWp1c3TDqXMgLTEwJQpjb25zdCBQQUxJRVJTX0VTVCA9IFsKICB7IG1heDogNjAsICAgIHByaXg6IDE0MCwgbWluOiA3NTAwIH0sCiAgeyBtYXg6IDE0MCwgICBwcml4OiAxMTIsIG1pbjogMTMwMDAgfSwKICB7IG1heDogMjIwLCAgIHByaXg6ICA5NSwgbWluOiAxMzAwMCB9LAogIHsgbWF4OiA5OTk5OSwgcHJpeDogIDgyLCBtaW46IDEzMDAwIH0KXTsKY29uc3QgUkFNUEVfVkVOVEUgICAgPSAxMDA7ICAvLyAkL3BpIGxpbiAoZXN0aW1hdGV1ciBwYXRpbykKY29uc3QgRVNDQUxJRVJfVkVOVEUgPSAxODAwOyAvLyAkL2VzY2FsaWVyCmNvbnN0IFBJRVVYX1ZFTlRFICAgID0gMzAwOyAgLy8gJC91bml0w6kKLy8gQ2/Du3QgcGxhbmNoZXMgY29tcG9zaXRlIGRlIHLDqWbDqXJlbmNlIChTdW1taXQgPSBiYXNlIDEuMDApCi8vIHByaXhQTCAkL3BpIGxpbiDihpIgcGkgbGluID0gc3VyZmFjZSAvICg1LjUvMTIpICogKDErMC4xMCkKZnVuY3Rpb24gcGxhbmNoZXNDb3V0KHN1cmZhY2UsIHByaXhQTCkgewogIGNvbnN0IGxhcmdVdGlsZSA9IDUuNSAvIDEyOyAvLyBwaQogIGNvbnN0IHBlcnRlID0gMS4xMDsKICBjb25zdCBwaUxpbiA9IChzdXJmYWNlIC8gbGFyZ1V0aWxlKSAqIHBlcnRlOwogIHJldHVybiBwaUxpbiAqIHByaXhQTDsKfQoKZnVuY3Rpb24gY2FsY3VsZXJQcml4R2FtbWUoc3VyZmFjZSwgcGlldXgsIHJhbXBlLCBlc2NhbGllcnMsIGdhbW1lKSB7CiAgY29uc3QgcGFsaWVyID0gUEFMSUVSU19FU1QuZmluZChwID0+IHN1cmZhY2UgPD0gcC5tYXgpOwogIC8vIEJhc2Ugc3RydWN0dXJlICsgTS5PLiBhdSBwacKyIChzYW5zIGxlcyBwbGFuY2hlcyDigJQgb24gc291c3RyYWl0IGNvw7t0IHBsYW5jaGVzIFN1bW1pdCBkZSByw6lmw6lyZW5jZSBldCBvbiByZW1wbGFjZSkKICAvLyBPbiB1dGlsaXNlIGxhIGxvZ2lxdWUgZGUgbCdlc3RpbWF0ZXVyIHYzIDogcHJpeCBhdSBwacKyIMOXIHN1cmZhY2UgPSB0b3V0IGluY2x1cyAocGxhbmNoZXMgRGVja29yYXRvcnMgU3VtbWl0IEAgNiQvcGkgbGluKQogIC8vIFBvdXIgbGVzIGF1dHJlcyBnYW1tZXMgb24gcmVjYWxjdWxlIGVuIGFqdXN0YW50IGxhIGRpZmYgZGUgY2/Du3QgcGxhbmNoZXMKICBjb25zdCBjb3V0UGxhbmNoZXNSZWYgPSBwbGFuY2hlc0NvdXQoc3VyZmFjZSwgNik7IC8vIFN1bW1pdCA9IHLDqWbDqXJlbmNlCiAgY29uc3QgY291dFBsYW5jaGVzR2FtbWUgPSBwbGFuY2hlc0NvdXQoc3VyZmFjZSwgZ2FtbWUucHJpeFBMKTsKICBjb25zdCBkaWZmUGxhbmNoZXMgPSBjb3V0UGxhbmNoZXNHYW1tZSAtIGNvdXRQbGFuY2hlc1JlZjsKCiAgY29uc3QgYmFzZVByaXggPSBNYXRoLm1heChzdXJmYWNlICogcGFsaWVyLnByaXgsIHBhbGllci5taW4pOwogIGNvbnN0IGV4dHJhcyA9IChwaWV1eCAqIFBJRVVYX1ZFTlRFKSArIChyYW1wZSAqIFJBTVBFX1ZFTlRFKSArIChlc2NhbGllcnMgKiBFU0NBTElFUl9WRU5URSk7CiAgY29uc3QgdG90YWwgPSBiYXNlUHJpeCArIGV4dHJhcyArIGRpZmZQbGFuY2hlczsKCiAgY29uc3QgYmFzICA9IE1hdGgucm91bmQodG90YWwgKiAwLjg4IC8gMTAwKSAqIDEwMDsKICBjb25zdCBoYXV0ID0gTWF0aC5yb3VuZCh0b3RhbCAqIDEuMTIgLyAxMDApICogMTAwOwogIHJldHVybiB7IGJhcywgaGF1dCB9Owp9CgpmdW5jdGlvbiBzdGVwKGlkLCBkZWx0YSkgewogIGNvbnN0IGVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoaWQpOwogIGNvbnN0IHZhbCA9IE1hdGgubWF4KDAsIHBhcnNlSW50KGVsLnRleHRDb250ZW50KSArIGRlbHRhKTsKICBlbC50ZXh0Q29udGVudCA9IHZhbDsKfQoKZnVuY3Rpb24gdXBkYXRlU3VyZmFjZSgpIHsKICBjb25zdCBsID0gcGFyc2VGbG9hdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LWxvbmcnKS52YWx1ZSkgfHwgMDsKICBjb25zdCB3ID0gcGFyc2VGbG9hdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LWxhcmcnKS52YWx1ZSkgfHwgMDsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LXN1cmZhY2UnKS50ZXh0Q29udGVudCA9IChsICogdykudG9GaXhlZCgwKSArICcgcGnCsic7Cn0KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsICgpID0+IHsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LWxvbmcnKS5hZGRFdmVudExpc3RlbmVyKCdpbnB1dCcsIHVwZGF0ZVN1cmZhY2UpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtbGFyZycpLmFkZEV2ZW50TGlzdGVuZXIoJ2lucHV0JywgdXBkYXRlU3VyZmFjZSk7CiAgdXBkYXRlU3VyZmFjZSgpOwp9KTsKCmZ1bmN0aW9uIGZtdFByaXgobikgewogIHJldHVybiAnJFx1MDBhMCcgKyBuLnRvTG9jYWxlU3RyaW5nKCdmci1DQScpOwp9CgpmdW5jdGlvbiByZW5kZXJDYXJkcyhjb250YWluZXJJZCwgZ2FtbWVzLCBzdXJmYWNlLCBwaWV1eCwgcmFtcGUsIGVzY2FsaWVycykgewogIHdpbmRvdy5fZ2FtbWVzQ291bGV1cnMgPSB3aW5kb3cuX2dhbW1lc0NvdWxldXJzIHx8IHt9OwogIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGNvbnRhaW5lcklkKTsKICBjb250YWluZXIuaW5uZXJIVE1MID0gJyc7CiAgZ2FtbWVzLmZvckVhY2goKGcsIGdpKSA9PiB7CiAgICBjb25zdCBwID0gY2FsY3VsZXJQcml4R2FtbWUoc3VyZmFjZSwgcGlldXgsIHJhbXBlLCBlc2NhbGllcnMsIGcpOwogICAgY29uc3Qga2V5ID0gY29udGFpbmVySWQgKyAnLScgKyBnaTsKICAgIHdpbmRvdy5fZ2FtbWVzQ291bGV1cnNba2V5XSA9IHsgdGl0cmU6IGcuYnJhbmQgKyAnICcgKyBnLm5vbSwgY291bGV1cnM6IGcuY291bGV1cnMgfTsKICAgIGNvbnN0IFQgPSBDQVJEU19UUkFOU1tjdXJyZW50TGFuZ107CiAgICBjb25zdCBkdXJhYiA9IChnLmJyYW5kID09PSAnRGVja29yYXRvcnMnICYmIGcubm9tID09PSAnU3VtbWl0JykgPyBULmhhdXRlIDogVC50cmVzSGF1dGU7CiAgICBjb25zdCBzd2F0Y2hlc0h0bWwgPSBnLmNvdWxldXJzLm1hcChjID0+IGAKICAgICAgPGRpdiBjbGFzcz0iY29sb3Itc3dhdGNoLXdyYXAiIG9uY2xpY2s9Im9wZW5Qb3B1cCgnJHtrZXl9JykiPgogICAgICAgIDxkaXYgY2xhc3M9ImNvbG9yLXN3YXRjaCIgc3R5bGU9ImJhY2tncm91bmQtaW1hZ2U6dXJsKCcke2MuaW1nfScpIj48L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJjb2xvci1zd2F0Y2gtbmFtZSI+JHtjLm5vbX08L2Rpdj4KICAgICAgPC9kaXY+CiAgICBgKS5qb2luKCcnKTsKICAgIGNvbnN0IGNhcmQgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdkaXYnKTsKICAgIGNhcmQuY2xhc3NOYW1lID0gJ2VzdC1jYXJkJzsKICAgIGNhcmQuaW5uZXJIVE1MID0gYAogICAgICA8ZGl2IGNsYXNzPSJlc3QtY2FyZC1icmFuZCI+JHtnLmJyYW5kfTwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJlc3QtY2FyZC1uYW1lIj4ke2cubm9tfTwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJlc3QtY2FyZC10eXBlIj4ke2cudHlwZX08L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iZXN0LWNhcmQtZGl2aWRlciI+PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImVzdC1jYXJkLXByaWNlLWxhYmVsIj4ke1QuZm91cmNoZXR0ZX08L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iZXN0LWNhcmQtcHJpY2UiPiR7Zm10UHJpeChwLmJhcyl9Jm5ic3A74oCTJm5ic3A7JHtmbXRQcml4KHAuaGF1dCl9PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImVzdC1jYXJkLWRpdmlkZXIiPjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJtYXQtcm93Ij48c3BhbiBjbGFzcz0ibWF0LWxhYmVsIj4ke1QuZW50cmV0aWVufTwvc3Bhbj48c3BhbiBjbGFzcz0ibWF0LXZhbCBnb29kIj4ke1QubWluaW1hbH08L3NwYW4+PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9Im1hdC1yb3ciPjxzcGFuIGNsYXNzPSJtYXQtbGFiZWwiPiR7VC5kdXJhYmlsaXRlfTwvc3Bhbj48c3BhbiBjbGFzcz0ibWF0LXZhbCBnb29kIj4ke2R1cmFifTwvc3Bhbj48L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0ibWF0LXJvdyI+PHNwYW4gY2xhc3M9Im1hdC1sYWJlbCI+JHtULmdhcmFudGllfTwvc3Bhbj48c3BhbiBjbGFzcz0ibWF0LXZhbCBnb29kIj4ke2cuZ2FyYW50aWV9PC9zcGFuPjwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJtYXQtcm93Ij48c3BhbiBjbGFzcz0ibWF0LWxhYmVsIj4ke1QucHJpeE1hdGVyaWF1eH08L3NwYW4+PHNwYW4gY2xhc3M9Im1hdC12YWwiPiR7Zy5wcml4QWZmaWNoZX0gcGkubGluLjwvc3Bhbj48L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iZXN0LWNhcmQtZGl2aWRlciI+PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImVzdC1jYXJkLXByaWNlLWxhYmVsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMHB4OyI+JHtULmNvdWxldXJzRGlzcG99PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImNvbG9yLXN3YXRjaGVzLXJvdyI+JHtzd2F0Y2hlc0h0bWx9PC9kaXY+CiAgICAgIDxkaXYgc3R5bGU9Im1hcmdpbi10b3A6MTRweDsiPgogICAgICAgIDxhIGhyZWY9IiR7Zy5nYXJhbnRpZVVybH0iIHRhcmdldD0iX2JsYW5rIiBjbGFzcz0iZ2FyYW50aWUtbGluayI+JHtULnZvaXJHYXJhbnRpZX08L2E+CiAgICAgICAgJHtnLmdhcmFudGllVXJsMiA/IGA8YSBocmVmPSIke2cuZ2FyYW50aWVVcmwyfSIgdGFyZ2V0PSJfYmxhbmsiIGNsYXNzPSJnYXJhbnRpZS1saW5rIiBzdHlsZT0ibWFyZ2luLXRvcDo2cHg7Ij4ke1Qudm9pckdhcmFudGllVmllfTwvYT5gIDogJyd9CiAgICAgIDwvZGl2PgogICAgYDsKICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChjYXJkKTsKICB9KTsKfQoKLy8g4pSA4pSAIFBPUFVQIENPVUxFVVJTIOKUgOKUgApmdW5jdGlvbiBvcGVuUG9wdXAoa2V5KSB7CiAgY29uc3QgZGF0YSA9IHdpbmRvdy5fZ2FtbWVzQ291bGV1cnNba2V5XTsKICBpZiAoIWRhdGEpIHJldHVybjsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncG9wdXAtdGl0bGUnKS50ZXh0Q29udGVudCA9IGRhdGEudGl0cmUgKyAnIOKAlCBDb3VsZXVycyBkaXNwb25pYmxlcyc7CiAgY29uc3QgZ3JpZCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwb3B1cC1ncmlkJyk7CiAgZ3JpZC5pbm5lckhUTUwgPSBkYXRhLmNvdWxldXJzLm1hcChjID0+IGAKICAgIDxkaXYgY2xhc3M9InBvcHVwLWNvbG9yLWl0ZW0iPgogICAgICA8aW1nIHNyYz0iJHtjLmltZ30iIGFsdD0iJHtjLm5vbX0iIGNsYXNzPSJwb3B1cC1jb2xvci1pbWciPgogICAgICA8ZGl2IGNsYXNzPSJwb3B1cC1jb2xvci1uYW1lIj4ke2Mubm9tfTwvZGl2PgogICAgPC9kaXY+CiAgYCkuam9pbignJyk7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvbG9yLXBvcHVwJykuY2xhc3NMaXN0LmFkZCgnYWN0aXZlJyk7Cn0KCmZ1bmN0aW9uIGNsb3NlUG9wdXAoKSB7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NvbG9yLXBvcHVwJykuY2xhc3NMaXN0LnJlbW92ZSgnYWN0aXZlJyk7Cn0KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigna2V5ZG93bicsIGUgPT4geyBpZiAoZS5rZXkgPT09ICdFc2NhcGUnKSBjbG9zZVBvcHVwKCk7IH0pOwoKZnVuY3Rpb24gY2FsY3VsZXJFc3QoKSB7CiAgY29uc3QgbCAgICAgID0gcGFyc2VGbG9hdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LWxvbmcnKS52YWx1ZSkgfHwgMTI7CiAgY29uc3QgdyAgICAgID0gcGFyc2VGbG9hdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LWxhcmcnKS52YWx1ZSkgfHwgMTI7CiAgY29uc3QgcGlldXggID0gcGFyc2VJbnQoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1waWV1eCcpLnRleHRDb250ZW50KSB8fCAwOwogIGNvbnN0IHJhbXBlICA9IHBhcnNlRmxvYXQoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1yYW1wZScpLnZhbHVlKSB8fCAwOwogIGNvbnN0IGVzY2FsICA9IHBhcnNlSW50KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtZXNjYWwnKS50ZXh0Q29udGVudCkgfHwgMDsKICBjb25zdCBzdXJmYWNlID0gbCAqIHc7CgogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcmVzLWRpbScpLnRleHRDb250ZW50ICAgPSBsICsgJyDDlyAnICsgdyArICcgcGkgKCcgKyBzdXJmYWNlICsgJyBwacKyKSc7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1yZXMtcGlldXgnKS50ZXh0Q29udGVudCA9IHBpZXV4OwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcmVzLXJhbXBlJykudGV4dENvbnRlbnQgPSByYW1wZTsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LXJlcy1lc2NhbCcpLnRleHRDb250ZW50ID0gZXNjYWw7CgogIHJlbmRlckNhcmRzKCdlc3QtY2FyZHMtZGVrbycsIEdBTU1FUy5kZWtvLCBzdXJmYWNlLCBwaWV1eCwgcmFtcGUsIGVzY2FsKTsKICByZW5kZXJDYXJkcygnZXN0LWNhcmRzLXR0JywgICBHQU1NRVMudHQsICAgc3VyZmFjZSwgcGlldXgsIHJhbXBlLCBlc2NhbCk7CgogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcmVzdWx0cycpLnN0eWxlLmRpc3BsYXkgPSAnYmxvY2snOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcmVzdWx0cycpLnNjcm9sbEludG9WaWV3KHsgYmVoYXZpb3I6ICdzbW9vdGgnLCBibG9jazogJ3N0YXJ0JyB9KTsKfQoKZnVuY3Rpb24gcmVzZXRFc3QoKSB7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1yZXN1bHRzJykuc3R5bGUuZGlzcGxheSA9ICdub25lJzsKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcuZXN0LWZvcm0nKS5zY3JvbGxJbnRvVmlldyh7IGJlaGF2aW9yOiAnc21vb3RoJyB9KTsKfQoKLy8g4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQCi8vICBFU1RJTUFURVVSIFJBTVBFCi8vIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkApjb25zdCBSQU1QRV9WRU5URV9SQU1QRSAgICA9IDEyNTsgIC8vICQvcGkgbGluIHJhbXBlIHNldWxlCmNvbnN0IFBPVEVBVV9WRU5URSAgICAgICAgID0gNzU7ICAgLy8gJC91bml0w6kgKGNvw7t0KSDihpIgcHJpeCB2ZW50ZSB+MTUwJApjb25zdCBSQU1QRV9FU0NBTF9WRU5URSAgICA9IDkwMDsgIC8vICQvcmFtcGUgZCdlc2NhbGllcgoKZnVuY3Rpb24gY2FsY3VsZXJSYW1wZSgpIHsKICBjb25zdCBwbCAgICAgID0gcGFyc2VGbG9hdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncmFtcGUtcGwnKS52YWx1ZSkgfHwgMDsKICBjb25zdCBwb3RlYXV4ID0gcGFyc2VJbnQoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3JhbXBlLXBvdGVhdXgnKS50ZXh0Q29udGVudCkgfHwgMDsKCiAgY29uc3QgdG90YWxSYW1wZSA9IChwbCAqIFJBTVBFX1ZFTlRFX1JBTVBFKSArIChwb3RlYXV4ICogMTUwKTsKICBjb25zdCBiYXMgID0gTWF0aC5yb3VuZCh0b3RhbFJhbXBlICogMC44OCAvIDEwMCkgKiAxMDA7CiAgY29uc3QgaGF1dCA9IE1hdGgucm91bmQodG90YWxSYW1wZSAqIDEuMTIgLyAxMDApICogMTAwOwoKICBjb25zdCBMID0gY3VycmVudExhbmc7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3JhbXBlLXJlc3VsdHMtbm90ZScpLnRleHRDb250ZW50ID0KICAgIHBsICsgKEw9PT0nZnInID8gJyBwaSBsaW4gwrcgJyA6ICcgbGluIGZ0IMK3ICcpICsgcG90ZWF1eCArIChMPT09J2ZyJyA/ICcgcG90ZWF1eCDigJQgYXZhbnQgdGF4ZXMg4oCUIGZvdXJjaGV0dGUgaW5kaWNhdGl2ZSDCsTEyJScgOiAnIHBvc3RzIOKAlCBiZWZvcmUgdGF4ZXMg4oCUIGluZGljYXRpdmUgcmFuZ2UgwrExMiUnKTsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncmFtcGUtcHJpY2UtcmFuZ2UnKS50ZXh0Q29udGVudCA9IGZtdFByaXgoYmFzKSArICdcdTAwYTDigJNcdTAwYTAnICsgZm10UHJpeChoYXV0KTsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncmFtcGUtZGV0YWlsJykudGV4dENvbnRlbnQgPSAn4qyhICcgKyBwbCArICcgcGkgbGluIMOXICcgKyBSQU1QRV9WRU5URV9SQU1QRSArICckL3BpIGxpbiArICcgKyBwb3RlYXV4ICsgJyBwb3RlYXV4IMOXIDE1MCQnOwoKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncmFtcGUtcmVzdWx0cycpLnN0eWxlLmRpc3BsYXkgPSAnYmxvY2snOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdyYW1wZS1yZXN1bHRzJykuc2Nyb2xsSW50b1ZpZXcoeyBiZWhhdmlvcjogJ3Ntb290aCcsIGJsb2NrOiAnc3RhcnQnIH0pOwp9CgpmdW5jdGlvbiByZXNldFJhbXBlKCkgewogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdyYW1wZS1yZXN1bHRzJykuc3R5bGUuZGlzcGxheSA9ICdub25lJzsKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcjdGFiLXJhbXBlIC5lc3QtZm9ybScpLnNjcm9sbEludG9WaWV3KHsgYmVoYXZpb3I6ICdzbW9vdGgnIH0pOwp9CgoKCi8vIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkAovLyAgRE9OTsOJRVMgUFJPRFVJVFMKLy8g4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQCmNvbnN0IEZBTUlMTEVTID0gewogIGRla286IHsKICAgIG5vbTogJ0RlY2tvcmF0b3JzJywKICAgIHNvdXN0aXRyZTogJ8OAIGJhc2UgbWluw6lyYWxlIMK3IFRlY2hub2xvZ2llIFN1cmVzdG9uZcKuIMK3IFrDqXJvIGZpYnJlIGRlIGJvaXMnLAogICAgZ2FtbWVzOiB7CiAgICAgIHN1bW1pdDogewogICAgICAgIG5vbTogJ1N1bW1pdCcsIHNlcmllOiAnRGVja29yYXRvcnMgU3VtbWl0JywgcHJpeFBMOiA2LAogICAgICAgIGdhcmFudGllOiAnMjUgYW5zIHN0cnVjdHVyYWwgwrcgMjUgYW5zIGFudGktdGFjaGVzJywKICAgICAgICBsaWZlc3BhbjogJzI14oCTMzArIGFucyBlbiBPdXRhb3VhaXMnLAogICAgICAgIGJlc3RGb3I6ICdFeGNlbGxlbnQgcmFwcG9ydCBxdWFsaXTDqS1wcml4LiBMYSB0ZWNobm9sb2dpZSBtaW7DqXJhbGUgU3VyZXN0b25lwq4gc2FucyBjb21wcm9taXMgc3VyIGxhIGR1cmFiaWxpdMOpIOKAlCBpZMOpYWwgcG91ciBsYSBtYWpvcml0w6kgZGVzIHByb2pldHMuJywKICAgICAgICBwb2ludHM6IFsKICAgICAgICAgIHsgdGV4dGU6ICfDgCBiYXNlIG1pbsOpcmFsZSDigJQgesOpcm8gZmlicmUgZGUgYm9pcycsIGNoZWNrOiB0cnVlIH0sCiAgICAgICAgICB7IHRleHRlOiAnVGVjaG5vbG9naWUgU3VyZXN0b25lwq4gYnJldmV0w6llJywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICczNSUgcGx1cyBsw6lnZXIgcXVlIGxlcyBwcm9kdWl0cyB0cmFkaXRpb25uZWxzJywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICdBdWN1biB0ZWludHVyYWdlIG5pIHNjZWxsYWdlIHJlcXVpcycsIGNoZWNrOiB0cnVlIH0sCiAgICAgICAgICB7IHRleHRlOiAnMyBjb3VsZXVycyA6IENsaWZmc2lkZSwgQm91bGRlciwgR2xhY2llcicsIGNoZWNrOiB0cnVlIH0sCiAgICAgICAgICB7IHRleHRlOiAnR2FyYW50aWUgMjUvMjUgYW5zJywgY2hlY2s6IHRydWUgfQogICAgICAgIF0KICAgICAgfSwKICAgICAgdm95YWdlOiB7CiAgICAgICAgbm9tOiAnVm95YWdlJywgc2VyaWU6ICdEZWNrb3JhdG9ycyBWb3lhZ2UnLCBwcml4UEw6IDksCiAgICAgICAgZ2FyYW50aWU6ICc1MCBhbnMgc3RydWN0dXJhbCDCtyAyNSBhbnMgYW50aS10YWNoZXMgwrcgMjUgYW5zIHJldHJhaXQvcmVtcGxhY2VtZW50JywKICAgICAgICBsaWZlc3BhbjogJzQw4oCTNTArIGFucyBlbiBPdXRhb3VhaXMnLAogICAgICAgIGJlc3RGb3I6ICdMYSBnYW1tZSBwcmVtaXVtIERlY2tvcmF0b3JzLiBHYXJhbnRpZSA1MC8yNS8yNSBhbnMsIG1pY3JvLWdhdWZyYWdlIGFudGktY2hhbGV1ciwgMzQlIHBsdXMgZGUgdHJhY3Rpb24gZXQgNSBjb3VsZXVycyBleGNsdXNpdmVzLicsCiAgICAgICAgcG9pbnRzOiBbCiAgICAgICAgICB7IHRleHRlOiAnw4AgYmFzZSBtaW7DqXJhbGUg4oCUIHrDqXJvIGZpYnJlIGRlIGJvaXMnLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJ0dhcmFudGllIDUwLzI1LzI1IGFucyDigJQgbGEgbWVpbGxldXJlIGR1IG1hcmNow6knLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJ01pY3JvLWdhdWZyYWdlIHLDqWR1aXQgbGEgcsOpdGVudGlvbiBkZSBjaGFsZXVyJywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICczNCUgcGx1cyBkZSB0cmFjdGlvbiBlbiBjb25kaXRpb25zIGh1bWlkZXMnLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJzUgY291bGV1cnMgOiBDb3N0YSwgU2llcnJhLCBLaGF5YSwgVHVuZHJhLCBTZWRvbmEnLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJ0ludmVzdGlzc2VtZW50IHBsdXMgw6lsZXbDqSBxdWUgU3VtbWl0JywgY2hlY2s6IGZhbHNlIH0KICAgICAgICBdCiAgICAgIH0KICAgIH0KICB9LAogIHR0OiB7CiAgICBub206ICdUaW1iZXJUZWNoJywKICAgIHNvdXN0aXRyZTogJ0FkdmFuY2VkIFBWQy9Qb2x5bWVyIMK3IDEwMCUgcG9seW3DqHJlIMK3IFrDqXJvIGZpYnJlIGRlIGJvaXMnLAogICAgZ2FtbWVzOiB7CiAgICAgIGhhcnZlc3Q6IHsKICAgICAgICBub206ICdIYXJ2ZXN0Jywgc2VyaWU6ICdUaW1iZXJUZWNoIEhhcnZlc3QnLCBwcml4UEw6IDgsCiAgICAgICAgZ2FyYW50aWU6ICc1MCBhbnMgYW50aS10YWNoZXMgwrcgR2FyYW50aWUgw6AgdmllIHN1ciBsZSBwcm9kdWl0JywKICAgICAgICBsaWZlc3BhbjogJzQw4oCTNTArIGFucyBlbiBPdXRhb3VhaXMnLAogICAgICAgIGJlc3RGb3I6ICdMb29rIGJvaXMgdHJhZGl0aW9ubmVsIHJhZmZpbsOpIChSZWZpbmVkIENhdGhlZHJhbCBHcmFpbikuIFN0eWxlIGNsYXNzaXF1ZSBldCBjaGFsZXVyZXV4IGF2ZWMgesOpcm8gZW50cmV0aWVuIGV0IENvb2wgVG91Y2guJywKICAgICAgICBwb2ludHM6IFsKICAgICAgICAgIHsgdGV4dGU6ICcxMDAlIHBvbHltw6hyZSDigJQgesOpcm8gZmlicmUgZGUgYm9pcycsIGNoZWNrOiB0cnVlIH0sCiAgICAgICAgICB7IHRleHRlOiAnR2FyYW50aWUgw6AgdmllIHN1ciBsZSBwcm9kdWl0JywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICdDb29sIFRvdWNoIOKAlCBqdXNxdVwnw6AgMzDCsCBwbHVzIGZyYWlzIGF1IHRvdWNoZXInLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJ1LDqXNpc3RhbnQgem9uZXMgZFwnaW5jZW5kaWUgQ2xhc3NlIEEgLyBXVUknLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJzIgY291bGV1cnMgOiBTbGF0ZSBHcmF5LCBCcm93bnN0b25lJywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICdNb2lucyBkZSB2YXJpw6l0w6kgZGUgY291bGV1cnMgcXVlIEhhcnZlc3QrJywgY2hlY2s6IGZhbHNlIH0KICAgICAgICBdCiAgICAgIH0sCiAgICAgIGhhcnZlc3RwbHVzOiB7CiAgICAgICAgbm9tOiAnSGFydmVzdCsnLCBzZXJpZTogJ1RpbWJlclRlY2ggSGFydmVzdCsnLCBwcml4UEw6IDksCiAgICAgICAgZ2FyYW50aWU6ICc1MCBhbnMgYW50aS10YWNoZXMgwrcgR2FyYW50aWUgw6AgdmllIHN1ciBsZSBwcm9kdWl0JywKICAgICAgICBsaWZlc3BhbjogJzQw4oCTNTArIGFucyBlbiBPdXRhb3VhaXMnLAogICAgICAgIGJlc3RGb3I6ICdWZXJzaW9uIGFtw6lsaW9yw6llIGR1IEhhcnZlc3QuIEdyYWluIGNhdGhlZHJhbCBzdWJ0aWwsIGxvb2sgYm9pcyBwYXRpbsOpIG5hdHVyZWwgdml2YW50LiBEZXV4IGNvdWxldXJzIG5ldXRyZXMgZXQgcG9seXZhbGVudGVzLicsCiAgICAgICAgcG9pbnRzOiBbCiAgICAgICAgICB7IHRleHRlOiAnMTAwJSBwb2x5bcOocmUg4oCUIHrDqXJvIGZpYnJlIGRlIGJvaXMnLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJ0dhcmFudGllIMOgIHZpZSBzdXIgbGUgcHJvZHVpdCcsIGNoZWNrOiB0cnVlIH0sCiAgICAgICAgICB7IHRleHRlOiAnQ29vbCBUb3VjaCDigJQganVzcXVcJ8OgIDMwwrAgcGx1cyBmcmFpcyBhdSB0b3VjaGVyJywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICdQYXRpbmUgbmF0dXJlbGxlIHZpZWlsbGllIOKAlCBsb29rIGF1dGhlbnRpcXVlJywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICcyIGNvdWxldXJzIDogVG9hc3RlZCBXaGVhdCwgVGltYmVyIEdyYXknLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJ0Nob2l4IGRlIGNvdWxldXJzIGxpbWl0w6knLCBjaGVjazogZmFsc2UgfQogICAgICAgIF0KICAgICAgfSwKICAgICAgbGFuZG1hcms6IHsKICAgICAgICBub206ICdMYW5kbWFyaycsIHNlcmllOiAnVGltYmVyVGVjaCBMYW5kbWFyaycsIHByaXhQTDogMTAsCiAgICAgICAgZ2FyYW50aWU6ICc1MCBhbnMgYW50aS10YWNoZXMgwrcgR2FyYW50aWUgw6AgdmllIHN1ciBsZSBwcm9kdWl0JywKICAgICAgICBsaWZlc3BhbjogJzQw4oCTNTArIGFucyBlbiBPdXRhb3VhaXMnLAogICAgICAgIGJlc3RGb3I6ICdMb29rIGJvaXMgZHVyIHJlY291cMOpIGF1ZGFjaWV1eCAoY2jDqm5lIGJsYW5jLCBub3llcikuIENhcmFjdMOocmUgZm9ydCBldCBlc3Row6l0aXF1ZSBzb3BoaXN0aXF1w6llIHBvdXIgdW4gcHJvamV0IGRpc3RpbmN0aWYuJywKICAgICAgICBwb2ludHM6IFsKICAgICAgICAgIHsgdGV4dGU6ICcxMDAlIHBvbHltw6hyZSDigJQgesOpcm8gZmlicmUgZGUgYm9pcycsIGNoZWNrOiB0cnVlIH0sCiAgICAgICAgICB7IHRleHRlOiAnR2FyYW50aWUgw6AgdmllIHN1ciBsZSBwcm9kdWl0JywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICdDb29sIFRvdWNoIOKAlCBqdXNxdVwnw6AgMzDCsCBwbHVzIGZyYWlzIGF1IHRvdWNoZXInLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJ1RleHR1cmUgYm9pcyBkdXIgcmVjb3Vww6kgdHLDqHMgcsOpYWxpc3RlJywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICczIGNvdWxldXJzIDogRnJlbmNoIFdoaXRlIE9haywgQW1lcmljYW4gV2FsbnV0LCBDYXN0bGUgR2F0ZScsIGNoZWNrOiB0cnVlIH0sCiAgICAgICAgICB7IHRleHRlOiAnUHJpeCBwbHVzIMOpbGV2w6kgcXVlIEhhcnZlc3QvSGFydmVzdCsnLCBjaGVjazogZmFsc2UgfQogICAgICAgIF0KICAgICAgfSwKICAgICAgdmludGFnZTogewogICAgICAgIG5vbTogJ1ZpbnRhZ2UnLCBzZXJpZTogJ1RpbWJlclRlY2ggVmludGFnZScsIHByaXhQTDogMTIuMjUsCiAgICAgICAgZ2FyYW50aWU6ICc1MCBhbnMgYW50aS10YWNoZXMgwrcgR2FyYW50aWUgw6AgdmllIHN1ciBsZSBwcm9kdWl0JywKICAgICAgICBsaWZlc3BhbjogJzQw4oCTNTArIGFucyBlbiBPdXRhb3VhaXMnLAogICAgICAgIGJlc3RGb3I6ICdMYSBnYW1tZSBoYXV0IGRlIGdhbW1lIFRpbWJlclRlY2guIFJlcHJvZHVpdCBsXCdpcMOpLCBsXCdhY2Fqb3UgZXQgbGUgdGVjayBhdmVjIHVuZSBwcsOpY2lzaW9uIHJlbWFycXVhYmxlLiBQb3VyIGxlcyBwcm9qZXRzIHByZXN0aWdlLicsCiAgICAgICAgcG9pbnRzOiBbCiAgICAgICAgICB7IHRleHRlOiAnMTAwJSBwb2x5bcOocmUg4oCUIHrDqXJvIGZpYnJlIGRlIGJvaXMnLCBjaGVjazogdHJ1ZSB9LAogICAgICAgICAgeyB0ZXh0ZTogJ0dhcmFudGllIMOgIHZpZSBzdXIgbGUgcHJvZHVpdCcsIGNoZWNrOiB0cnVlIH0sCiAgICAgICAgICB7IHRleHRlOiAnQ29vbCBUb3VjaCDigJQganVzcXVcJ8OgIDMwwrAgcGx1cyBmcmFpcyBhdSB0b3VjaGVyJywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICdMb29rIGJvaXMgZXhvdGlxdWUgZGUgbHV4ZSAoaXDDqSwgYWNham91LCB0ZWNrKScsIGNoZWNrOiB0cnVlIH0sCiAgICAgICAgICB7IHRleHRlOiAnMyBjb3VsZXVycyA6IFdlYXRoZXJlZCBUZWFrLCBDb2FzdGxpbmUsIEVuZ2xpc2ggV2FsbnV0JywgY2hlY2s6IHRydWUgfSwKICAgICAgICAgIHsgdGV4dGU6ICdJbnZlc3Rpc3NlbWVudCBsZSBwbHVzIMOpbGV2w6kgZGUgbGEgZ2FtbWUnLCBjaGVjazogZmFsc2UgfQogICAgICAgIF0KICAgICAgfQogICAgfQogIH0KfTsKCmNvbnN0IFBBTElFUlNfUVVJWiA9IFsKICB7IG1heDogNjAsICAgIHByaXg6IDE0MCwgbWluOiA3NTAwICB9LAogIHsgbWF4OiAxNDAsICAgcHJpeDogMTEyLCBtaW46IDEzMDAwIH0sCiAgeyBtYXg6IDIyMCwgICBwcml4OiAgOTUsIG1pbjogMTMwMDAgfSwKICB7IG1heDogOTk5OTksIHByaXg6ICA4MiwgbWluOiAxMzAwMCB9Cl07CgpmdW5jdGlvbiBlc3RpbWVyUHJpeFF1aXoocHJpeFBMLCBzdXJmYWNlPTE2OCwgcGlldXg9NiwgcmFtcGU9MjAsIGVzY2FsaWVycz0xKSB7CiAgY29uc3QgcGFsaWVyID0gUEFMSUVSU19RVUlaLmZpbmQocCA9PiBzdXJmYWNlIDw9IHAubWF4KTsKICBjb25zdCBkaWZmUGxhbmNoZXMgPSAoKHN1cmZhY2UgLyAoNS41LzEyKSkgKiAxLjEwKSAqIChwcml4UEwgLSA2KTsKICBjb25zdCBiYXNlID0gTWF0aC5tYXgoc3VyZmFjZSAqIHBhbGllci5wcml4LCBwYWxpZXIubWluKTsKICBjb25zdCBleHRyYXMgPSAocGlldXggKiAzMDApICsgKHJhbXBlICogMTAwKSArIChlc2NhbGllcnMgKiAxODAwKTsKICBjb25zdCB0b3RhbCA9IGJhc2UgKyBleHRyYXMgKyBkaWZmUGxhbmNoZXM7CiAgcmV0dXJuIHsKICAgIGJhczogIE1hdGgucm91bmQodG90YWwgKiAwLjg4IC8gMTAwKSAqIDEwMCwKICAgIGhhdXQ6IE1hdGgucm91bmQodG90YWwgKiAxLjEyIC8gMTAwKSAqIDEwMAogIH07Cn0KCi8vIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkAovLyAgUVVFU1RJT05TCi8vIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkApjb25zdCBRVUVTVElPTlMgPSBbCiAgewogICAgdGl0cmU6ICJRdWVsbGUgZXN0IHZvdHJlIHByaW9yaXTDqSBwcmluY2lwYWxlPyIsCiAgICBub3RlOiAiQ2VsYSBvcmllbnRlIG5vdHJlIHJlY29tbWFuZGF0aW9uIGVudHJlIERlY2tvcmF0b3JzIGV0IFRpbWJlclRlY2guIiwKICAgIG9wdGlvbnM6IFsKICAgICAgeyB0ZXh0ZTogIk1laWxsZXVyIHJhcHBvcnQgcXVhbGl0w6ktcHJpeCIsICAgICAgICAgICBzY29yZXM6IHsgZGVrbzogMywgdHQ6IDEgfSB9LAogICAgICB7IHRleHRlOiAiRHVyYWJpbGl0w6kgbWF4aW1hbGUg4oCUIGxvbmcgdGVybWUiLCAgICAgICAgc2NvcmVzOiB7IGRla286IDIsIHR0OiAzIH0gfSwKICAgICAgeyB0ZXh0ZTogIkxvb2sgYm9pcyBsZSBwbHVzIHLDqWFsaXN0ZSBwb3NzaWJsZSIsICAgICBzY29yZXM6IHsgZGVrbzogMSwgdHQ6IDMgfSB9LAogICAgICB7IHRleHRlOiAiSmUgbmUgc3VpcyBwYXMgZW5jb3JlIGNlcnRhaW4iLCAgICAgICAgICAgc2NvcmVzOiB7IGRla286IDIsIHR0OiAyIH0gfQogICAgXQogIH0sCiAgewogICAgdGl0cmU6ICJRdWVsIHN0eWxlIHZvdXMgYXR0aXJlIGxlIHBsdXM/IiwKICAgIG5vdGU6ICJUaW1iZXJUZWNoIG9mZnJlIHVuZSBwbHVzIGdyYW5kZSB2YXJpw6l0w6kgZGUgbG9va3MsIGRvbnQgbGVzIGJvaXMgZXhvdGlxdWVzLiIsCiAgICBvcHRpb25zOiBbCiAgICAgIHsgdGV4dGU6ICJMb29rIMOpcHVyw6ksIGNvdWxldXJzIG1vZGVybmVzIGV0IHVuaWZvcm1lcyIsICAgICBzY29yZXM6IHsgZGVrbzogMywgdHQ6IDIgfSB9LAogICAgICB7IHRleHRlOiAiTG9vayBib2lzIGR1ciByZWNvdXDDqSDigJQgY2jDqm5lIGJsYW5jLCBub3llciIsICAgICBzY29yZXM6IHsgZGVrbzogMSwgdHQ6IDMgfSB9LAogICAgICB7IHRleHRlOiAiTG9vayBib2lzIGV4b3RpcXVlIOKAlCBpcMOpLCBhY2Fqb3UsIHRlY2siLCAgICAgICAgIHNjb3JlczogeyBkZWtvOiAwLCB0dDogMyB9IH0sCiAgICAgIHsgdGV4dGU6ICJKZSB2ZXV4IHZvaXIgZGVzIMOpY2hhbnRpbGxvbnMgYXZhbnQgZGUgZMOpY2lkZXIiLCBzY29yZXM6IHsgZGVrbzogMiwgdHQ6IDIgfSB9CiAgICBdCiAgfSwKICB7CiAgICB0aXRyZTogIlZvdHJlIHBhdGlvIHNlcmEtdC1pbCBleHBvc8OpIGF1IHNvbGVpbD8iLAogICAgbm90ZTogIlRpbWJlclRlY2ggQWR2YW5jZWQgUG9seW1lciByZXN0ZSBqdXNxdSfDoCAzMMKwIHBsdXMgZnJhaXMgcXVlIGxlcyBjb25jdXJyZW50cy4iLAogICAgb3B0aW9uczogWwogICAgICB7IHRleHRlOiAiUGxlaW4gc29sZWlsIGxhIG1ham9yaXTDqSBkdSB0ZW1wcyIsICBzY29yZXM6IHsgZGVrbzogMSwgdHQ6IDMgfSB9LAogICAgICB7IHRleHRlOiAiTWktb21icmUsIG1pLXNvbGVpbCIsICAgICAgICAgICAgICAgc2NvcmVzOiB7IGRla286IDIsIHR0OiAyIH0gfSwKICAgICAgeyB0ZXh0ZTogIlN1cnRvdXQgw6AgbCdvbWJyZSBvdSBjb3V2ZXJ0IiwgICAgICBzY29yZXM6IHsgZGVrbzogMywgdHQ6IDIgfSB9LAogICAgICB7IHRleHRlOiAiSmUgbmUgc2FpcyBwYXMgZW5jb3JlIiwgICAgICAgICAgICAgc2NvcmVzOiB7IGRla286IDIsIHR0OiAyIH0gfQogICAgXQogIH0sCiAgewogICAgdGl0cmU6ICJRdWVsbGUgdXRpbGlzYXRpb24gcHLDqXZveWV6LXZvdXM/IiwKICAgIG5vdGU6ICJMZXMgZGV1eCBmYW1pbGxlcyBzb250IHJvYnVzdGVzIOKAlCBjZXJ0YWluZXMgZ2FtbWVzIG9mZnJlbnQgcGx1cyBkZSB0cmFjdGlvbi4iLAogICAgb3B0aW9uczogWwogICAgICB7IHRleHRlOiAiRMOpdGVudGUgbMOpZ8OocmUg4oCUIGNhZsOpLCBsZWN0dXJlIiwgICAgICAgICAgICAgICAgICAgICAgICAgc2NvcmVzOiB7IGRla286IDMsIHR0OiAyIH0gfSwKICAgICAgeyB0ZXh0ZTogIkZhbWlsaWFsIOKAlCBlbmZhbnRzLCBCQlEsIHRyYWZpYyByw6lndWxpZXIiLCAgICAgICAgICAgICAgIHNjb3JlczogeyBkZWtvOiAyLCB0dDogMyB9IH0sCiAgICAgIHsgdGV4dGU6ICJJbnRlbnNpZiDigJQgYW5pbWF1eCwgcsOpY2VwdGlvbnMsIGTDqXBsYWNlbWVudHMgZnLDqXF1ZW50cyIsIHNjb3JlczogeyBkZWtvOiAzLCB0dDogMiB9IH0sCiAgICAgIHsgdGV4dGU6ICJQYXMgZW5jb3JlIGNlcnRhaW4iLCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc2NvcmVzOiB7IGRla286IDIsIHR0OiAyIH0gfQogICAgXQogIH0sCiAgewogICAgdGl0cmU6ICJDb21iaWVuIGRlIHRlbXBzIGNvbXB0ZXotdm91cyBnYXJkZXIgdm90cmUgbWFpc29uPyIsCiAgICBub3RlOiAiTGEgZ2FyYW50aWUgVm95YWdlIDUwLzI1LzI1IGFucyBldCBsYSBnYXJhbnRpZSDDoCB2aWUgVGltYmVyVGVjaCB2YWxlbnQgbCdpbnZlc3Rpc3NlbWVudCDDoCBsb25nIHRlcm1lLiIsCiAgICBvcHRpb25zOiBbCiAgICAgIHsgdGV4dGU6ICJNb2lucyBkZSA1IGFucyIsICAgICAgICAgICAgICAgIHNjb3JlczogeyBkZWtvOiAzLCB0dDogMSB9IH0sCiAgICAgIHsgdGV4dGU6ICI1IMOgIDEwIGFucyIsICAgICAgICAgICAgICAgICAgICBzY29yZXM6IHsgZGVrbzogMiwgdHQ6IDIgfSB9LAogICAgICB7IHRleHRlOiAiMTAgYW5zIGV0IHBsdXMiLCAgICAgICAgICAgICAgICBzY29yZXM6IHsgZGVrbzogMiwgdHQ6IDMgfSB9LAogICAgICB7IHRleHRlOiAiQydlc3QgbWEgcsOpc2lkZW5jZSBwZXJtYW5lbnRlIiwgc2NvcmVzOiB7IGRla286IDIsIHR0OiAzIH0gfQogICAgXQogIH0sCiAgewogICAgdGl0cmU6ICJRdWVsIGVzdCB2b3RyZSBidWRnZXQgYXBwcm94aW1hdGlmIHBvdXIgbGUgbWF0w6lyaWF1PyIsCiAgICBub3RlOiAiTGVzIGRldXggZmFtaWxsZXMgb2ZmcmVudCBkZXMgZ2FtbWVzIGQnZW50csOpZSBldCBwcmVtaXVtLiIsCiAgICBvcHRpb25zOiBbCiAgICAgIHsgdGV4dGU6ICJKZSBjaGVyY2hlIGxlIG1laWxsZXVyIHByaXggcG9zc2libGUiLCAgICAgICAgIHNjb3JlczogeyBkZWtvOiAzLCB0dDogMSB9IH0sCiAgICAgIHsgdGV4dGU6ICJQcsOqdCDDoCBpbnZlc3RpciBwb3VyIHVuZSBtZWlsbGV1cmUgcXVhbGl0w6kiLCAgIHNjb3JlczogeyBkZWtvOiAyLCB0dDogMyB9IH0sCiAgICAgIHsgdGV4dGU6ICJKZSB2ZXV4IGxlIGhhdXQgZGUgZ2FtbWUg4oCUIHByb2pldCBwcmVzdGlnZSIsICAgc2NvcmVzOiB7IGRla286IDEsIHR0OiAzIH0gfSwKICAgICAgeyB0ZXh0ZTogIkxlIGJ1ZGdldCBuJ2VzdCBwYXMgbGUgZmFjdGV1ciBwcmluY2lwYWwiLCAgICAgc2NvcmVzOiB7IGRla286IDIsIHR0OiAzIH0gfQogICAgXQogIH0KXTsKCi8vIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkAovLyAgTE9HSVFVRSBHQU1NRSBSRUNPTU1BTkTDiUUKLy8g4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQCmZ1bmN0aW9uIHJlY29tbWFuZGVyR2FtbWUoZmFtaWxsZSwgcmVwb25zZXMpIHsKICBsZXQgcHJlbWl1bVNjb3JlID0gMDsKICBpZiAocmVwb25zZXNbNF0gPj0gMikgcHJlbWl1bVNjb3JlICs9IDI7IC8vIGxvbmcgdGVybWUgLyBwZXJtYW5lbnQKICBpZiAocmVwb25zZXNbNV0gPj0gMSkgcHJlbWl1bVNjb3JlICs9IDI7IC8vIGJ1ZGdldCDDqWxldsOpCiAgY29uc3QgbG9va0lkeCA9IHJlcG9uc2VzWzFdOyAgICAgICAgICAgICAvLyAwPW1vZGVybmUgMT1ib2lzIGR1ciAyPWV4b3RpcXVlIDM9bmV1dHJlCgogIGlmIChmYW1pbGxlID09PSAnZGVrbycpIHsKICAgIHJldHVybiAocHJlbWl1bVNjb3JlID49IDMpID8gJ3ZveWFnZScgOiAnc3VtbWl0JzsKICB9IGVsc2UgewogICAgaWYgKGxvb2tJZHggPT09IDIpIHJldHVybiAndmludGFnZSc7CiAgICBpZiAobG9va0lkeCA9PT0gMSkgcmV0dXJuICdsYW5kbWFyayc7CiAgICBpZiAocHJlbWl1bVNjb3JlID49IDMpIHJldHVybiAnaGFydmVzdHBsdXMnOwogICAgcmV0dXJuICdoYXJ2ZXN0JzsKICB9Cn0KCi8vIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkAovLyAgw4lUQVQKLy8g4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQCmxldCBjdXJyZW50ID0gMDsKbGV0IHNjb3JlcyA9IHsgZGVrbzogMCwgdHQ6IDAgfTsKbGV0IHJlcG9uc2VzID0gW107CgpmdW5jdGlvbiBzdGFydFF1aXooKSB7CiAgY3VycmVudCA9IDA7IHNjb3JlcyA9IHsgZGVrbzogMCwgdHQ6IDAgfTsgcmVwb25zZXMgPSBbXTsKICBzaG93U2NyZWVuKCdzY3JlZW4tcScpOwogIHJlbmRlclF1ZXN0aW9uKCk7Cn0KCmZ1bmN0aW9uIHNob3dTY3JlZW4oaWQpIHsKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcjdGFiLXF1aXogLnNjcmVlbicpLmZvckVhY2gocyA9PiBzLmNsYXNzTGlzdC5yZW1vdmUoJ2FjdGl2ZScpKTsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChpZCkuY2xhc3NMaXN0LmFkZCgnYWN0aXZlJyk7Cn0KCmZ1bmN0aW9uIHJlbmRlclF1ZXN0aW9uKCkgewogIGNvbnN0IHEgPSBRVUVTVElPTlNbY3VycmVudF07CiAgY29uc3QgcGN0ID0gTWF0aC5yb3VuZCgoKGN1cnJlbnQgKyAxKSAvIFFVRVNUSU9OUy5sZW5ndGgpICogMTAwKTsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncS1zdGVwJykudGV4dENvbnRlbnQgPSBgUXVlc3Rpb24gJHtjdXJyZW50ICsgMX0gZGUgJHtRVUVTVElPTlMubGVuZ3RofWA7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3EtcHJvZ3Jlc3MtYmFyJykuc3R5bGUud2lkdGggPSBwY3QgKyAnJSc7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3EtdGl0bGUnKS50ZXh0Q29udGVudCA9IHEudGl0cmU7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Etbm90ZScpLnRleHRDb250ZW50ID0gcS5ub3RlIHx8ICcnOwogIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdxLW9wdGlvbnMnKTsKICBjb250YWluZXIuaW5uZXJIVE1MID0gJyc7CiAgcS5vcHRpb25zLmZvckVhY2goKG9wdCwgaWR4KSA9PiB7CiAgICBjb25zdCBidG4gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCdidXR0b24nKTsKICAgIGJ0bi5jbGFzc05hbWUgPSAncS1vcHRpb24nOwogICAgYnRuLmlubmVySFRNTCA9IGA8c3BhbiBjbGFzcz0icS1vcHRpb24taWNvbiI+PC9zcGFuPiR7b3B0LnRleHRlfWA7CiAgICBidG4ub25jbGljayA9ICgpID0+IHNlbGVjdE9wdGlvbihvcHQuc2NvcmVzLCBidG4sIGlkeCk7CiAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoYnRuKTsKICB9KTsKfQoKZnVuY3Rpb24gc2VsZWN0T3B0aW9uKG9wdFNjb3JlcywgYnRuLCBpZHgpIHsKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcucS1vcHRpb24nKS5mb3JFYWNoKGIgPT4gYi5jbGFzc0xpc3QucmVtb3ZlKCdzZWxlY3RlZCcpKTsKICBidG4uY2xhc3NMaXN0LmFkZCgnc2VsZWN0ZWQnKTsKICBidG4ucXVlcnlTZWxlY3RvcignLnEtb3B0aW9uLWljb24nKS50ZXh0Q29udGVudCA9ICfinJMnOwogIHNldFRpbWVvdXQoKCkgPT4gewogICAgT2JqZWN0LmtleXMob3B0U2NvcmVzKS5mb3JFYWNoKGsgPT4gc2NvcmVzW2tdICs9IG9wdFNjb3Jlc1trXSk7CiAgICByZXBvbnNlcy5wdXNoKGlkeCk7CiAgICBjdXJyZW50Kys7CiAgICBpZiAoY3VycmVudCA+PSBRVUVTVElPTlMubGVuZ3RoKSBzaG93UmVzdWx0KCk7IGVsc2UgcmVuZGVyUXVlc3Rpb24oKTsKICB9LCAzMDApOwp9CgovLyDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZAKLy8gIFLDiVNVTFRBVAovLyDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZAKZnVuY3Rpb24gc2hvd1Jlc3VsdCgpIHsKICBzaG93U2NyZWVuKCdzY3JlZW4tcmVzdWx0Jyk7CiAgY29uc3QgdG90YWxTY29yZSA9IHNjb3Jlcy5kZWtvICsgc2NvcmVzLnR0IHx8IDE7CiAgY29uc3QgcGN0cyA9IHsKICAgIGRla286IE1hdGgucm91bmQoKHNjb3Jlcy5kZWtvIC8gdG90YWxTY29yZSkgKiAxMDApLAogICAgdHQ6ICAgTWF0aC5yb3VuZCgoc2NvcmVzLnR0ICAgLyB0b3RhbFNjb3JlKSAqIDEwMCkKICB9OwogIGNvbnN0IGJlc3RGYW1pbGxlID0gc2NvcmVzLmRla28gPj0gc2NvcmVzLnR0ID8gJ2Rla28nIDogJ3R0JzsKICBjb25zdCBvcmRyZSA9IGJlc3RGYW1pbGxlID09PSAnZGVrbycgPyBbJ2Rla28nLCd0dCddIDogWyd0dCcsJ2Rla28nXTsKICBjb25zdCBnYW1tZVJlY28gPSB7CiAgICBkZWtvOiByZWNvbW1hbmRlckdhbW1lKCdkZWtvJywgcmVwb25zZXMpLAogICAgdHQ6ICAgcmVjb21tYW5kZXJHYW1tZSgndHQnLCAgIHJlcG9uc2VzKQogIH07CgogIGNvbnN0IGdyaWQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncmVzdWx0LWdyaWQnKTsKICBncmlkLmlubmVySFRNTCA9ICcnOwogIG9yZHJlLmZvckVhY2goZktleSA9PiB7CiAgICBjb25zdCBmID0gRkFNSUxMRVNbZktleV07CiAgICBjb25zdCBnID0gZi5nYW1tZXNbZ2FtbWVSZWNvW2ZLZXldXTsKICAgIGNvbnN0IGlzUmVjbyA9IGZLZXkgPT09IGJlc3RGYW1pbGxlOwogICAgY29uc3QgcCA9IGVzdGltZXJQcml4UXVpeihnLnByaXhQTCk7CiAgICBjb25zdCBjYXJkID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGl2Jyk7CiAgICBjYXJkLmNsYXNzTmFtZSA9ICdyZXN1bHQtY2FyZCcgKyAoaXNSZWNvID8gJyByZWNvbW1lbmRlZCcgOiAnJyk7CiAgICBjYXJkLmlubmVySFRNTCA9IGAKICAgICAgPGRpdiBjbGFzcz0iY2FyZC1zZXJpZXMiPiR7Zi5ub219PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImNhcmQtbmFtZSI+JHtnLnNlcmllfTwvZGl2PgogICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTonTW9udHNlcnJhdCcsc2Fucy1zZXJpZjtmb250LXNpemU6MTBweDtjb2xvcjp2YXIoLS1kaW0pO2xldHRlci1zcGFjaW5nOjFweDttYXJnaW4tYm90dG9tOjE2cHg7Ij4ke2Yuc291c3RpdHJlfTwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJjYXJkLXNjb3JlLWxhYmVsIj5Db21wYXRpYmlsaXTDqSBhdmVjIHZvdHJlIHByb2ZpbDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJjYXJkLXNjb3JlLWJhci13cmFwIj4KICAgICAgICA8ZGl2IGNsYXNzPSJjYXJkLXNjb3JlLWJhciIgc3R5bGU9IndpZHRoOjAlIiBkYXRhLXRhcmdldD0iJHtwY3RzW2ZLZXldfSUiPjwvZGl2PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iY2FyZC1zY29yZS1wY3QiPiR7cGN0c1tmS2V5XX0lPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImNhcmQtc2VjdGlvbi10aXRsZSI+R2FtbWUgcmVjb21tYW5kw6llPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImNhcmQtYmVzdC1mb3IiPiR7Zy5iZXN0Rm9yfTwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJjYXJkLXNlY3Rpb24tdGl0bGUiPlBvaW50cyBjbMOpczwvZGl2PgogICAgICA8dWwgY2xhc3M9ImNhcmQtcG9pbnRzIj4KICAgICAgICAke2cucG9pbnRzLm1hcChwdCA9PiBgPGxpIGNsYXNzPSIke3B0LmNoZWNrPydjaGVjayc6J2Nyb3NzJ30iPiR7cHQudGV4dGV9PC9saT5gKS5qb2luKCcnKX0KICAgICAgPC91bD4KICAgICAgPGRpdiBjbGFzcz0iY2FyZC1kaXZpZGVyIj48L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iY2FyZC1saWZlc3BhbiI+RHVyw6llIGRlIHZpZSB0eXBpcXVlIGVuIE91dGFvdWFpczwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJjYXJkLWxpZmVzcGFuLXZhbCI+JHtnLmxpZmVzcGFufTwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJjYXJkLXNlY3Rpb24tdGl0bGUiPkdhcmFudGllPC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImNhcmQtbGlmZXNwYW4tdmFsIiBzdHlsZT0iZm9udC1zaXplOjEzcHg7Ij4ke2cuZ2FyYW50aWV9PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImNhcmQtc2VjdGlvbi10aXRsZSI+RXN0aW1hdGlvbiBkZSBwcml4ICo8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iY2FyZC1wcmljZS1yYW5nZSI+JHtmbXQocC5iYXMpfSZuYnNwO+KAkyZuYnNwOyR7Zm10KHAuaGF1dCl9PC9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImNhcmQtcHJpY2Utbm90ZSI+KiBQYXRpbyAxMsOXMTQgcGnCsiwgNiBwaWV1eCwgMjAgcGkgbGluIHJhbXBlLCAxIGVzY2FsaWVyIOKAlCBhdmFudCB0YXhlcyDigJQgZm91cmNoZXR0ZSBpbmRpY2F0aXZlPC9kaXY+CiAgICAgIDxidXR0b24gY2xhc3M9ImJ0bi1jb250YWN0IGxhbmctc291bWlzc2lvbiIgb25jbGljaz0iZ29Ub0NvbnRhY3QoJyR7Zy5icmFuZH0gJHtnLm5vbX0nKSI+RGVtYW5kZXIgdW5lIHNvdW1pc3Npb24g4oaSPC9idXR0b24+CiAgICBgOwogICAgZ3JpZC5hcHBlbmRDaGlsZChjYXJkKTsKICB9KTsKCiAgc2V0VGltZW91dCgoKSA9PiB7CiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcuY2FyZC1zY29yZS1iYXInKS5mb3JFYWNoKGJhciA9PiB7IGJhci5zdHlsZS53aWR0aCA9IGJhci5kYXRhc2V0LnRhcmdldDsgfSk7CiAgfSwgMTAwKTsKCiAgLy8gVGFibGVhdSBjb21wYXJhdGlmIDYgZ2FtbWVzCiAgY29uc3QgbWdyaWQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbWF0ZXJpYWxzLWdyaWQnKTsKICBtZ3JpZC5pbm5lckhUTUwgPSAnJzsKICBtZ3JpZC5zdHlsZS5ncmlkVGVtcGxhdGVDb2x1bW5zID0gJ3JlcGVhdCgzLDFmciknOwogIGNvbnN0IHJlY29LZXlzID0gW2BkZWtvLSR7Z2FtbWVSZWNvLmRla299YCwgYHR0LSR7Z2FtbWVSZWNvLnR0fWBdOwogIFsKICAgIHsga2V5OidkZWtvLXN1bW1pdCcsICAgIGZhbWlsbGU6J0RlY2tvcmF0b3JzJywgbm9tOidTdW1taXQnLCAgIGVudHJldGllbjonTWluaW1hbCcsIGNvdXQ6JzYkL3BpIGxpbicsICAgIGR1cmFiOidIYXV0ZScsICAgICAgIGdhcmFudGllOicyNS8yNSBhbnMnIH0sCiAgICB7IGtleTonZGVrby12b3lhZ2UnLCAgICBmYW1pbGxlOidEZWNrb3JhdG9ycycsIG5vbTonVm95YWdlJywgICBlbnRyZXRpZW46J01pbmltYWwnLCBjb3V0Oic5JC9waSBsaW4nLCAgICBkdXJhYjonVHLDqHMgaGF1dGUnLCAgZ2FyYW50aWU6JzUwLzI1LzI1IGFucycgfSwKICAgIHsga2V5Oid0dC1oYXJ2ZXN0JywgICAgIGZhbWlsbGU6J1RpbWJlclRlY2gnLCAgbm9tOidIYXJ2ZXN0JywgIGVudHJldGllbjonTWluaW1hbCcsIGNvdXQ6JzgkL3BpIGxpbicsICAgIGR1cmFiOidUcsOocyBoYXV0ZScsICBnYXJhbnRpZTonw4AgdmllJyB9LAogICAgeyBrZXk6J3R0LWhhcnZlc3RwbHVzJywgZmFtaWxsZTonVGltYmVyVGVjaCcsICBub206J0hhcnZlc3QrJywgZW50cmV0aWVuOidNaW5pbWFsJywgY291dDonOSQvcGkgbGluJywgICAgZHVyYWI6J1Ryw6hzIGhhdXRlJywgIGdhcmFudGllOifDgCB2aWUnIH0sCiAgICB7IGtleTondHQtbGFuZG1hcmsnLCAgICBmYW1pbGxlOidUaW1iZXJUZWNoJywgIG5vbTonTGFuZG1hcmsnLCBlbnRyZXRpZW46J01pbmltYWwnLCBjb3V0OicxMCQvcGkgbGluJywgICBkdXJhYjonVHLDqHMgaGF1dGUnLCAgZ2FyYW50aWU6J8OAIHZpZScgfSwKICAgIHsga2V5Oid0dC12aW50YWdlJywgICAgIGZhbWlsbGU6J1RpbWJlclRlY2gnLCAgbm9tOidWaW50YWdlJywgIGVudHJldGllbjonTWluaW1hbCcsIGNvdXQ6JzEyLDI1JC9waSBsaW4nLGR1cmFiOidUcsOocyBoYXV0ZScsICBnYXJhbnRpZTonw4AgdmllJyB9LAogIF0uZm9yRWFjaChnID0+IHsKICAgIGNvbnN0IGlzSEwgPSByZWNvS2V5cy5pbmNsdWRlcyhnLmtleSk7CiAgICBtZ3JpZC5pbm5lckhUTUwgKz0gYAogICAgICA8ZGl2IGNsYXNzPSJtYXQtY2FyZCAke2lzSEw/J2hpZ2hsaWdodCc6Jyd9Ij4KICAgICAgICA8ZGl2IGNsYXNzPSJtYXQtbmFtZSIgc3R5bGU9ImZvbnQtc2l6ZToxMnB4OyI+JHtnLmZhbWlsbGV9PGJyPjxzcGFuIHN0eWxlPSJjb2xvcjp2YXIoLS1nb2xkLWxpZ2h0KTtmb250LXNpemU6MTVweDsiPiR7Zy5ub219PC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Im1hdC1yb3ciPjxzcGFuIGNsYXNzPSJtYXQtbGFiZWwiPkVudHJldGllbjwvc3Bhbj48c3BhbiBjbGFzcz0ibWF0LXZhbCBnb29kIj4ke2cuZW50cmV0aWVufTwvc3Bhbj48L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJtYXQtcm93Ij48c3BhbiBjbGFzcz0ibWF0LWxhYmVsIj5Qcml4IG1hdMOpcmlhdTwvc3Bhbj48c3BhbiBjbGFzcz0ibWF0LXZhbCI+JHtnLmNvdXR9PC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Im1hdC1yb3ciPjxzcGFuIGNsYXNzPSJtYXQtbGFiZWwiPkR1cmFiaWxpdMOpPC9zcGFuPjxzcGFuIGNsYXNzPSJtYXQtdmFsIGdvb2QiPiR7Zy5kdXJhYn08L3NwYW4+PC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ibWF0LXJvdyI+PHNwYW4gY2xhc3M9Im1hdC1sYWJlbCI+RmlicmVzIGRlIGJvaXM8L3NwYW4+PHNwYW4gY2xhc3M9Im1hdC12YWwgZ29vZCI+QXVjdW5lPC9zcGFuPjwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Im1hdC1yb3ciPjxzcGFuIGNsYXNzPSJtYXQtbGFiZWwiPkdhcmFudGllPC9zcGFuPjxzcGFuIGNsYXNzPSJtYXQtdmFsIGdvb2QiPiR7Zy5nYXJhbnRpZX08L3NwYW4+PC9kaXY+CiAgICAgIDwvZGl2PmA7CiAgfSk7Cn0KCmZ1bmN0aW9uIGZtdChuKSB7IHJldHVybiAnJFx1MDBhMCcgKyBuLnRvTG9jYWxlU3RyaW5nKCdmci1DQScpOyB9CgpmdW5jdGlvbiByZXN0YXJ0KCkgewogIGN1cnJlbnQgPSAwOyBzY29yZXMgPSB7IGRla286IDAsIHR0OiAwIH07IHJlcG9uc2VzID0gW107CiAgc2hvd1NjcmVlbignc2NyZWVuLWludHJvJyk7Cn0KCmZ1bmN0aW9uIGdvVG9Db250YWN0KGdhbW1lKSB7CiAgLy8gQ29uc3RydWlyZSBsZXMgcGFyYW3DqHRyZXMKICB2YXIgcGFyYW1zID0gbmV3IFVSTFNlYXJjaFBhcmFtcygpOwogIHBhcmFtcy5zZXQoJ2Zvcm11bGFpcmUnLCAnMScpOwoKICAvLyBHYW1tZSBwYXNzw6llIGVuIHBhcmFtw6h0cmUgKGRlcHVpcyB1bmUgY2FydGUgc3DDqWNpZmlxdWUpCiAgaWYgKGdhbW1lKSB7CiAgICBwYXJhbXMuc2V0KCdtYXRlcmlhdScsIGdhbW1lKTsKICB9CgogIC8vIETDqXRhaWxzIGR1IHByb2pldCBzaSBsJ2VzdGltYXRldXIgYSDDqXTDqSB1dGlsaXPDqQogIHZhciBsb25nID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1sb25nJykgPyBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LWxvbmcnKS52YWx1ZSA6ICcnOwogIHZhciBsYXJnID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1sYXJnJykgPyBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LWxhcmcnKS52YWx1ZSA6ICcnOwogIHZhciBwaWV1eCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcGlldXgnKSA/IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcGlldXgnKS50ZXh0Q29udGVudCA6ICcnOwogIHZhciByYW1wZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcmFtcGUnKSA/IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcmFtcGUnKS52YWx1ZSA6ICcnOwogIHZhciBlc2NhbCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtZXNjYWwnKSA/IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtZXNjYWwnKS50ZXh0Q29udGVudCA6ICcnOwoKICBpZiAobG9uZyAmJiBsYXJnICYmIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcmVzdWx0cycpLnN0eWxlLmRpc3BsYXkgIT09ICdub25lJykgewogICAgdmFyIHN1cmZhY2UgPSBwYXJzZUZsb2F0KGxvbmcpICogcGFyc2VGbG9hdChsYXJnKTsKICAgIHZhciBkZXRhaWxzID0gbG9uZyArICcgw5cgJyArIGxhcmcgKyAnIHBpICgnICsgc3VyZmFjZSArICcgcGnCsikgwrcgJyArIHBpZXV4ICsgJyBwaWV1eCDCtyAnICsgcmFtcGUgKyAnIHBpIGxpbiByYW1wZSDCtyAnICsgZXNjYWwgKyAnIGVzY2FsaWVyKHMpJzsKICAgIHBhcmFtcy5zZXQoJ2RldGFpbHMnLCBlbmNvZGVVUklDb21wb25lbnQoZGV0YWlscykpOwogIH0KCiAgd2luZG93LmxvY2F0aW9uLmhyZWYgPSAnaW5kZXguaHRtbD8nICsgcGFyYW1zLnRvU3RyaW5nKCk7Cn0KCgovLyDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZAKLy8gIExBTkdVRSBGUi9FTgovLyDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZAKbGV0IGN1cnJlbnRMYW5nID0gJ2ZyJzsKCmNvbnN0IFRSQU5TTEFUSU9OUyA9IHsKICAnaGVhZGVyLXRpdGxlJzogICAgICAgeyBmcjogJ091dGlscyBkZSBwYXRpbyDigJQgRGVjayBHb2xpYXRoJywgICAgICAgICBlbjogJ0RlY2sgVG9vbHMg4oCUIERlY2sgR29saWF0aCcgfSwKICAnZXN0LWRpc2NsYWltZXItdG9wJzogeyBmcjogJ0NlcyBlc3RpbWF0aW9ucyBzb250IGJhc8OpZXMgc3VyIGRlcyBwcm9qZXRzIHR5cGlxdWVzIGVuIE91dGFvdWFpcy4gQ2hhcXVlIHByb2pldCBlc3QgdW5pcXVlIOKAlCB1bmUgdmlzaXRlIGRlIGNoYW50aWVyIGVzdCBuw6ljZXNzYWlyZSBwb3VyIHVuZSBzb3VtaXNzaW9uIHByw6ljaXNlLicsIGVuOiAnVGhlc2UgZXN0aW1hdGVzIGFyZSBiYXNlZCBvbiB0eXBpY2FsIHByb2plY3RzIGluIHRoZSBPdXRhb3VhaXMgcmVnaW9uLiBFYWNoIHByb2plY3QgaXMgdW5pcXVlIOKAlCBhIHNpdGUgdmlzaXQgaXMgcmVxdWlyZWQgZm9yIGFuIGFjY3VyYXRlIHF1b3RlLicgfSwKICAnZXN0LWRpc2NsYWltZXItYm90JzogeyBmcjogJ0NlcyBlc3RpbWF0aW9ucyBzb250IGJhc8OpZXMgc3VyIGRlcyBwcm9qZXRzIHR5cGlxdWVzIGVuIE91dGFvdWFpcy4gQ2hhcXVlIHByb2pldCBlc3QgdW5pcXVlIOKAlCB1bmUgdmlzaXRlIGRlIGNoYW50aWVyIGVzdCBuw6ljZXNzYWlyZSBwb3VyIHVuZSBzb3VtaXNzaW9uIHByw6ljaXNlLicsIGVuOiAnVGhlc2UgZXN0aW1hdGVzIGFyZSBiYXNlZCBvbiB0eXBpY2FsIHByb2plY3RzIGluIHRoZSBPdXRhb3VhaXMgcmVnaW9uLiBFYWNoIHByb2plY3QgaXMgdW5pcXVlIOKAlCBhIHNpdGUgdmlzaXQgaXMgcmVxdWlyZWQgZm9yIGFuIGFjY3VyYXRlIHF1b3RlLicgfSwKICAnZXN0LXRpdGxlJzogICAgICAgICAgeyBmcjogJ0VzdGltYXRldXIgZGUgcHJpeCBwYXIgZ2FtbWUnLCAgICAgICAgICAgIGVuOiAnUHJpY2UgRXN0aW1hdG9yIGJ5IFByb2R1Y3QgTGluZScgfSwKICAnZXN0LXN1Yic6ICAgICAgICAgICAgeyBmcjogJ0VudHJleiBsZXMgY2FyYWN0w6lyaXN0aXF1ZXMgZGUgdm90cmUgcHJvamV0LiBOb3VzIGNhbGN1bG9ucyB1bmUgZm91cmNoZXR0ZSBpbmRpY2F0aXZlIHBvdXIgY2hhcXVlIGdhbW1lIGRlIG1hdMOpcmlhdSDigJQgYXZhbnQgdGF4ZXMuJywgZW46ICdFbnRlciB5b3VyIHByb2plY3QgZGV0YWlscy4gV2UgY2FsY3VsYXRlIGFuIGluZGljYXRpdmUgcHJpY2UgcmFuZ2UgZm9yIGVhY2ggcHJvZHVjdCBsaW5lIOKAlCBiZWZvcmUgdGF4ZXMuJyB9LAogICdsYmwtZGltJzogICAgICAgICAgICB7IGZyOiAnRGltZW5zaW9ucyBkdSBwYXRpbycsICAgICAgICAgICAgICAgICAgICAgZW46ICdEZWNrIERpbWVuc2lvbnMnIH0sCiAgJ2xibC1sb25nJzogICAgICAgICAgIHsgZnI6ICdMb25ndWV1ciAocGkpJywgICAgICAgICAgICAgICAgICAgICAgICAgICBlbjogJ0xlbmd0aCAoZnQpJyB9LAogICdsYmwtbGFyZyc6ICAgICAgICAgICB7IGZyOiAnTGFyZ2V1ciAocGkpJywgICAgICAgICAgICAgICAgICAgICAgICAgICAgZW46ICdXaWR0aCAoZnQpJyB9LAogICdsYmwtc3VyZic6ICAgICAgICAgICB7IGZyOiAnU3VyZmFjZScsICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZW46ICdBcmVhJyB9LAogICdsYmwtZXh0cmFzJzogICAgICAgICB7IGZyOiAnRXh0cmFzJywgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZW46ICdBZGQtb25zJyB9LAogICdsYmwtcGlldXgnOiAgICAgICAgICB7IGZyOiAnUGlldXggdmlzc8OpcycsICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVuOiAnSGVsaWNhbCBQaWxlcycgfSwKICAnbGJsLXJhbXBlJzogICAgICAgICAgeyBmcjogJ1JhbXBlIChwaSBsaW4pJywgICAgICAgICAgICAgICAgICAgICAgICAgIGVuOiAnUmFpbGluZyAobGluIGZ0KScgfSwKICAnbGJsLWVzY2FsJzogICAgICAgICAgeyBmcjogJ0VzY2FsaWVycycsICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVuOiAnU3RhaXJzJyB9LAogICdnZW8tdGV4dCc6ICAgICAgICAgICB7IGZyOiAnSW5jbHVzIHBvdXIgdG91dCBwcm9qZXQg4oCUIGfDqW90ZXh0aWxlIGF2ZWMgcm9jaGUgMy80IG5ldCBpbnN0YWxsw6llIHNvdXMgY2hhcXVlIHBhdGlvLCBldCBwcm90ZWN0ZXVyIGltcGVybcOpYWJsZSBKb2lzdCBHdWFyZCBhcHBsaXF1w6kgc3VyIGNoYXF1ZSBzb2xpdmUgYXZhbnQgbGEgY29uc3RydWN0aW9uLicsIGVuOiAnSW5jbHVkZWQgd2l0aCBldmVyeSBwcm9qZWN0IOKAlCBnZW90ZXh0aWxlIHdpdGggMy80IGNsZWFuIHN0b25lIHVuZGVyIGV2ZXJ5IGRlY2ssIGFuZCB3YXRlcnByb29mIEpvaXN0IEd1YXJkIHByb3RlY3RvciBhcHBsaWVkIHRvIGVhY2ggam9pc3QgYmVmb3JlIGNvbnN0cnVjdGlvbi4nIH0sCiAgJ2J0bi1jYWxjJzogICAgICAgICAgIHsgZnI6ICdDYWxjdWxlciBsZXMgcHJpeCDihpInLCAgICAgICAgICAgICAgICAgICAgIGVuOiAnQ2FsY3VsYXRlIFByaWNlcyDihpInIH0sCiAgJ3Jlcy10aXRsZSc6ICAgICAgICAgIHsgZnI6ICdGb3VyY2hldHRlIGVzdGltw6llIHBhciBnYW1tZScsICAgICAgICAgICAgZW46ICdFc3RpbWF0ZWQgUHJpY2UgUmFuZ2UgYnkgUHJvZHVjdCBMaW5lJyB9LAogICdicmFuZC1kZWtvJzogICAgICAgICB7IGZyOiAnRGVja29yYXRvcnMg4oCUIMOAIGJhc2UgbWluw6lyYWxlIMK3IFRlY2hub2xvZ2llIFN1cmVzdG9uZcKuJywgZW46ICdEZWNrb3JhdG9ycyDigJQgTWluZXJhbC1CYXNlZCDCtyBTdXJlc3RvbmXCriBUZWNobm9sb2d5JyB9LAogICdicmFuZC10dCc6ICAgICAgICAgICB7IGZyOiAnVGltYmVyVGVjaCBBZHZhbmNlZCBQVkMvUG9seW1lciDigJQgMTAwJSBwb2x5bcOocmUnLCBlbjogJ1RpbWJlclRlY2ggQWR2YW5jZWQgUFZDL1BvbHltZXIg4oCUIDEwMCUgcG9seW1lcicgfSwKICAnZmFjdG9ycy10aXRsZSc6ICAgICAgeyBmcjogJ0NlIHF1aSBwZXV0IGluZmx1ZW5jZXIgbGUgcHJpeCBmaW5hbCcsICAgIGVuOiAnV2hhdCBDYW4gSW5mbHVlbmNlIHRoZSBGaW5hbCBQcmljZScgfSwKICAnYnRuLW1vZGlmeSc6ICAgICAgICAgeyBmcjogJ+KGkCBNb2RpZmllcicsICAgICAgICAgICAgICAgICAgICAgICAgICAgICBlbjogJ+KGkCBNb2RpZnknIH0sCiAgJ3JhbXBlLXRpdGxlJzogICAgICAgIHsgZnI6ICdFc3RpbWF0ZXVyIGRlIHJhbXBlJywgICAgICAgICAgICAgICAgICAgICBlbjogJ1JhaWxpbmcgRXN0aW1hdG9yJyB9LAogICdyYW1wZS1zdWInOiAgICAgICAgICB7IGZyOiAnRW50cmV6IGxlcyBkw6l0YWlscyBkZSB2b3RyZSByYW1wZS4gT2J0ZW5leiB1bmUgZm91cmNoZXR0ZSBkZSBwcml4IGluZGljYXRpdmUg4oCUIGF2YW50IHRheGVzLicsIGVuOiAnRW50ZXIgeW91ciByYWlsaW5nIGRldGFpbHMuIEdldCBhbiBpbmRpY2F0aXZlIHByaWNlIHJhbmdlIOKAlCBiZWZvcmUgdGF4ZXMuJyB9LAogICdsYmwtZGltLXJhbXBlJzogICAgICB7IGZyOiAnRGltZW5zaW9ucycsICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZW46ICdEaW1lbnNpb25zJyB9LAogICdsYmwtcGwnOiAgICAgICAgICAgICB7IGZyOiAnUGllZHMgbGluw6lhaXJlcyBkZSByYW1wZScsICAgICAgICAgICAgICAgIGVuOiAnTGluZWFyIGZlZXQgb2YgcmFpbGluZycgfSwKICAnbGJsLXBvdGVhdXgnOiAgICAgICAgeyBmcjogJ05vbWJyZSBkZSBwb3RlYXV4JywgICAgICAgICAgICAgICAgICAgICAgIGVuOiAnTnVtYmVyIG9mIHBvc3RzJyB9LAogICdyYW1wZS1ub3RlJzogICAgICAgICB7IGZyOiAi4pqgIE4nb3VibGlleiBwYXMgZCdpbmNsdXJlIGxlcyByYW1wZXMgZCdlc2NhbGllciBkYW5zIHZvdHJlIGNhbGN1bCBkZSBsb25ndWV1ciB0b3RhbGUuIiwgZW46ICfimqAgRG9uXCd0IGZvcmdldCB0byBpbmNsdWRlIHN0YWlyIHJhaWxpbmdzIGluIHlvdXIgdG90YWwgbGVuZ3RoIGNhbGN1bGF0aW9uLicgfSwKICAnYnRuLWNhbGMtcmFtcGUnOiAgICAgeyBmcjogJ0NhbGN1bGVyIOKGkicsICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZW46ICdDYWxjdWxhdGUg4oaSJyB9LAogICdyYW1wZS1yZXMtdGl0bGUnOiAgICB7IGZyOiAnRXN0aW1hdGlvbiByYW1wZScsICAgICAgICAgICAgICAgICAgICAgICAgZW46ICdSYWlsaW5nIEVzdGltYXRlJyB9LAogICdyYW1wZS1jYXJkLW5hbWUnOiAgICB7IGZyOiAnUmFtcGUgY29tcGzDqHRlJywgICAgICAgICAgICAgICAgICAgICAgICAgIGVuOiAnQ29tcGxldGUgUmFpbGluZycgfSwKICAncmFtcGUtY2FyZC10eXBlJzogICAgeyBmcjogJ1BvdGVhdXggaW5jbHVzIMK3IEluc3RhbGxhdGlvbiBjb21wcmlzZScsICBlbjogJ1Bvc3RzIGluY2x1ZGVkIMK3IEluc3RhbGxhdGlvbiBpbmNsdWRlZCcgfSwKICAncmFtcGUtZGlzY2xhaW1lcic6ICAgeyBmcjogJ0NlcyBlc3RpbWF0aW9ucyBzb250IGluZGljYXRpdmVzLiBDaGFxdWUgcHJvamV0IGVzdCB1bmlxdWUg4oCUIHVuZSB2aXNpdGUgZXN0IG7DqWNlc3NhaXJlIHBvdXIgdW5lIHNvdW1pc3Npb24gcHLDqWNpc2UuJywgZW46ICdUaGVzZSBlc3RpbWF0ZXMgYXJlIGluZGljYXRpdmUuIEVhY2ggcHJvamVjdCBpcyB1bmlxdWUg4oCUIGEgc2l0ZSB2aXNpdCBpcyByZXF1aXJlZCBmb3IgYW4gYWNjdXJhdGUgcXVvdGUuJyB9LAogICdidG4tbW9kaWZ5LXJhbXBlJzogICB7IGZyOiAn4oaQIE1vZGlmaWVyJywgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGVuOiAn4oaQIE1vZGlmeScgfSwKfTsKCmNvbnN0IEZBQ1RPUlNfVFJBTlMgPSB7CiAgZnI6IFsKICAgIHsgbm9tOiAiRMOpbW9saXRpb24gZCd1biBwYXRpbyBleGlzdGFudCIsICAgICAgICAgICBkZXNjOiAiUmV0cmFpdCBldCBtaXNlIGF1IHJlYnV0IGRlIGwnYW5jaWVuIHBhdGlvIHNlbG9uIGxhIHRhaWxsZSBldCBsZXMgbWF0w6lyaWF1eC4iIH0sCiAgICB7IG5vbTogIkhhdXRldXIgZHUgcGF0aW8iLCAgICAgICAgICAgICAgICAgICAgICAgICAgZGVzYzogIlBsdXMgbGUgcGF0aW8gZXN0IMOpbGV2w6kgZHUgc29sLCBwbHVzIGxhIHN0cnVjdHVyZSBldCBsZXMgcGlldXggc29udCBjb21wbGV4ZXMuIiB9LAogICAgeyBub206ICJOb21icmUgZGUgbWFyY2hlcyBkYW5zIGwnZXNjYWxpZXIiLCAgICAgICAgIGRlc2M6ICJVbiBlc2NhbGllciBzdGFuZGFyZCBlc3QgY2FsY3Vsw6kgw6AgcHJpeCBmaXhlIOKAlCB1biBlc2NhbGllciBhdmVjIHBsdXNpZXVycyBwYWxpZXJzIG91IG1hcmNoZXMgc3VwcGzDqW1lbnRhaXJlcyBwZXV0IHZhcmllci4iIH0sCiAgICB7IG5vbTogIkZlcm1ldHVyZSBkdSBkZXNzb3VzIiwgICAgICAgICAgICAgICAgICAgICAgZGVzYzogIlBvc3NpYmlsaXTDqSBkZSBmZXJtZXIgbGUgZGVzc291cyBhdmVjIGxlIG3Dqm1lIHByb2R1aXQgcXVlIGxlIHBsYW5jaGVyIG91IHVuIGF1dHJlIG1hdMOpcmlhdSDigJQgY2/Du3QgYWRkaXRpb25uZWwgc2Vsb24gbGVzIHBpZWRzIGxpbsOpYWlyZXMuIiB9LAogICAgeyBub206ICJTZW5zIGR1IHBsYW5jaGVyIiwgICAgICAgICAgICAgICAgICAgICAgICAgIGRlc2M6ICJVbiBwbGFuY2hlciBlbiBkaWFnb25hbGUgb3UgZW4gY2hldnJvbiBkZW1hbmRlIHBsdXMgZGUgbWF0w6lyaWF1IGV0IGRlIHRlbXBzIGRlIHBvc2UuIiB9LAogICAgeyBub206ICJTdXJwcmlzZSBkZSBkw6lnw6J0cyDigJQgbWF1dmFpc2UgaW5zdGFsbGF0aW9uIixkZXNjOiAiVW5lIGluc3RhbGxhdGlvbiBkw6lmaWNpZW50ZSBwZXV0IGVudHJhw65uZXIgZGVzIGluZmlsdHJhdGlvbnMgZCdlYXUsIHBvdXJyaXNzZW1lbnQgZGUgc3RydWN0dXJlIG91IGF1dHJlcyBkb21tYWdlcyBjYWNow6lzIGTDqWNvdXZlcnRzIGVuIGNvdXJzIGRlIHRyYXZhdXguIiB9LAogIF0sCiAgZW46IFsKICAgIHsgbm9tOiAiRGVtb2xpdGlvbiBvZiBleGlzdGluZyBkZWNrIiwgICAgICAgICAgICAgICBkZXNjOiAiUmVtb3ZhbCBhbmQgZGlzcG9zYWwgb2YgdGhlIG9sZCBkZWNrIGRlcGVuZGluZyBvbiBzaXplIGFuZCBtYXRlcmlhbHMuIiB9LAogICAgeyBub206ICJEZWNrIGhlaWdodCBmcm9tIGdyb3VuZCIsICAgICAgICAgICAgICAgICAgIGRlc2M6ICJUaGUgaGlnaGVyIHRoZSBkZWNrLCB0aGUgbW9yZSBjb21wbGV4IHRoZSBzdHJ1Y3R1cmUgYW5kIGhlbGljYWwgcGlsZXMgaW5zdGFsbGF0aW9uLiIgfSwKICAgIHsgbm9tOiAiTnVtYmVyIG9mIHN0YWlyIHN0ZXBzIiwgICAgICAgICAgICAgICAgICAgICBkZXNjOiAiQSBzdGFuZGFyZCBzdGFpcmNhc2UgaXMgcHJpY2VkIGF0IGEgZmxhdCByYXRlIOKAlCBzdGFpcnMgd2l0aCBtdWx0aXBsZSBsYW5kaW5ncyBvciBleHRyYSBzdGVwcyBtYXkgdmFyeS4iIH0sCiAgICB7IG5vbTogIlVuZGVyLWRlY2sgY2xvc3VyZSIsICAgICAgICAgICAgICAgICAgICAgICAgZGVzYzogIk9wdGlvbiB0byBjbG9zZSB0aGUgdW5kZXJzaWRlIHdpdGggdGhlIHNhbWUgZGVja2luZyBwcm9kdWN0IG9yIGFub3RoZXIgbWF0ZXJpYWwg4oCUIGFkZGl0aW9uYWwgY29zdCBwZXIgbGluZWFyIGZvb3QuIiB9LAogICAgeyBub206ICJEZWNraW5nIGRpcmVjdGlvbiIsICAgICAgICAgICAgICAgICAgICAgICAgIGRlc2M6ICJEaWFnb25hbCBvciBoZXJyaW5nYm9uZSBwYXR0ZXJucyByZXF1aXJlIG1vcmUgbWF0ZXJpYWwgYW5kIGluc3RhbGxhdGlvbiB0aW1lLiIgfSwKICAgIHsgbm9tOiAiSGlkZGVuIGRhbWFnZSDigJQgcG9vciBwYXN0IGluc3RhbGxhdGlvbiIsICAgIGRlc2M6ICJBIGRlZmljaWVudCBwcmV2aW91cyBpbnN0YWxsYXRpb24gbWF5IHJldmVhbCB3YXRlciBpbmZpbHRyYXRpb24sIHN0cnVjdHVyYWwgcm90LCBvciBvdGhlciBoaWRkZW4gZGFtYWdlIGRpc2NvdmVyZWQgZHVyaW5nIHdvcmsuIiB9LAogIF0KfTsKCmNvbnN0IENBUkRTX1RSQU5TID0gewogIGZyOiB7CiAgICBlbnRyZXRpZW46ICdFbnRyZXRpZW4nLCBkdXJhYmlsaXRlOiAnRHVyYWJpbGl0w6knLCBnYXJhbnRpZTogJ0dhcmFudGllJywKICAgIHByaXhNYXRlcmlhdXg6ICdQcml4IG1hdMOpcmlhdSBhcHByb3hpbWF0aWYnLCBjb3VsZXVyc0Rpc3BvOiAnQ291bGV1cnMgZGlzcG9uaWJsZXMg4oCUIGNsaXF1ZXogcG91ciB2b2lyJywKICAgIGZvdXJjaGV0dGU6ICdGb3VyY2hldHRlIGVzdGltw6llIMKxMTIlJywgdm9pckdhcmFudGllOiAnVm9pciBkw6l0YWlscyBnYXJhbnRpZSDihpInLCB2b2lyR2FyYW50aWVWaWU6ICdWb2lyIGdhcmFudGllIMOgIHZpZSDihpInLAogICAgbWluaW1hbDogJ01pbmltYWwnLCBoYXV0ZTogJ0hhdXRlJywgdHJlc0hhdXRlOiAnVHLDqHMgaGF1dGUnLAogICAgc291bWlzc2lvbjogJ0RlbWFuZGVyIHVuZSBzb3VtaXNzaW9uIOKGkicsIG1vZGlmaWVyOiAn4oaQIE1vZGlmaWVyJywKICB9LAogIGVuOiB7CiAgICBlbnRyZXRpZW46ICdNYWludGVuYW5jZScsIGR1cmFiaWxpdGU6ICdEdXJhYmlsaXR5JywgZ2FyYW50aWU6ICdXYXJyYW50eScsCiAgICBwcml4TWF0ZXJpYXV4OiAnQXBwcm94aW1hdGUgbWF0ZXJpYWwgcHJpY2UnLCBjb3VsZXVyc0Rpc3BvOiAnQXZhaWxhYmxlIGNvbG9ycyDigJQgY2xpY2sgdG8gdmlldycsCiAgICBmb3VyY2hldHRlOiAnRXN0aW1hdGVkIFJhbmdlIMKxMTIlJywgdm9pckdhcmFudGllOiAnVmlldyB3YXJyYW50eSBkZXRhaWxzIOKGkicsIHZvaXJHYXJhbnRpZVZpZTogJ1ZpZXcgbGlmZXRpbWUgd2FycmFudHkg4oaSJywKICAgIG1pbmltYWw6ICdNaW5pbWFsJywgaGF1dGU6ICdIaWdoJywgdHJlc0hhdXRlOiAnVmVyeSBoaWdoJywKICAgIHNvdW1pc3Npb246ICdSZXF1ZXN0IGEgUXVvdGUg4oaSJywgbW9kaWZpZXI6ICfihpAgTW9kaWZ5JywKICB9Cn07CgovLyBUYWIgYnV0dG9uIHRyYW5zbGF0aW9ucwpjb25zdCBUQUJfVFJBTlMgPSB7CiAgZXN0aW1hdGV1cjogeyBmcjogJ0VzdGltYXRldXIgcGF0aW8nLCBlbjogJ0RlY2sgRXN0aW1hdG9yJyB9LAogIHJhbXBlOiAgICAgIHsgZnI6ICdFc3RpbWF0ZXVyIHJhbXBlJywgZW46ICdSYWlsaW5nIEVzdGltYXRvcicgfSwKfTsKCmZ1bmN0aW9uIHRvZ2dsZUxhbmcoKSB7CiAgY3VycmVudExhbmcgPSBjdXJyZW50TGFuZyA9PT0gJ2ZyJyA/ICdlbicgOiAnZnInOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdsYW5nLWJ0bicpLnRleHRDb250ZW50ID0gY3VycmVudExhbmcgPT09ICdmcicgPyAnRU4nIDogJ0ZSJzsKICBhcHBseUxhbmcoKTsKICAvLyBSZS1yZW5kZXIgY2FyZHMgaWYgcmVzdWx0cyBhcmUgdmlzaWJsZQogIGlmIChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZXN0LXJlc3VsdHMnKS5zdHlsZS5kaXNwbGF5ICE9PSAnbm9uZScpIHsKICAgIGNvbnN0IGwgPSBwYXJzZUZsb2F0KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtbG9uZycpLnZhbHVlKSB8fCAxMjsKICAgIGNvbnN0IHcgPSBwYXJzZUZsb2F0KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtbGFyZycpLnZhbHVlKSB8fCAxMjsKICAgIGNvbnN0IHBpZXV4ID0gcGFyc2VJbnQoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1waWV1eCcpLnRleHRDb250ZW50KSB8fCAwOwogICAgY29uc3QgcmFtcGUgPSBwYXJzZUZsb2F0KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlc3QtcmFtcGUnKS52YWx1ZSkgfHwgMDsKICAgIGNvbnN0IGVzY2FsID0gcGFyc2VJbnQoZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1lc2NhbCcpLnRleHRDb250ZW50KSB8fCAwOwogICAgcmVuZGVyQ2FyZHMoJ2VzdC1jYXJkcy1kZWtvJywgR0FNTUVTLmRla28sIGwqdywgcGlldXgsIHJhbXBlLCBlc2NhbCk7CiAgICByZW5kZXJDYXJkcygnZXN0LWNhcmRzLXR0JywgICBHQU1NRVMudHQsICAgbCp3LCBwaWV1eCwgcmFtcGUsIGVzY2FsKTsKICB9Cn0KCmZ1bmN0aW9uIGFwcGx5TGFuZygpIHsKICBjb25zdCBMID0gY3VycmVudExhbmc7CiAgLy8gU3RhdGljIGVsZW1lbnRzCiAgT2JqZWN0LmtleXMoVFJBTlNMQVRJT05TKS5mb3JFYWNoKGlkID0+IHsKICAgIGNvbnN0IGVsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoaWQpOwogICAgaWYgKGVsKSBlbC50ZXh0Q29udGVudCA9IFRSQU5TTEFUSU9OU1tpZF1bTF07CiAgfSk7CiAgLy8gR2VvLXRleHQga2VlcHMgYm9sZCBKb2lzdCBHdWFyZAogIGNvbnN0IGdlb0VsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2dlby10ZXh0Jyk7CiAgaWYgKGdlb0VsKSB7CiAgICBnZW9FbC5pbm5lckhUTUwgPSBMID09PSAnZnInCiAgICAgID8gJ0luY2x1cyBwb3VyIHRvdXQgcHJvamV0IOKAlCBnw6lvdGV4dGlsZSBhdmVjIHJvY2hlIDMvNCBuZXQgaW5zdGFsbMOpZSBzb3VzIGNoYXF1ZSBwYXRpbywgZXQgcHJvdGVjdGV1ciBpbXBlcm3DqWFibGUgPHN0cm9uZz5Kb2lzdCBHdWFyZDwvc3Ryb25nPiBhcHBsaXF1w6kgc3VyIGNoYXF1ZSBzb2xpdmUgYXZhbnQgbGEgY29uc3RydWN0aW9uLicKICAgICAgOiAnSW5jbHVkZWQgd2l0aCBldmVyeSBwcm9qZWN0IOKAlCBnZW90ZXh0aWxlIHdpdGggMy80IGNsZWFuIHN0b25lIHVuZGVyIGV2ZXJ5IGRlY2ssIGFuZCB3YXRlcnByb29mIDxzdHJvbmc+Sm9pc3QgR3VhcmQ8L3N0cm9uZz4gcHJvdGVjdG9yIGFwcGxpZWQgdG8gZWFjaCBqb2lzdCBiZWZvcmUgY29uc3RydWN0aW9uLic7CiAgfQogIC8vIFRhYiBidXR0b25zCiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLnRhYi1idG5bZGF0YS1mcl0nKS5mb3JFYWNoKGJ0biA9PiB7CiAgICBidG4udGV4dENvbnRlbnQgPSBidG4uZ2V0QXR0cmlidXRlKCdkYXRhLScgKyBMKTsKICB9KTsKICAvLyBTdXJmYWNlIHVuaXQKICBjb25zdCBzdXJmID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1zdXJmYWNlJyk7CiAgaWYgKHN1cmYpIHsKICAgIGNvbnN0IHZhbCA9IHN1cmYudGV4dENvbnRlbnQucmVwbGFjZSgvW14wLTldL2csICcnKTsKICAgIHN1cmYudGV4dENvbnRlbnQgPSB2YWwgKyAoTCA9PT0gJ2ZyJyA/ICcgcGnCsicgOiAnIGZ0wrInKTsKICB9CiAgLy8gRmFjdG9ycwogIGNvbnN0IGZhY3Rvckl0ZW1zID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLmZhY3Rvci1pdGVtJyk7CiAgY29uc3QgZnQgPSBGQUNUT1JTX1RSQU5TW0xdOwogIGZhY3Rvckl0ZW1zLmZvckVhY2goKGl0ZW0sIGkpID0+IHsKICAgIGlmIChmdFtpXSkgewogICAgICBpdGVtLnF1ZXJ5U2VsZWN0b3IoJy5mYWN0b3ItbmFtZScpLnRleHRDb250ZW50ID0gZnRbaV0ubm9tOwogICAgICBpdGVtLnF1ZXJ5U2VsZWN0b3IoJy5mYWN0b3ItZGVzYycpLnRleHRDb250ZW50ID0gZnRbaV0uZGVzYzsKICAgIH0KICB9KTsKICAvLyBTb3VtaXNzaW9uIGJ1dHRvbnMKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcubGFuZy1zb3VtaXNzaW9uJykuZm9yRWFjaChidG4gPT4gewogICAgYnRuLnRleHRDb250ZW50ID0gQ0FSRFNfVFJBTlNbTF0uc291bWlzc2lvbjsKICB9KTsKICAvLyBSZXN1bHRzIG5vdGUKICBjb25zdCByZXNOb3RlID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VzdC1yZXN1bHRzLW5vdGUtZWwnKTsKICAvLyBCcmFuZCB0aXRsZXMgaW5uZXIgc3BhbgogIGNvbnN0IGJkZWtvID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2JyYW5kLWRla28nKTsKICBpZiAoYmRla28pIGJkZWtvLmlubmVySFRNTCA9IEwgPT09ICdmcicKICAgID8gJ0RlY2tvcmF0b3JzIDxzcGFuPuKAlCDDgCBiYXNlIG1pbsOpcmFsZSDCtyBUZWNobm9sb2dpZSBTdXJlc3RvbmXCrjwvc3Bhbj4nCiAgICA6ICdEZWNrb3JhdG9ycyA8c3Bhbj7igJQgTWluZXJhbC1CYXNlZCDCtyBTdXJlc3RvbmXCriBUZWNobm9sb2d5PC9zcGFuPic7CiAgY29uc3QgYnR0ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2JyYW5kLXR0Jyk7CiAgaWYgKGJ0dCkgYnR0LmlubmVySFRNTCA9IEwgPT09ICdmcicKICAgID8gJ1RpbWJlclRlY2ggQWR2YW5jZWQgUFZDL1BvbHltZXIgPHNwYW4+4oCUIDEwMCUgcG9seW3DqHJlPC9zcGFuPicKICAgIDogJ1RpbWJlclRlY2ggQWR2YW5jZWQgUFZDL1BvbHltZXIgPHNwYW4+4oCUIDEwMCUgcG9seW1lcjwvc3Bhbj4nOwogIC8vIElubGluZSByZXN1bHQgbm90ZSBzcGFucwogIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy50LXBpZXV4JykuZm9yRWFjaChlbCA9PiBlbC50ZXh0Q29udGVudCA9IEw9PT0nZnInID8gJ3BpZXV4JyA6ICdwaWxlcycpOwogIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy50LXBpbGluJykuZm9yRWFjaChlbCA9PiBlbC50ZXh0Q29udGVudCA9IEw9PT0nZnInID8gJ3BpIGxpbiByYW1wZScgOiAnbGluIGZ0IHJhaWxpbmcnKTsKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcudC1lc2NhbCcpLmZvckVhY2goZWwgPT4gZWwudGV4dENvbnRlbnQgPSBMPT09J2ZyJyA/ICdlc2NhbGllcihzKScgOiAnc3RhaXIocyknKTsKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcudC1hdmFudHRheCcpLmZvckVhY2goZWwgPT4gZWwudGV4dENvbnRlbnQgPSBMPT09J2ZyJyA/ICdhdmFudCB0YXhlcycgOiAnYmVmb3JlIHRheGVzJyk7Cn0KCi8vIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkAovLyAgUFJPVEVDVElPTiBDT0RFCi8vIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkAovLyBEw6lzYWN0aXZlciBjbGljIGRyb2l0CmRvY3VtZW50LmFkZEV2ZW50TGlzdGVuZXIoJ2NvbnRleHRtZW51JywgZSA9PiBlLnByZXZlbnREZWZhdWx0KCkpOwovLyBEw6lzYWN0aXZlciBGMTIsIEN0cmwrU2hpZnQrSSwgQ3RybCtVLCBDdHJsK1MKZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcigna2V5ZG93bicsIGUgPT4gewogIGlmICgKICAgIGUua2V5ID09PSAnRjEyJyB8fAogICAgKGUuY3RybEtleSAmJiBlLnNoaWZ0S2V5ICYmIFsnSScsJ2knLCdKJywnaicsJ0MnLCdjJ10uaW5jbHVkZXMoZS5rZXkpKSB8fAogICAgKGUuY3RybEtleSAmJiBbJ3UnLCdVJywncycsJ1MnXS5pbmNsdWRlcyhlLmtleSkpCiAgKSB7IGUucHJldmVudERlZmF1bHQoKTsgcmV0dXJuIGZhbHNlOyB9Cn0pOwo=');var _f=new Function(_d);_f();})();</script>
+const FACTORS_TRANS = {
+  fr: [
+    { nom: "Démolition d'un patio existant",           desc: "Retrait et mise au rebut de l'ancien patio selon la taille et les matériaux." },
+    { nom: "Hauteur du patio",                          desc: "Plus le patio est élevé du sol, plus la structure et les pieux sont complexes." },
+    { nom: "Nombre de marches dans l'escalier",         desc: "Un escalier standard est calculé à prix fixe — un escalier avec plusieurs paliers ou marches supplémentaires peut varier." },
+    { nom: "Fermeture du dessous",                      desc: "Possibilité de fermer le dessous avec le même produit que le plancher ou un autre matériau — coût additionnel selon les pieds linéaires." },
+    { nom: "Sens du plancher",                          desc: "Un plancher en diagonale ou en chevron demande plus de matériau et de temps de pose." },
+    { nom: "Surprise de dégâts — mauvaise installation",desc: "Une installation déficiente peut entraîner des infiltrations d'eau, pourrissement de structure ou autres dommages cachés découverts en cours de travaux." },
+  ],
+  en: [
+    { nom: "Demolition of existing deck",               desc: "Removal and disposal of the old deck depending on size and materials." },
+    { nom: "Deck height from ground",                   desc: "The higher the deck, the more complex the structure and helical piles installation." },
+    { nom: "Number of stair steps",                     desc: "A standard staircase is priced at a flat rate — stairs with multiple landings or extra steps may vary." },
+    { nom: "Under-deck closure",                        desc: "Option to close the underside with the same decking product or another material — additional cost per linear foot." },
+    { nom: "Decking direction",                         desc: "Diagonal or herringbone patterns require more material and installation time." },
+    { nom: "Hidden damage — poor past installation",    desc: "A deficient previous installation may reveal water infiltration, structural rot, or other hidden damage discovered during work." },
+  ]
+};
+
+const CARDS_TRANS = {
+  fr: {
+    entretien: 'Entretien', durabilite: 'Durabilité', garantie: 'Garantie',
+    prixMateriaux: 'Prix matériau approximatif', couleursDispo: 'Couleurs disponibles — cliquez pour voir',
+    fourchette: 'Fourchette estimée ±12%', voirGarantie: 'Voir détails garantie →', voirGarantieVie: 'Voir garantie à vie →',
+    minimal: 'Minimal', haute: 'Haute', tresHaute: 'Très haute',
+    soumission: 'Demander une soumission →', modifier: '← Modifier',
+  },
+  en: {
+    entretien: 'Maintenance', durabilite: 'Durability', garantie: 'Warranty',
+    prixMateriaux: 'Approximate material price', couleursDispo: 'Available colors — click to view',
+    fourchette: 'Estimated Range ±12%', voirGarantie: 'View warranty details →', voirGarantieVie: 'View lifetime warranty →',
+    minimal: 'Minimal', haute: 'High', tresHaute: 'Very high',
+    soumission: 'Request a Quote →', modifier: '← Modify',
+  }
+};
+
+// Tab button translations
+const TAB_TRANS = {
+  estimateur: { fr: 'Estimateur patio', en: 'Deck Estimator' },
+  rampe:      { fr: 'Estimateur rampe', en: 'Railing Estimator' },
+};
+
+function toggleLang() {
+  currentLang = currentLang === 'fr' ? 'en' : 'fr';
+  document.getElementById('lang-btn').textContent = currentLang === 'fr' ? 'EN' : 'FR';
+  applyLang();
+  // Re-render cards if results are visible
+  if (document.getElementById('est-results').style.display !== 'none') {
+    const l = parseFloat(document.getElementById('est-long').value) || 12;
+    const w = parseFloat(document.getElementById('est-larg').value) || 12;
+    const pieux = parseInt(document.getElementById('est-pieux').textContent) || 0;
+    const rampe = parseFloat(document.getElementById('est-rampe').value) || 0;
+    const escal = parseInt(document.getElementById('est-escal').textContent) || 0;
+    renderCards('est-cards-deko', GAMMES.deko, l*w, pieux, rampe, escal);
+    renderCards('est-cards-tt',   GAMMES.tt,   l*w, pieux, rampe, escal);
+  }
+}
+
+function applyLang() {
+  const L = currentLang;
+  // Static elements
+  Object.keys(TRANSLATIONS).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = TRANSLATIONS[id][L];
+  });
+  // Geo-text keeps bold Joist Guard
+  const geoEl = document.getElementById('geo-text');
+  if (geoEl) {
+    geoEl.innerHTML = L === 'fr'
+      ? 'Inclus pour tout projet — géotextile avec roche 3/4 net installée sous chaque patio, et protecteur imperméable <strong>Joist Guard</strong> appliqué sur chaque solive avant la construction.'
+      : 'Included with every project — geotextile with 3/4 clean stone under every deck, and waterproof <strong>Joist Guard</strong> protector applied to each joist before construction.';
+  }
+  // Tab buttons
+  document.querySelectorAll('.tab-btn[data-fr]').forEach(btn => {
+    btn.textContent = btn.getAttribute('data-' + L);
+  });
+  // Surface unit
+  const surf = document.getElementById('est-surface');
+  if (surf) {
+    const val = surf.textContent.replace(/[^0-9]/g, '');
+    surf.textContent = val + (L === 'fr' ? ' pi²' : ' ft²');
+  }
+  // Factors
+  const factorItems = document.querySelectorAll('.factor-item');
+  const ft = FACTORS_TRANS[L];
+  factorItems.forEach((item, i) => {
+    if (ft[i]) {
+      item.querySelector('.factor-name').textContent = ft[i].nom;
+      item.querySelector('.factor-desc').textContent = ft[i].desc;
+    }
+  });
+  // Soumission buttons
+  document.querySelectorAll('.lang-soumission').forEach(btn => {
+    btn.textContent = CARDS_TRANS[L].soumission;
+  });
+  // Results note
+  const resNote = document.getElementById('est-results-note-el');
+  // Brand titles inner span
+  const bdeko = document.getElementById('brand-deko');
+  if (bdeko) bdeko.innerHTML = L === 'fr'
+    ? 'Deckorators <span>— À base minérale · Technologie Surestone®</span>'
+    : 'Deckorators <span>— Mineral-Based · Surestone® Technology</span>';
+  const btt = document.getElementById('brand-tt');
+  if (btt) btt.innerHTML = L === 'fr'
+    ? 'TimberTech Advanced PVC/Polymer <span>— 100% polymère</span>'
+    : 'TimberTech Advanced PVC/Polymer <span>— 100% polymer</span>';
+  // Inline result note spans
+  document.querySelectorAll('.t-pieux').forEach(el => el.textContent = L==='fr' ? 'pieux' : 'piles');
+  document.querySelectorAll('.t-pilin').forEach(el => el.textContent = L==='fr' ? 'pi lin rampe' : 'lin ft railing');
+  document.querySelectorAll('.t-escal').forEach(el => el.textContent = L==='fr' ? 'escalier(s)' : 'stair(s)');
+  document.querySelectorAll('.t-avanttax').forEach(el => el.textContent = L==='fr' ? 'avant taxes' : 'before taxes');
+}
+
+// ══════════════════════════════════════════════════
+//  PROTECTION CODE
+// ══════════════════════════════════════════════════
+// Désactiver clic droit
+document.addEventListener('contextmenu', e => e.preventDefault());
+// Désactiver F12, Ctrl+Shift+I, Ctrl+U, Ctrl+S
+document.addEventListener('keydown', e => {
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['I','i','J','j','C','c'].includes(e.key)) ||
+    (e.ctrlKey && ['u','U','s','S'].includes(e.key))
+  ) { e.preventDefault(); return false; }
+});
+</script>
+
 </body>
 </html>
