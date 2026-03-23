@@ -1818,7 +1818,7 @@ function showResult() {
       <div class="card-section-title">Estimation de prix *</div>
       <div class="card-price-range">${fmt(p.bas)}&nbsp;–&nbsp;${fmt(p.haut)}</div>
       <div class="card-price-note">* Patio 12×14 pi², 6 pieux, 20 pi lin rampe, 1 escalier — avant taxes — fourchette indicative</div>
-      <button class="btn-contact" class="btn-quote lang-soumission" onclick="goToContact()">Demander une soumission →</button>
+      <button class="btn-contact lang-soumission" onclick="goToContact('${g.brand} ${g.nom}')">Demander une soumission →</button>
     `;
     grid.appendChild(card);
   });
@@ -1860,9 +1860,30 @@ function restart() {
   showScreen('screen-intro');
 }
 
-function goToContact() {
-  if (window.ouvrirFormulaire) window.ouvrirFormulaire();
-  else window.location.href = 'index.html#contact';
+function goToContact(gamme) {
+  // Construire les paramètres
+  var params = new URLSearchParams();
+  params.set('formulaire', '1');
+
+  // Gamme passée en paramètre (depuis une carte spécifique)
+  if (gamme) {
+    params.set('materiau', gamme);
+  }
+
+  // Détails du projet si l'estimateur a été utilisé
+  var long = document.getElementById('est-long') ? document.getElementById('est-long').value : '';
+  var larg = document.getElementById('est-larg') ? document.getElementById('est-larg').value : '';
+  var pieux = document.getElementById('est-pieux') ? document.getElementById('est-pieux').textContent : '';
+  var rampe = document.getElementById('est-rampe') ? document.getElementById('est-rampe').value : '';
+  var escal = document.getElementById('est-escal') ? document.getElementById('est-escal').textContent : '';
+
+  if (long && larg && document.getElementById('est-results').style.display !== 'none') {
+    var surface = parseFloat(long) * parseFloat(larg);
+    var details = long + ' × ' + larg + ' pi (' + surface + ' pi²) · ' + pieux + ' pieux · ' + rampe + ' pi lin rampe · ' + escal + ' escalier(s)';
+    params.set('details', encodeURIComponent(details));
+  }
+
+  window.location.href = 'index.html?' + params.toString();
 }
 </script>
 <!-- POPUP COULEURS -->
