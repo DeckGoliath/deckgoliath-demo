@@ -946,6 +946,19 @@ body {
 }
 .geo-icon { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
 
+/* ── BOUTON PROJET NON STANDARD ── */
+.btn-nonstandard span {
+  display: block;
+  font-family: 'EB Garamond', serif;
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(10,8,6,0.6);
+  margin-top: 4px;
+}
+
 /* ── FACTEURS D'INFLUENCE ── */
 .factors-box {
   background: var(--dark-2);
@@ -1175,6 +1188,7 @@ body {
         </div>
 
         <button id="btn-calc" class="btn-start" style="margin-top:20px;" onclick="calculerEst()">Calculer les prix →</button>
+        <button class="btn-start btn-nonstandard" style="margin-top:10px;" onclick="goToContact('Projet non standard')">Projet non standard →<span>(remplacement escalier, accès 2e étage, forme non standard, etc.)</span></button>
       </div>
 
       <div class="est-results" id="est-results" style="display:none;">
@@ -1968,6 +1982,8 @@ function goToContact(gamme) {
   // Construire les paramètres
   var params = new URLSearchParams();
   params.set('formulaire', '1');
+  // Passer la langue actuelle
+  if (currentLang === 'en') params.set('lang', 'en');
 
   // Gamme passée en paramètre (depuis une carte spécifique)
   if (gamme) {
