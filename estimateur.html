@@ -1308,7 +1308,7 @@ select.est-input option {
 
             <div class="est-field">
               <label class="est-label" id="lbl-form-secteur">Secteur *</label>
-              <select class="est-input" name="secteur" required style="cursor:pointer;">
+              <select class="est-input" name="secteur" onchange="verifierSecteurEst(this.value)" required style="cursor:pointer;">
                 <option value="" id="form-select-placeholder">SVP - Faire un choix</option>
                 <option value="Gatineau" id="opt-gatineau">Secteur de Gatineau</option>
                 <option value="Masson-Angers" id="opt-masson">Secteur de Masson-Angers</option>
@@ -2330,6 +2330,8 @@ function applyLang() {
   const ot = optTrans[L];
   const optMap = { 'form-select-placeholder': ot.placeholder, 'opt-mat-placeholder': ot.placeholder, 'opt-gatineau': ot.gatineau, 'opt-masson': ot.masson, 'opt-buckingham': ot.buckingham, 'opt-hull': ot.hull, 'opt-aylmer': ot.aylmer, 'opt-chelsea': ot.chelsea, 'opt-cantley': ot.cantley, 'opt-nonstandard': ot.nonstandard, 'opt-uncertain': ot.uncertain };
   Object.entries(optMap).forEach(([id, txt]) => { const el = document.getElementById(id); if (el) el.textContent = txt; });
+  // Popup hull
+  if (typeof traduireHullEst === 'function') traduireHullEst(L);
 }
 
 // ══════════════════════════════════════════════════
@@ -2345,6 +2347,65 @@ document.addEventListener('keydown', e => {
     (e.ctrlKey && ['u','U','s','S'].includes(e.key))
   ) { e.preventDefault(); return false; }
 });
+</script>
+
+<!-- POPUP HULL/AYLMER -->
+<div id="popup-hull-est" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9500;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;max-width:520px;width:100%;padding:32px;position:relative;">
+    <h3 style="font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:#1a1200;margin-bottom:16px;" id="est-hull-title">Information importante — Secteur Hull / Aylmer / Chelsea / Cantley</h3>
+    <p style="font-size:14px;color:#333;line-height:1.75;margin-bottom:12px;" id="est-hull-p1">En raison du trafic et de notre réalité familiale, nous ne pourrons réaliser de projets dans ce secteur qu'en <strong>juillet et août 2026</strong>.</p>
+    <p style="font-size:14px;color:#333;line-height:1.75;margin-bottom:12px;" id="est-hull-p2">Les prises de rendez-vous <strong>débuteront à la fin mars 2026</strong>, selon les disponibilités restantes.</p>
+    <p style="font-size:14px;color:#333;line-height:1.75;margin-bottom:24px;" id="est-hull-p3">Nous vous remercions sincèrement de votre compréhension.</p>
+    <div style="display:flex;gap:12px;justify-content:flex-end;">
+      <button onclick="fermerHullEst(false)" id="est-hull-fermer" style="padding:10px 20px;background:#f0f0f0;border:none;cursor:pointer;font-size:13px;">Fermer</button>
+      <button onclick="fermerHullEst(true)" id="est-hull-compris" style="padding:10px 20px;background:#1a1200;color:#E8B84B;border:none;cursor:pointer;font-size:13px;font-weight:700;">J'ai compris</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function verifierSecteurEst(val) {
+  console.log('Secteur sélectionné:', val);
+  const secteursLimites = ['Hull', 'Aylmer', 'Chelsea', 'Cantley'];
+  if (secteursLimites.includes(val)) {
+    console.log('Popup devrait apparaître');
+    document.getElementById('popup-hull-est').style.display = 'flex';
+  }
+}
+function fermerHullEst(compris) {
+  document.getElementById('popup-hull-est').style.display = 'none';
+  if (!compris) {
+    // Remettre le select à vide
+    const sel = document.querySelector('#est-form-soumission select[name="secteur"]');
+    if (sel) sel.value = '';
+  }
+}
+// Traduction popup hull
+function traduireHullEst(L) {
+  const t = {
+    fr: {
+      title: 'Information importante — Secteur Hull / Aylmer / Chelsea / Cantley',
+      p1: 'En raison du trafic et de notre réalité familiale, nous ne pourrons réaliser de projets dans ce secteur qu\'en <strong>juillet et août 2026</strong>.',
+      p2: 'Les prises de rendez-vous <strong>débuteront à la fin mars 2026</strong>, selon les disponibilités restantes.',
+      p3: 'Nous vous remercions sincèrement de votre compréhension.',
+      fermer: 'Fermer', compris: 'J\'ai compris'
+    },
+    en: {
+      title: 'Important notice — Hull / Aylmer / Chelsea / Cantley area',
+      p1: 'Due to traffic and our family schedule, we will only be able to complete projects in this area during <strong>July and August 2026</strong>.',
+      p2: 'Appointments will <strong>begin at the end of March 2026</strong>, based on remaining availability.',
+      p3: 'We sincerely thank you for your understanding.',
+      fermer: 'Close', compris: 'Understood'
+    }
+  };
+  const tr = t[L];
+  const ids = ['est-hull-title','est-hull-p1','est-hull-p2','est-hull-p3','est-hull-fermer','est-hull-compris'];
+  const vals = [tr.title, tr.p1, tr.p2, tr.p3, tr.fermer, tr.compris];
+  ids.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = vals[i];
+  });
+}
 </script>
 
 </body>
